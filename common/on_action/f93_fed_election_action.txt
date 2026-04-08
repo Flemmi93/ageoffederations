@@ -1,23 +1,29 @@
 on_monthly_pulse_country = {
 	events = {
-		f93_fed_election.0
-		f93_fed_background.2
-		f93_fed_background.3
-		f93_fed_background.4
-		f93_fed_market.1
+		f93_aof_election.0
+		f93_aof_background.2
+		f93_aof_background.3
+		f93_aof_background.4
+		f93_aof_market.1
 	}
 }
-on_decade_pulse_country = {
+on_yearly_pulse_country = {
 	events = {
-		f93_fed_market.0
+		f93_aof_galcom.0
+		f93_aof_galcom.1
 	}
 }
+# on_decade_pulse_country = {
+# 	events = {
+# 		# f93_aof_market.0
+# 	}
+# }
 
 
 #This = Federation leader
 #From = Leaving member
 on_leave_federation = {
 	events = {
-		f93_fed_background.6 # cleanup
+		f93_aof_background.6 # cleanup
 	}
 }

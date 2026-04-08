@@ -355,8 +355,8 @@ centralization_medium = {
 		# modded content / edit
 		if = {
 			limit = { NOT = { has_federation_flag = federation_one_enabled } }
-			every_member = { country_event = { id = f93_fed_market.3 days = 1080 } } # enabling capitol one 
-			every_member = { country_event = { id = f93_fed_market.4 days = 2520 } } # enabling capitol one 
+			every_member = { country_event = { id = f93_aof_market.3 days = 1080 } } # enabling capitol one 
+			every_member = { country_event = { id = f93_aof_market.4 days = 2520 } } # enabling capitol one 
 			set_federation_flag = federation_one_enabled
 		}
 		add_cohesion = -25 # original value -10

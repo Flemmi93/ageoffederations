@@ -32,7 +32,7 @@ treaties_separate_no = {
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
 		every_member = {
-			country_event = { id = f93_fed_background.0 } # Clear treaties with non-Federation members # originally action.215
+			country_event = { id = f93_aof_background.0 } # Clear treaties with non-Federation members # originally action.215
 		###
 		}
 	}
@@ -96,7 +96,7 @@ treaties_separate_ethical_partners = {
 		}
 		add_cohesion = @cohesion_loss
 		every_member = {
-			country_event = { id = f93_fed_background.0 } # Clear treaties with non-Federation members
+			country_event = { id = f93_aof_background.0 } # Clear treaties with non-Federation members
 		}
 	}
 	

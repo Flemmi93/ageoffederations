@@ -1,8 +1,8 @@
-namespace = f93_fed_background
+namespace = f93_aof_background
 
 # Federation Clear Outside Treaties
 country_event = {
-	id = f93_fed_background.0
+	id = f93_aof_background.0
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
@@ -22,10 +22,10 @@ country_event = {
 
 # Federation has slavery
 country_event = {
-	id = f93_fed_background.1
+	id = f93_aof_background.1
 	is_triggered_only = yes
-	title = f93_fed_background.1.name
-	desc = f93_fed_background.1.desc
+	title = f93_aof_background.1.name
+	desc = f93_aof_background.1.desc
 	picture = GFX_evt_hand_shake
 	immediate = {
 		every_country = {
@@ -41,7 +41,7 @@ country_event = {
 		}
 	}
 	option = {
-		name = f93_fed_background.1.a
+		name = f93_aof_background.1.a
 		if = {
 			limit = { has_policy_flag = slavery_allowed }
 			set_policy = { policy = slavery option = slavery_not_allowed cooldown = yes }
@@ -59,7 +59,7 @@ country_event = {
 		}
 	}
 	option = {
-		name = f93_fed_background.1.b
+		name = f93_aof_background.1.b
 		leave_alliance = {
 			override_requirements = yes
 			apply_opinion_penalty = yes
@@ -74,7 +74,7 @@ country_event = {
 	}
 }
 country_event = {
-	id = f93_fed_background.2
+	id = f93_aof_background.2
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
@@ -92,7 +92,7 @@ country_event = {
 	}
 }
 country_event = {
-	id = f93_fed_background.3
+	id = f93_aof_background.3
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
@@ -110,13 +110,16 @@ country_event = {
 }
 # no confidence counter
 country_event = {
-	id = f93_fed_background.4
+	id = f93_aof_background.4
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
 		exists = federation
 		is_federation_leader = yes
-		any_federation = { federation_cohesion <= 0 }
+		any_federation = {
+			any_member = { is_same_value = root }
+			federation_cohesion <= 0
+		}
 		NOT = { has_country_flag = no_confidence_happened }
 	}
 	immediate = {
@@ -130,29 +133,29 @@ country_event = {
 			limit = { check_variable = { which = no_confidence_counter value = 12 } }
 			set_timed_country_flag = { flag = no_confidence days = 400 }
 			set_variable = { which = no_confidence_counter value = 0 }
-			country_event = { id = f93_fed_background.5 days = 5 random = 10 }
+			country_event = { id = f93_aof_background.5 days = 5 random = 10 }
 		}
 	}
 }
 # no confidence counter
 country_event = {
-	id = f93_fed_background.5
-	title = f93_fed_background.5.name
-	desc = f93_fed_background.5.desc
+	id = f93_aof_background.5
+	title = f93_aof_background.5.name
+	desc = f93_aof_background.5.desc
 	picture = GFX_evt_civil_action
 	is_triggered_only = yes
 	option = {
-		name = f93_fed_background.5.a
+		name = f93_aof_background.5.a
 		federation = {
 			every_member = {
-				country_event = { id = f93_fed_election.4 days = 60 }
+				country_event = { id = f93_aof_election.4 days = 60 }
 			}
 		}
 	}
 }
 # left or kicked from federation
 country_event = {
-	id = f93_fed_background.6
+	id = f93_aof_background.6
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {

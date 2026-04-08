@@ -1,5 +1,5 @@
-f93_fed_election_situation = {
-	desc = f93_fed_election_situation_desc
+f93_aof_election_situation = {
+	desc = f93_aof_election_situation_desc
 	picture = GFX_Evt_f93_election_event_picture
 
 	start_value = 0
@@ -18,7 +18,7 @@ f93_fed_election_situation = {
 	}
 
 	on_fail = {
-		custom_tooltip = f93_fed_election_situation
+		custom_tooltip = f93_aof_election_situation
 		destroy_situation = this
 	}
 
@@ -71,7 +71,7 @@ f93_fed_election_situation = {
 			remove_country_flag = federation_elections_situation_3 
 		}
 		owner = {
-			federation.federation_leader = { country_event = { id = f93_fed_election.2 } }
+			federation.federation_leader = { country_event = { id = f93_aof_election.2 } }
 		}
 	}
 	
@@ -92,7 +92,7 @@ f93_fed_election_situation = {
 		icon_background = GFX_situation_approach_bg_yellow
 		on_select = {
 			custom_tooltip = election_window_tooltip
-			hidden_effect = { owner = { country_event = { id = f93_fed_election.1 } } }
+			hidden_effect = { owner = { country_event = { id = f93_aof_election.1 } } }
 		}
 		ai_weight = { base = 0 }
 	}

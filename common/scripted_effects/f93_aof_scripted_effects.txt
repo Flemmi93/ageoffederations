@@ -10,6 +10,6 @@ remove_market_modifier = {
 	remove_modifier = f93_aof_market_science
 }
 remove_accord_modifier = {
-	remove_modifier = f93_fed_accord_coop
-	remove_modifier = f93_fed_accord_unyielding
+	remove_modifier = f93_aof_accord_coop
+	remove_modifier = f93_aof_accord_unyielding
 }

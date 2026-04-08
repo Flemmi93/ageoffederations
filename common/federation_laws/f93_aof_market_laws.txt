@@ -9,8 +9,8 @@ fed_market_mix = {
 			NOT = {
 				AND = {
 					NOT = { has_federation_law = fed_market_mix }
-					has_modifier = federation_law_category_fed_market_cooldown
-					has_any_federation_law_in_category = law_category_fed_market
+					has_modifier = federation_law_category_aof_market_cooldown
+					has_any_federation_law_in_category = law_category_aof_market
 				}
 			}
 		}
@@ -24,7 +24,7 @@ fed_market_mix = {
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
 			add_modifier = {
-				modifier = federation_law_category_fed_market_cooldown
+				modifier = federation_law_category_aof_market_cooldown
 				days = @cooldown
 			}
 		}
@@ -34,7 +34,7 @@ fed_market_mix = {
 				modifier = f93_aof_market_mix
 				mult = aof_market_volume
 			}
-			country_event = { id = f93_fed_market.1 }
+			country_event = { id = f93_aof_market.1 }
 		}
 	}
 	ai_weight = { 
@@ -61,8 +61,8 @@ fed_market_civilian = {
 			NOT = {
 				AND = {
 					NOT = { has_federation_law = fed_market_civilian }
-					has_modifier = federation_law_category_fed_market_cooldown
-					has_any_federation_law_in_category = law_category_fed_market
+					has_modifier = federation_law_category_aof_market_cooldown
+					has_any_federation_law_in_category = law_category_aof_market
 				}
 			}
 		}
@@ -76,7 +76,7 @@ fed_market_civilian = {
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
 			add_modifier = {
-				modifier = federation_law_category_fed_market_cooldown
+				modifier = federation_law_category_aof_market_cooldown
 				days = @cooldown
 			}
 		}
@@ -86,7 +86,7 @@ fed_market_civilian = {
 				modifier = f93_aof_market_civilian
 				mult = aof_market_volume
 			}
-			country_event = { id = f93_fed_market.1 }
+			country_event = { id = f93_aof_market.1 }
 		}
 	}
 	ai_weight = { 
@@ -119,8 +119,8 @@ fed_market_military = {
 			NOT = {
 				AND = {
 					NOT = { has_federation_law = fed_market_military }
-					has_modifier = federation_law_category_fed_market_cooldown
-					has_any_federation_law_in_category = law_category_fed_market
+					has_modifier = federation_law_category_aof_market_cooldown
+					has_any_federation_law_in_category = law_category_aof_market
 				}
 			}
 		}
@@ -134,7 +134,7 @@ fed_market_military = {
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
 			add_modifier = {
-				modifier = federation_law_category_fed_market_cooldown
+				modifier = federation_law_category_aof_market_cooldown
 				days = @cooldown
 			}
 		}
@@ -144,7 +144,7 @@ fed_market_military = {
 				modifier = f93_aof_market_military
 				mult = aof_market_volume
 			}
-			country_event = { id = f93_fed_market.1 }
+			country_event = { id = f93_aof_market.1 }
 		}
 	}
 	
@@ -178,8 +178,8 @@ fed_market_science = {
 			NOT = {
 				AND = {
 					NOT = { has_federation_law = fed_market_science }
-					has_modifier = federation_law_category_fed_market_cooldown
-					has_any_federation_law_in_category = law_category_fed_market
+					has_modifier = federation_law_category_aof_market_cooldown
+					has_any_federation_law_in_category = law_category_aof_market
 				}
 			}
 		}
@@ -193,7 +193,7 @@ fed_market_science = {
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
 			add_modifier = {
-				modifier = federation_law_category_fed_market_cooldown
+				modifier = federation_law_category_aof_market_cooldown
 				days = @cooldown
 			}
 		}
@@ -203,7 +203,7 @@ fed_market_science = {
 				modifier = f93_aof_market_science
 				mult = aof_market_volume
 			}
-			country_event = { id = f93_fed_market.1 }
+			country_event = { id = f93_aof_market.1 }
 		}
 	}
 	ai_weight = { 
@@ -236,8 +236,8 @@ fed_market_extraction = {
 			NOT = {
 				AND = {
 					NOT = { has_federation_law = fed_market_extraction }
-					has_modifier = federation_law_category_fed_market_cooldown
-					has_any_federation_law_in_category = law_category_fed_market
+					has_modifier = federation_law_category_aof_market_cooldown
+					has_any_federation_law_in_category = law_category_aof_market
 				}
 			}
 		}
@@ -251,7 +251,7 @@ fed_market_extraction = {
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
 			add_modifier = {
-				modifier = federation_law_category_fed_market_cooldown
+				modifier = federation_law_category_aof_market_cooldown
 				days = @cooldown
 			}
 		}
@@ -262,7 +262,7 @@ fed_market_extraction = {
 				modifier = f93_aof_market_extract
 				mult = aof_market_volume
 			}
-			country_event = { id = f93_fed_market.1 }
+			country_event = { id = f93_aof_market.1 }
 		}
 	}
 	ai_weight = { 

@@ -55,7 +55,7 @@ assembly_grand = {
 		if = {
 			limit = { NOT = { has_federation_flag = had_grand_assembly } }
 			every_member = {
-				country_event = { id = f93_fed_election.302 }
+				country_event = { id = f93_aof_election.302 }
 			}
 			set_federation_flag = had_grand_assembly
 		}
@@ -235,7 +235,7 @@ diplomatic_bloc_united = {
 		}
 
 		modifier = {
-			desc = f93_fed_civic_shared_burden
+			desc = f93_aof_civic_shared_burden
 			add = 1000
 			has_civic = civic_shared_burden
 		}
@@ -249,8 +249,8 @@ fed_accords_none = {
 			NOT = {
 				AND = {
 					NOT = { has_federation_law = fed_accords_none }
-					has_modifier = federation_law_category_fed_accords_cooldown
-					has_any_federation_law_in_category = law_category_fed_accords
+					has_modifier = federation_law_category_aof_accords_cooldown
+					has_any_federation_law_in_category = law_category_aof_accords
 				}
 			}
 		}
@@ -258,13 +258,13 @@ fed_accords_none = {
 	
 	on_enact = {
 		every_member = {
-			remove_modifier = f93_fed_accord_unyielding
-			remove_modifier = f93_fed_accord_coop
+			remove_modifier = f93_aof_accord_unyielding
+			remove_modifier = f93_aof_accord_coop
 		}
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
 			add_modifier = {
-				modifier = federation_law_category_fed_accords_cooldown
+				modifier = federation_law_category_aof_accords_cooldown
 				days = @cooldown
 			}
 		}
@@ -286,8 +286,8 @@ fed_accords_coop = {
 			NOT = {
 				AND = {
 					NOT = { has_federation_law = fed_accords_coop }
-					has_modifier = federation_law_category_fed_accords_cooldown
-					has_any_federation_law_in_category = law_category_fed_accords
+					has_modifier = federation_law_category_aof_accords_cooldown
+					has_any_federation_law_in_category = law_category_aof_accords
 				}
 			}
 		}
@@ -298,14 +298,14 @@ fed_accords_coop = {
 	}
 	on_enact = {
 		every_member = {
-			remove_modifier = f93_fed_accord_unyielding
-			add_modifier = { modifier = f93_fed_accord_coop mult = 1 }
+			remove_modifier = f93_aof_accord_unyielding
+			add_modifier = { modifier = f93_aof_accord_coop mult = 1 }
 		}
 		add_cohesion = @cohesion_loss
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
 			add_modifier = {
-				modifier = federation_law_category_fed_accords_cooldown
+				modifier = federation_law_category_aof_accords_cooldown
 				days = @cooldown
 			}
 		}
@@ -332,22 +332,22 @@ fed_accords_unyielding = {
 			NOT = {
 				AND = {
 					NOT = { has_federation_law = fed_accords_unyielding }
-					has_modifier = federation_law_category_fed_accords_cooldown
-					has_any_federation_law_in_category = law_category_fed_accords
+					has_modifier = federation_law_category_aof_accords_cooldown
+					has_any_federation_law_in_category = law_category_aof_accords
 				}
 			}
 		}
 	}
 	on_enact = {
 		every_member = {
-			remove_modifier = f93_fed_accord_coop
-			add_modifier = { modifier = f93_fed_accord_unyielding mult = 1 }
+			remove_modifier = f93_aof_accord_coop
+			add_modifier = { modifier = f93_aof_accord_unyielding mult = 1 }
 		}
 		add_cohesion = @cohesion_loss
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
 			add_modifier = {
-				modifier = federation_law_category_fed_accords_cooldown
+				modifier = federation_law_category_aof_accords_cooldown
 				days = @cooldown
 			}
 		}

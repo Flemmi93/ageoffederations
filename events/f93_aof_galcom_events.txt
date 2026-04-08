@@ -1,0 +1,67 @@
+namespace = f93_aof_galcom
+
+country_event = {
+	id = f93_aof_galcom.0
+	is_triggered_only = yes
+	title = f93_aof_galcom.0.name
+	desc = f93_aof_galcom.0.desc
+    picture = GFX_evt_arguing_senate
+	trigger = {
+		has_galactic_custodian = yes
+		exists = federation
+	}
+	option = {
+		name = f93_aof_galcom.0.a
+		trigger = { is_galactic_custodian = no }
+	}
+	option = {
+		name = f93_aof_galcom.0.b
+		trigger = { is_galactic_custodian = yes }
+	}
+}
+country_event = {
+	id = f93_aof_galcom.1
+	is_triggered_only = yes
+	title = f93_aof_galcom.1.name
+	desc = f93_aof_galcom.1.desc
+    picture = GFX_evt_imperial_vassal
+	trigger = {
+		OR ={
+			is_voting_on_resolution = resolution_galactic_empire_imperial_crusade
+			is_voting_on_resolution = resolution_awakened_galactic_empire
+			is_voting_on_resolution = resolution_custodian_form_empire
+		}
+		exists = federation
+		any_federation_ally = { is_galactic_community_member = yes }
+		
+	}
+	option = {
+		name = f93_aof_galcom.1.a
+		trigger = { is_galactic_custodian = yes }
+	}
+	option ={
+		trigger = {
+			is_ai = yes
+			any_federation_ally = { is_galactic_custodian = yes }
+		}
+		name = OK
+		remove_from_galactic_community = yes
+	}
+	option = {
+		name = f93_aof_galcom.1.c
+		trigger = { is_galactic_community_member = no }
+	}
+	option = {
+		name = f93_aof_galcom.1.b
+		trigger = { is_galactic_community_member = yes }
+		remove_from_galactic_community = yes
+	}
+	option = {
+		name = f93_aof_galcom.1.d
+		trigger = { is_galactic_community_member = yes is_ai = no }
+		leave_alliance = {
+			override_requirements = yes
+			apply_opinion_penalty = yes
+		}
+	}
+}

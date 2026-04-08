@@ -175,14 +175,14 @@ law_category_separate_treaties = {
 	}
 }
 # Modded content
-law_category_fed_accords = {
+law_category_aof_accords = {
 	laws = {
 		fed_accords_none
 		fed_accords_coop
 		fed_accords_unyielding
 	}
 }
-law_category_fed_market = {
+law_category_aof_market = {
 	laws = {
 		fed_market_mix
 		fed_market_extraction

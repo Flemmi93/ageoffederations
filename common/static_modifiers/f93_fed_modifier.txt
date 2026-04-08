@@ -1,4 +1,4 @@
-f93_fed_president_country = {
+f93_aof_president_country = {
 	country_influence_produces_mult = 0.25
 }
 federation_law_category_assembly_cooldown = {
@@ -7,16 +7,16 @@ federation_law_category_assembly_cooldown = {
 federation_law_category_diplomatic_block_cooldown = {
 	icon = "gfx/interface/icons/modifiers/mod_relic_cooldown.dds"
 }
-federation_law_category_fed_accords_cooldown = {
+federation_law_category_aof_accords_cooldown = {
 	icon = "gfx/interface/icons/modifiers/mod_relic_cooldown.dds"
 }
-federation_law_category_fed_market_cooldown = {
+federation_law_category_aof_market_cooldown = {
 	icon = "gfx/interface/icons/modifiers/mod_relic_cooldown.dds"
 }
-f93_fed_accord_coop = {
+f93_aof_accord_coop = {
 	all_technology_research_speed = 0.15
 }
-f93_fed_accord_unyielding = {
+f93_aof_accord_unyielding = {
 	country_naval_cap_add = 500
 	army_damage_mult = 0.2
 }
@@ -61,4 +61,7 @@ f93_aof_market_science = {
 }
 f93_cohesion = {
 	cohesion_add = 1
+}
+f93_aof_federation_one = {
+	country_base_influence_produces_add = 1
 }
