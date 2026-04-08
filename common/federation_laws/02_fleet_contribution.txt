@@ -135,7 +135,9 @@ fleet_contribution_low = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 		hidden_effect = {
 			if = {
 				limit = {
@@ -283,7 +285,9 @@ fleet_contribution_medium = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 		hidden_effect = {
 			if = {
 				limit = {
@@ -427,7 +431,9 @@ fleet_contribution_high = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 		hidden_effect = {
 			if = {
 				limit = {
@@ -535,7 +541,9 @@ fleet_contribution_low_trade = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 		hidden_effect = {
 			if = {
 				limit = {
@@ -688,7 +696,9 @@ fleet_contribution_medium_trade = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 		hidden_effect = {
 			if = {
 				limit = {
@@ -837,7 +847,9 @@ fleet_contribution_high_trade = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 		hidden_effect = {
 			if = {
 				limit = {
@@ -953,7 +965,9 @@ fleet_contribution_low_research = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 		hidden_effect = {
 			if = {
 				limit = {
@@ -1104,7 +1118,9 @@ fleet_contribution_medium_research = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 		hidden_effect = {
 			if = {
 				limit = {
@@ -1208,7 +1224,9 @@ fleet_contribution_low_martial = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 		hidden_effect = {
 			if = {
 				limit = {
@@ -1356,7 +1374,9 @@ fleet_contribution_medium_martial = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 		hidden_effect = {
 			if = {
 				limit = {
@@ -1509,7 +1529,9 @@ fleet_contribution_high_martial = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 		hidden_effect = {
 			if = {
 				limit = {
@@ -1623,7 +1645,9 @@ fleet_contribution_low_hegemony = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 		hidden_effect = {
 			if = {
 				limit = {
@@ -1771,7 +1795,9 @@ fleet_contribution_medium_hegemony = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 		hidden_effect = {
 			if = {
 				limit = {
@@ -1910,7 +1936,9 @@ fleet_contribution_high_hegemony = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 		hidden_effect = {
 			if = {
 				limit = {

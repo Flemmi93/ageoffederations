@@ -1,0 +1,24 @@
+f93_planet_trade_income_compare = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = planet_resource_compare
+		parameters = {
+			resource = trade
+			type = produces
+		}
+		mode = add
+		mult = 1
+	}
+}
+f93_planet_cg_income_compare = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = planet_resource_compare
+		parameters = {
+			resource = consumer_goods
+			type = produces
+		}
+		mode = add
+		mult = 2.5
+	}
+}

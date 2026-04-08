@@ -1,4 +1,5 @@
 @cooldown = 3600
+@cohesion_loss = -20
 
 allow_subjects_to_join_no = {
 	potential = {
@@ -65,6 +66,13 @@ allow_subjects_to_join_yes = {
 				}
 			}
 		}
+		# modded content
+		NOR = {
+			has_federation_law = centralization_medium
+			has_federation_law = centralization_high
+			has_federation_law = centralization_very_high
+		}
+		###
 	}
 	on_enact = {
 		set_allow_subjects_to_join = yes

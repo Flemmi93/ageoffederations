@@ -32,6 +32,7 @@ law_category_fleet_contribution = {
 
 law_category_succession_type = {
 	laws = {
+		succession_type_election
 		succession_type_rotation
 		succession_type_random
 		succession_type_challenge
@@ -40,6 +41,17 @@ law_category_succession_type = {
 		succession_type_none # Event only
 	}
 }
+# Modded content
+law_category_assembly = {
+	potential = {
+		has_federation_law = succession_type_election
+	}
+	laws = {
+		assembly_high
+		assembly_grand
+	}
+}
+###
 
 law_category_succession_power = {
 	potential = {
@@ -90,6 +102,17 @@ law_category_build_fleets = {
 		federation_build_fleets_only_leader
 	}
 }
+# Modded content
+law_category_diplomatic_block = {
+	potential = {}
+	laws = {
+		diplomatic_bloc_default
+		diplomatic_bloc_common_voice
+		diplomatic_bloc_clear_voice
+		diplomatic_bloc_united
+	}
+}
+###
 
 law_category_allow_subjects_to_join = {
 	laws = {
@@ -147,6 +170,24 @@ law_category_separate_treaties = {
 	laws = {
 		treaties_separate_yes
 		treaties_separate_no
+		treaties_separate_ethical_partners # modded
 		treaties_separate_no_imperial_loyalists # Event only
+	}
+}
+# Modded content
+law_category_fed_accords = {
+	laws = {
+		fed_accords_none
+		fed_accords_coop
+		fed_accords_unyielding
+	}
+}
+law_category_fed_market = {
+	laws = {
+		fed_market_mix
+		fed_market_extraction
+		fed_market_civilian
+		fed_market_military
+		fed_market_science
 	}
 }

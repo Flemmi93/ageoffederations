@@ -1,0 +1,9 @@
+#Capitol One
+ambient_object = {
+	name = "f93_federation_one_station"
+	entity = "station_generic_01_entity"
+	selectable = yes
+	show_name = yes
+	tooltip = "f93_federation_one_station_desc"
+	description = "f93_federation_one_station_desc"
+}

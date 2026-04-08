@@ -1,4 +1,5 @@
 @cooldown = 3600
+@cohesion_loss = -20
 
 declare_war_unanimous_vote = {
 	potential = {
@@ -35,7 +36,9 @@ declare_war_unanimous_vote = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		###
 	}
 
 	ai_weight = {
@@ -89,7 +92,9 @@ declare_war_majority_vote = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		###
 	}
 
 	ai_weight = {
@@ -141,7 +146,9 @@ declare_war_majority_vote_hegemony = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		###
 	}
 
 	ai_weight = {
@@ -170,6 +177,9 @@ declare_war_president_vote = {
 				}
 			}
 		}
+		# Modded content
+		NOT = { has_federation_law = assembly_grand }
+		###
 	}
 	required_centralization = {
 		base = 4
@@ -195,7 +205,9 @@ declare_war_president_vote = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		###
 	}
 
 	ai_weight = {

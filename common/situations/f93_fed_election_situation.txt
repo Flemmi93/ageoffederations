@@ -1,0 +1,99 @@
+f93_fed_election_situation = {
+	desc = f93_fed_election_situation_desc
+	picture = GFX_Evt_f93_election_event_picture
+
+	start_value = 0
+	progress_direction = monodirectional
+	category = neutral
+	fail_icon_frame = GFX_situation_outcome_frame_red
+	fail_icon = GFX_situation_outcome_negative
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_positive
+
+	on_start = {
+		set_situation_flag = federation_elections_situation
+	}
+
+	on_monthly = {
+	}
+
+	on_fail = {
+		custom_tooltip = f93_fed_election_situation
+		destroy_situation = this
+	}
+
+	monthly_progress = {
+		base = 10
+	}
+
+	stages = {
+		# Stage 1 - Nominations
+		republic_elections_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_approach_bg_yellow
+			end = 100
+			on_first_enter = {
+				owner = {
+					set_country_flag = federation_elections_situation_1
+				}
+			}
+		}
+		# Stage 2 - Voting
+		republic_elections_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_approach_bg_yellow
+			end = 110
+			on_first_enter = {
+				owner = {
+					remove_country_flag = federation_elections_situation_1
+					set_country_flag = federation_elections_situation_2
+				}
+			}
+		}
+		# Stage 3 - Results
+		republic_elections_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_approach_bg_yellow
+			end = 120
+			on_first_enter = {
+				owner = {
+					remove_country_flag = federation_elections_situation_2
+					set_country_flag = federation_elections_situation_3
+				}
+			}
+		}
+	}
+	# Situation complete - New Chancellor takes office
+	on_progress_complete = {
+		custom_tooltip = situation_lotor_republic_elections_complete_effect
+		destroy_situation = this
+		owner = {
+			remove_country_flag = federation_elections_situation_3 
+		}
+		owner = {
+			federation.federation_leader = { country_event = { id = f93_fed_election.2 } }
+		}
+	}
+	
+	approach = {
+		name = approach_lotor_do_nothing
+		icon = GFX_situation_approach_pop
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = deficit_approach_do_nothing_tooltip
+		}
+		ai_weight = { base = 1 }
+		default = yes
+	}
+	
+	approach = { # This just opens the Election Window via a neat button
+		name = approach_lotor_open_election_window
+		icon = GFX_situation_approach_pop
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = election_window_tooltip
+			hidden_effect = { owner = { country_event = { id = f93_fed_election.1 } } }
+		}
+		ai_weight = { base = 0 }
+	}
+}

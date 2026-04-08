@@ -1,8 +1,13 @@
 @cooldown = 3600
+@cohesion_loss = -20
 
 succession_type_rotation = {
 	potential = {
 		NOT = { has_federation_flag = special_federation }
+		OR = { # modded requirement
+			has_federation_law = centralization_low
+			NOT = { has_federation_law = succession_type_election }
+		}
 	}
 	allow = {
 		custom_tooltip = {
@@ -139,6 +144,10 @@ succession_type_challenge = {
 	potential = {
 		host_has_dlc = Federations
 		NOT = { has_federation_flag = special_federation }
+		OR = { # modded requirement
+			has_federation_law = centralization_low
+			NOT = { has_federation_law = succession_type_election }
+		}
 	}
 	allow = {
 		custom_tooltip = {
@@ -186,7 +195,9 @@ succession_type_challenge = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 		hidden_effect = {
 			set_federation_flag = challenge_type_no_cooldown
 			set_federation_law = challenge_type_arena_combat
@@ -256,11 +267,32 @@ succession_type_challenge = {
 		}
 	}
 }
-
+#New Modded Succession Type
+succession_type_election = {
+		potential = {} # trigger, scope is federation
+		allow = { # trigger, scope is federation
+		}	
+	#	modifier = {}
+	# modded content 
+		required_centralization = {
+			base = 3
+		}
+		on_enact = {
+			every_member = { country_event = { id = f93_fed_election.1 } }
+			set_federation_succession_type = random
+			set_federation_succession_term = years_40
+			set_federation_law = assembly_high
+		}
+}
+# Vanilla Types but edited, main edit is that once election is selected the rest is disabled. this election type is forced by centralisation medium
 succession_type_random = {
 	potential = {
 		host_has_dlc = Federations
 		NOT = { has_federation_flag = special_federation }
+		OR = { # modded requirement
+			has_federation_law = centralization_low
+			NOT = { has_federation_law = succession_type_election }
+		}
 	}
 	allow = {
 		custom_tooltip = {
@@ -305,7 +337,9 @@ succession_type_random = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 	}
 
 	ai_weight = {
@@ -365,6 +399,10 @@ succession_type_strongest = {
 	potential = {
 		NOT = { has_federation_type = hegemony_federation }
 		NOT = { has_federation_flag = special_federation }
+		OR = { # modded requirement
+			has_federation_law = centralization_low
+			NOT = { has_federation_law = succession_type_election }
+		}
 	}
 	allow = {
 		custom_tooltip = {
@@ -413,7 +451,9 @@ succession_type_strongest = {
 			limit = { has_federation_type = military_federation }
 			set_federation_law = succession_power_fleet
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 	}
 
 	ai_weight = {
@@ -449,6 +489,10 @@ succession_type_strongest_hegemony = {
 	potential = {
 		has_federation_type = hegemony_federation
 		NOT = { has_federation_flag = special_federation }
+		OR = { # modded requirement
+			has_federation_law = centralization_low
+			NOT = { has_federation_law = succession_type_election }
+		}
 	}
 	allow = {
 		custom_tooltip = {
@@ -478,7 +522,9 @@ succession_type_strongest_hegemony = {
 			}
 		}
 		set_federation_law = succession_power_diplomatic_weight
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 	}
 
 	ai_weight = {

@@ -1,0 +1,431 @@
+##########################################################################
+# Empire Policies
+#
+# #####
+#
+# AI:
+# Base AI-weight is 100, if unchanged
+# AI will grab whatever policy-option has the highest weight
+#
+# #####
+#
+##########################################################################
+interference = {
+
+	potential = {
+		has_met_primitives = yes
+	}
+
+	option = {
+		name = "interference_not_allowed"
+
+		policy_flags = {
+			interference_not_allowed
+		}
+
+		on_enabled = {
+			hidden_effect = {
+				set_country_flag = encountered_first_primitive
+			}
+		}
+
+		in_breach_of = {
+			{
+				key = resolution_galacticstudies_advanced_xenostudies
+			}
+			{
+				key = resolution_galacticstudies_ethical_guideline_refactoring
+			}
+			{
+				key = resolution_galacticstudies_extradimensional_experimentation
+			}
+			{
+				key = resolution_pre_ftl_stances_equal_standing
+			}
+			{
+				key = resolution_pre_ftl_stances_exploitation
+			}
+		}
+
+		valid = {
+			OR = {
+				custom_tooltip = {
+					text = is_a_signatory_vassal
+					any_agreement = { agreement_preset = preset_signatory }
+				}
+				is_active_resolution = resolution_pre_ftl_stances_non_interference
+				NOR = {
+					has_ethic = "ethic_fanatic_xenophobe"
+					has_valid_civic = "civic_fanatic_purifiers"
+					has_valid_civic = "civic_hive_devouring_swarm"
+					has_valid_civic = "civic_machine_terminator"
+				}
+			}
+		}
+
+		AI_weight = {
+			modifier = {
+				factor = 0.1
+				is_galactic_community_member = yes
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+					is_active_resolution = "resolution_pre_ftl_stances_equal_standing"
+					is_active_resolution = "resolution_pre_ftl_stances_exploitation"
+				}
+			}
+		}
+	}
+
+	option = {
+		name = "interference_subtle"
+
+		policy_flags = {
+			interference_subtle
+		}
+
+		on_enabled = {
+			hidden_effect = { set_country_flag = encountered_first_primitive }
+		}
+
+		valid = {
+			OR = {
+				custom_tooltip = {
+					text = is_a_signatory_vassal
+					any_agreement = { agreement_preset = preset_signatory }
+				}
+				NOR = {
+					has_ethic = "ethic_fanatic_xenophobe"
+					has_valid_civic = "civic_fanatic_purifiers"
+					has_valid_civic = "civic_hive_devouring_swarm"
+					has_valid_civic = "civic_machine_terminator"
+				}
+			}
+		}
+
+		AI_weight = {
+			modifier = {
+				factor = 2
+				has_valid_ai_personality = yes
+				has_ai_personality_behaviour = infiltrator
+			}
+			modifier = {
+				factor = 0
+				has_valid_ai_personality = yes
+				NOT = {
+					has_ai_personality_behaviour = infiltrator
+				}
+			}
+		}
+	}
+
+	option = {
+		name = "interference_active"
+
+		policy_flags = {
+			interference_active
+		}
+
+		in_breach_of = {
+			{
+				key = resolution_pre_ftl_stances_non_interference
+			}
+		}
+
+		on_enabled = {
+			hidden_effect = { set_country_flag = encountered_first_primitive }
+		}
+
+		valid = {
+			NOR = {
+				custom_tooltip = {
+					text = is_a_signatory_vassal
+					any_agreement = { agreement_preset = preset_signatory }
+				}
+				has_valid_civic = "civic_fanatic_purifiers"
+				has_valid_civic = "civic_hive_devouring_swarm"
+			}
+		}
+
+		AI_weight = {
+			modifier = {
+				factor = 2
+				has_valid_ai_personality = yes
+				OR = {
+					has_ai_personality_behaviour = infiltrator
+					has_ai_personality_behaviour = dominator
+				}
+			}
+			modifier = {
+				factor = 0
+				has_valid_ai_personality = yes
+				NOR = {
+					has_ai_personality_behaviour = infiltrator
+					has_ai_personality_behaviour = dominator
+				}
+			}
+			modifier = {
+				factor = 0.1
+				is_galactic_community_member = yes
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+					is_active_resolution = "resolution_pre_ftl_stances_non_interference"
+				}
+			}
+		}
+	}
+	option = {
+		name = "interference_aggressive"
+
+		in_breach_of = {
+			{
+				key = resolution_pre_ftl_stances_non_interference
+			}
+			{
+				key = resolution_pre_ftl_stances_equal_standing
+			}
+		}
+
+		valid = {
+			custom_tooltip = {
+				success_text = is_not_a_signatory_vassal_success
+				fail_text = is_not_a_signatory_vassal_fail
+				NOT = { any_agreement = { agreement_preset = preset_signatory } }
+			}
+			NOR = {
+				has_ethic = "ethic_pacifist"
+				has_ethic = "ethic_fanatic_pacifist"
+				has_ethic = "ethic_xenophile"
+				has_ethic = "ethic_fanatic_xenophile"
+				has_valid_civic = civic_machine_exploration_protocol
+				AND = {
+					NOT = { exists = federation }
+					federation = { has_federation_law = treaties_separate_ethical_partners }
+				}
+			}
+		}
+		on_enabled = {
+			hidden_effect = { set_country_flag = encountered_first_primitive }
+		}
+		policy_flags = {
+			interference_aggressive
+		}
+		modifier = {}
+		AI_weight = {
+			modifier = {
+				factor = 3
+				has_valid_ai_personality = yes
+				has_ai_personality_behaviour = dominator
+			}
+			modifier = {
+				factor = 0
+				has_valid_ai_personality = yes
+				NOT = {
+					has_ai_personality_behaviour = dominator
+				}
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_ethic = "ethic_pacifist"
+					has_ethic = "ethic_fanatic_pacifist"
+				}
+			}
+			modifier = {
+				factor = 0.1
+				is_galactic_community_member = yes
+				OR = {
+					is_active_resolution = "resolution_pre_ftl_stances_non_interference"
+					is_active_resolution = "resolution_pre_ftl_stances_equal_standing"
+				}
+			}
+		}
+	}
+}
+refugees = {
+	potential = {
+		has_encountered_other_species = yes
+		is_country_type = default
+		OR = {
+			NOT = { has_ethic = "ethic_gestalt_consciousness" }
+			has_valid_civic = civic_machine_servitor
+		}
+	}
+
+	option = {
+		name = "refugees_not_allowed"
+
+		valid = {
+			NOR = {
+				has_ethic = "ethic_xenophile"
+				has_ethic = "ethic_fanatic_xenophile"
+				AND = {
+					exists = federation
+					federation = { has_federation_law = treaties_separate_ethical_partners }
+				}
+			}
+		}
+
+		policy_flags = {
+			refugees_not_allowed
+		}
+	}
+
+	option = {
+		name = "refugees_only_citizens"
+
+		potential = {
+			NOT = { has_ethic = "ethic_gestalt_consciousness" }
+		}
+
+		policy_flags = {
+			refugees_only_citizens
+		}
+
+		valid = {
+			NOT = {
+				is_hive_empire = yes
+			}
+		}
+
+		AI_weight = {
+			factor = 5
+		}
+	}
+
+	option = {
+		name = "refugees_allowed"
+
+		policy_flags = {
+			refugees_allowed
+		}
+
+		valid = {
+			is_xenophobe = no
+		}
+
+		AI_weight = {
+			factor = 10
+			modifier = {
+				factor = 0
+				NOR = {
+					is_xenophile = yes
+					has_valid_civic = civic_machine_servitor
+					AND = {
+						has_valid_ai_personality = yes
+						NOT = { has_ai_personality_behaviour = multispecies }
+					}
+				}
+			}
+		}
+	}
+}
+slavery = {
+	potential = {
+		NOT = { has_ethic = "ethic_gestalt_consciousness" }
+	}
+
+	option = {
+		name = "slavery_not_allowed"
+
+		valid = {
+			NOR = {
+				has_valid_civic = civic_slaver_guilds
+				has_valid_civic = civic_indentured_assets
+			}
+		}
+
+		policy_flags = {
+			slavery_not_allowed
+		}
+
+		on_enabled = {
+			hidden_effect = { every_owned_planet = { remove_modifier = slave_colony } }
+		}
+
+		modifier = {
+			slave_market_cost_mult = 1
+		}
+	}
+
+	option = {
+		name = "slavery_allowed"
+
+		valid = {
+			custom_tooltip = {
+				success_text = is_not_a_signatory_vassal_success
+				fail_text = is_not_a_signatory_vassal_fail
+				NOT = { any_agreement = { agreement_preset = preset_signatory } }
+			}
+			custom_tooltip = {
+				fail_text = is_broken_shackles_origin
+				NOT = { has_origin = origin_broken_shackles }
+			}
+			OR = {
+				is_authoritarian = yes
+				is_xenophobe = yes
+			}
+			OR = {
+				NOT = { exists = federation }
+				AND = {
+					exists = federation
+					NOT = { federation = { has_federation_law = treaties_separate_ethical_partners } }
+				}
+			}
+		}
+
+		modifier = {
+			refugee_attraction = -0.40
+		}
+
+		policy_flags = {
+			slavery_allowed
+		}
+		modifier = {}
+
+		AI_weight = {
+			factor = 10
+			modifier = {
+				factor = 0
+				has_valid_ai_personality = yes
+				NOT = { has_ai_personality_behaviour = slaver }
+			}
+			modifier = {
+				factor = 0
+				has_valid_ai_personality = no
+				NOR = {
+					is_authoritarian = yes
+					is_xenophobe = yes
+				}
+			}
+			# special case for harmonious collectives
+			modifier = {
+				factor = 0
+				has_valid_ai_personality = no
+				is_ai = yes
+				NOR = {
+					is_xenophobe = yes
+					is_militarist = yes
+				}
+				OR = {
+					has_ethic = "ethic_pacifist"
+					has_ethic = "ethic_fanatic_pacifist"
+					has_ethic = "ethic_xenophile"
+					has_ethic = "ethic_fanatic_xenophile"
+				}
+				OR = {
+					has_ethic = "ethic_authoritarian"
+					has_ethic = "ethic_fanatic_authoritarian"
+				}
+				NOR = {
+					has_valid_civic = "civic_slaver_guilds"
+					has_trait = "trait_decadent"
+					has_trait = "trait_robot_decadent"
+				}
+			}
+		}
+	}
+}

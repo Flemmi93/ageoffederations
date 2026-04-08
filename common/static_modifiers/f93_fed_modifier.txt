@@ -1,0 +1,64 @@
+f93_fed_president_country = {
+	country_influence_produces_mult = 0.25
+}
+federation_law_category_assembly_cooldown = {
+	icon = "gfx/interface/icons/modifiers/mod_relic_cooldown.dds"
+}
+federation_law_category_diplomatic_block_cooldown = {
+	icon = "gfx/interface/icons/modifiers/mod_relic_cooldown.dds"
+}
+federation_law_category_fed_accords_cooldown = {
+	icon = "gfx/interface/icons/modifiers/mod_relic_cooldown.dds"
+}
+federation_law_category_fed_market_cooldown = {
+	icon = "gfx/interface/icons/modifiers/mod_relic_cooldown.dds"
+}
+f93_fed_accord_coop = {
+	all_technology_research_speed = 0.15
+}
+f93_fed_accord_unyielding = {
+	country_naval_cap_add = 500
+	army_damage_mult = 0.2
+}
+f93_quid_pro_quo = {
+	diplo_weight_mult = -0.15
+}
+f93_pres_mod_mil = {
+	ships_upkeep_mult = -0.2
+}
+f93_pres_mod_sci = {
+	pop_researcher_workforce_mult = 0.1
+}
+f93_pres_mod_job = {
+	pop_cat_specialist_bonus_workforce_mult = 0.05
+}
+f93_pres_mod_adm = {
+	federation_experience_add = 2
+}
+f93_aof_market_mix = {
+	country_consumer_goods_produces_mult = 0.0001
+	country_alloys_produces_mult = 0.0001
+}
+f93_aof_market_extract = {
+	country_energy_produces_mult = 0.0001
+	country_minerals_produces_mult = 0.0001
+	country_food_produces_mult = 0.0001
+}
+f93_aof_market_civilian = {
+	country_consumer_goods_produces_mult = 0.00025
+	country_alloys_produces_mult = -0.0001
+}
+f93_aof_market_military = {
+	country_consumer_goods_produces_mult = -0.0001
+	country_alloys_produces_mult = 0.00025
+}
+f93_aof_market_science = {
+	country_consumer_goods_produces_mult = -0.00005
+	country_alloys_produces_mult = -0.00005
+	country_physics_research_produces_mult = 0.0001
+	country_society_research_produces_mult = 0.0001
+	country_engineering_research_produces_mult = 0.0001
+}
+f93_cohesion = {
+	cohesion_add = 1
+}

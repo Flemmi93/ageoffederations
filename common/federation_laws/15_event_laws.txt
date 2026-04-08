@@ -1,4 +1,5 @@
 @cooldown = 3600
+@cohesion_loss = -20
 
 succession_type_none = {
 	potential = {
@@ -15,6 +16,9 @@ succession_type_none = {
 			}
 		}
 		set_federation_law = succession_power_diplomatic_weight
+	}
+	modifier = {
+		federation_experience_add = -5
 	}
 
 	ai_weight = {
@@ -67,7 +71,9 @@ treaties_separate_no_imperial_loyalists = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		###
 		every_member = {
 			country_event = { id = action.215 } # Clear treaties with non-Federation members
 		}
@@ -121,7 +127,9 @@ kick_members_president_vote_imperial_loyalists = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		###
 	}
 
 	ai_weight = {
@@ -155,7 +163,9 @@ declare_war_president_vote_imperial_loyalists = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		###
 	}
 
 	ai_weight = {
@@ -230,7 +240,9 @@ vote_weight_diplomatic_imperial_loyalists = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		###
 	}
 
 	ai_weight = {

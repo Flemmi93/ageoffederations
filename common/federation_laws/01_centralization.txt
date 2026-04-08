@@ -1,4 +1,5 @@
 @cooldown = 3600
+@cohesion_loss = -20
 
 centralization_minimal = {
 	unlocks_centralization = 1
@@ -26,7 +27,9 @@ centralization_minimal = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -10
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 	}
 
 	ai_weight = {
@@ -105,7 +108,6 @@ centralization_minimal = {
 
 centralization_low = {
 	display_level = 2
-	unlocks_centralization = 2
 	potential = {
 		NOT = { has_federation_flag = special_federation }
 	}
@@ -135,10 +137,14 @@ centralization_low = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -10
-
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		set_federation_law = fed_market_mix
+		###
+		
 		fire_random_centralisation_flavour_event_effect = yes #potentially fire a flavour event
 	}
+	unlocks_centralization = 2
 	ai_weight = {
 		base = 0
 
@@ -327,6 +333,12 @@ centralization_medium = {
 				}
 			}
 		}
+		# modded content 
+		custom_tooltip = {
+			fail_text = f93_allow_subjects_to_join_yes
+			NOT = { has_federation_law = allow_subjects_to_join_yes }
+		}
+		###
 	}
 	cohesion_growth = -2
 	on_enact = {
@@ -339,9 +351,17 @@ centralization_medium = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -10
-
 		fire_random_centralisation_flavour_event_effect = yes #potentially fire a flavour event
+		# modded content / edit
+		if = {
+			limit = { NOT = { has_federation_flag = federation_one_enabled } }
+			every_member = { country_event = { id = f93_fed_market.3 days = 1080 } } # enabling capitol one 
+			every_member = { country_event = { id = f93_fed_market.4 days = 2520 } } # enabling capitol one 
+			set_federation_flag = federation_one_enabled
+		}
+		add_cohesion = -25 # original value -10
+		set_federation_law = succession_type_election
+		###
 	}
 	ai_weight = {
 		base = 0
@@ -539,7 +559,18 @@ centralization_high = {
 				}
 			}
 		}
+		# modded content 
+		custom_tooltip = {
+			fail_text = f93_allow_subjects_to_join_yes
+			NOT = { has_federation_law = allow_subjects_to_join_yes }
+		}
+		###
 	}
+	# Modded content
+	modifier = {
+		federation_experience_add = 1
+	}
+	###
 	cohesion_growth = -3
 	on_enact = {
 		if = {
@@ -551,7 +582,9 @@ centralization_high = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -10
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 
 		fire_random_centralisation_flavour_event_effect = yes #potentially fire a flavour event
 	}
@@ -749,6 +782,17 @@ centralization_very_high = {
 				}
 			}
 		}
+		
+		# Modded content
+		has_federation_law = vote_weight_equal
+		custom_tooltip = {
+			fail_text = f93_allow_subjects_to_join_yes
+			NOT = { has_federation_law = allow_subjects_to_join_yes }
+		}
+		###
+	}
+	modifier = {
+		federation_experience_add = 1
 	}
 	cohesion_growth = -4
 	on_enact = {
@@ -761,7 +805,9 @@ centralization_very_high = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -10
+		# modded content / edit
+		add_cohesion = -25 # original value -10
+		###
 
 		fire_random_centralisation_flavour_event_effect = yes #potentially fire a flavour event
 	}

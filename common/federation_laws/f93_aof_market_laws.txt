@@ -1,0 +1,290 @@
+@cooldown = 3600
+@cohesion_loss = -20
+
+
+fed_market_mix = {
+	potential = {}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = fed_market_mix }
+					has_modifier = federation_law_category_fed_market_cooldown
+					has_any_federation_law_in_category = law_category_fed_market
+				}
+			}
+		}
+	}
+	required_centralization = {
+		base = 2
+	}
+	modifier = {}
+	on_enact = {
+		add_cohesion = @cohesion_loss
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_category_fed_market_cooldown
+				days = @cooldown
+			}
+		}
+		every_member = {
+			remove_market_modifier = yes
+			add_modifier = {
+				modifier = f93_aof_market_mix
+				mult = aof_market_volume
+			}
+			country_event = { id = f93_fed_market.1 }
+		}
+	}
+	ai_weight = { 
+		base = 0
+		
+		#Default support
+		modifier = {
+			desc = federation_acceptance_generally_positive
+			add = 30
+		}
+		modifier = {
+			desc = f93_has_federation_one
+			add = 50
+			any_owned_planet = {
+				has_planet_flag = f93_federation_one
+			}
+		}
+	}
+}
+fed_market_civilian = {
+	potential = {}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = fed_market_civilian }
+					has_modifier = federation_law_category_fed_market_cooldown
+					has_any_federation_law_in_category = law_category_fed_market
+				}
+			}
+		}
+	}
+	required_centralization = {
+		base = 3
+	}
+	modifier = {}
+	on_enact = {
+		add_cohesion = @cohesion_loss
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_category_fed_market_cooldown
+				days = @cooldown
+			}
+		}
+		every_member = {
+			remove_market_modifier = yes
+			add_modifier = {
+				modifier = f93_aof_market_civilian
+				mult = aof_market_volume
+			}
+			country_event = { id = f93_fed_market.1 }
+		}
+	}
+	ai_weight = { 
+		base = 0
+		
+		#Default support
+		modifier = {
+			desc = federation_acceptance_generally_positive
+			add = 20
+		}
+		modifier = {
+			desc = federation_acceptance_pacifist
+			add = 20
+			is_pacifist = yes
+		}
+		modifier = {
+			desc = f93_has_federation_one
+			add = 50
+			is_pacifist = yes
+			any_owned_planet = {
+				has_planet_flag = f93_federation_one
+			}
+		}
+	}
+}
+fed_market_military = {
+	potential = {}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = fed_market_military }
+					has_modifier = federation_law_category_fed_market_cooldown
+					has_any_federation_law_in_category = law_category_fed_market
+				}
+			}
+		}
+	}
+	required_centralization = {
+		base = 3
+	}
+	modifier = {}
+	on_enact = {
+		add_cohesion = @cohesion_loss
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_category_fed_market_cooldown
+				days = @cooldown
+			}
+		}
+		every_member = {
+			remove_market_modifier = yes
+			add_modifier = {
+				modifier = f93_aof_market_military
+				mult = aof_market_volume
+			}
+			country_event = { id = f93_fed_market.1 }
+		}
+	}
+	
+	ai_weight = { 
+		base = 0
+		
+		#Default support
+		modifier = {
+			desc = federation_acceptance_generally_positive
+			add = 20
+		}
+		modifier = {
+			desc = federation_acceptance_militarist
+			add = 20
+			is_militarist = yes
+		}
+		modifier = {
+			desc = f93_has_federation_one
+			add = 50
+			is_militarist = yes
+			any_owned_planet = {
+				has_planet_flag = f93_federation_one
+			}
+		}
+	}
+}
+fed_market_science = {
+	potential = {}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = fed_market_science }
+					has_modifier = federation_law_category_fed_market_cooldown
+					has_any_federation_law_in_category = law_category_fed_market
+				}
+			}
+		}
+	}
+	required_centralization = {
+		base = 3
+	}
+	modifier = {}
+	on_enact = {
+		add_cohesion = @cohesion_loss
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_category_fed_market_cooldown
+				days = @cooldown
+			}
+		}
+		every_member = {
+			remove_market_modifier = yes
+			add_modifier = {
+				modifier = f93_aof_market_science
+				mult = aof_market_volume
+			}
+			country_event = { id = f93_fed_market.1 }
+		}
+	}
+	ai_weight = { 
+		base = 0
+		
+		#Default support
+		modifier = {
+			desc = federation_acceptance_generally_positive
+			add = 20
+		}
+		modifier = {
+			desc = federation_acceptance_materialist
+			add = 20
+			is_materialist = yes
+		}
+		modifier = {
+			desc = f93_has_federation_one
+			add = 50
+			is_materialist = yes
+			any_owned_planet = {
+				has_planet_flag = f93_federation_one
+			}
+		}
+	}
+}
+fed_market_extraction = {
+	potential = {}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = fed_market_extraction }
+					has_modifier = federation_law_category_fed_market_cooldown
+					has_any_federation_law_in_category = law_category_fed_market
+				}
+			}
+		}
+	}
+	required_centralization = {
+		base = 2
+	}
+	modifier = {}
+	on_enact = {
+		add_cohesion = @cohesion_loss
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_category_fed_market_cooldown
+				days = @cooldown
+			}
+		}
+		custom_tooltip = fed_market_civilian_effect
+		every_member = {
+			remove_market_modifier = yes
+			add_modifier = {
+				modifier = f93_aof_market_extract
+				mult = aof_market_volume
+			}
+			country_event = { id = f93_fed_market.1 }
+		}
+	}
+	ai_weight = { 
+		base = 0
+		
+		#Default support
+		modifier = {
+			desc = federation_acceptance_generally_positive
+			add = 20
+		}
+		modifier = {
+			desc = federation_acceptance_egalitarian
+			add = 20
+			is_egalitarian = yes
+		}
+		modifier = {
+			desc = f93_has_federation_one
+			add = 50
+			is_egalitarian = yes
+			any_owned_planet = {
+				has_planet_flag = f93_federation_one
+			}
+		}
+	}
+}

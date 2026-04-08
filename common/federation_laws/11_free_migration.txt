@@ -1,4 +1,5 @@
 @cooldown = 3600
+@cohesion_loss = -20
 
 free_migration_no = {
 	potential = { always = yes }
@@ -22,7 +23,9 @@ free_migration_no = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		###
 	}
 
 	ai_weight = {
@@ -71,9 +74,13 @@ free_migration_yes = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		###
 	}
-
+	# modded content
+	cohesion_growth = 2
+	###
 	ai_weight = {
 		base = 0
 

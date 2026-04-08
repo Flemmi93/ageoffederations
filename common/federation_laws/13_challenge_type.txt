@@ -1,4 +1,5 @@
 @cooldown = 3600
+@cohesion_loss = -20
 
 # Arena Combat Challenge Type
 challenge_type_arena_combat = {
@@ -15,6 +16,9 @@ challenge_type_arena_combat = {
 		}
 	}
 	on_enact = {
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		###
 		if = {
 			limit = {
 				has_federation_flag = challenge_type_no_cooldown
@@ -126,6 +130,9 @@ challenge_type_psionic_battle = {
 		}
 	}
 	on_enact = {
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		###
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
 			add_modifier = {
@@ -213,6 +220,9 @@ challenge_type_bidding_war = {
 		}
 	}
 	on_enact = {
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		###
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
 			add_modifier = {
@@ -276,6 +286,9 @@ challenge_type_thesis = {
 		}
 	}
 	on_enact = {
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		###
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
 			add_modifier = {
@@ -330,6 +343,9 @@ challenge_type_conclave = {
 		}
 	}
 	on_enact = {
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		###
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
 			add_modifier = {

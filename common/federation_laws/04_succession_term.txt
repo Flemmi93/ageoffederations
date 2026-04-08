@@ -1,4 +1,5 @@
 @cooldown = 3600
+@cohesion_loss = -20
 
 succession_term_years_10 = {
 	potential = {
@@ -24,8 +25,22 @@ succession_term_years_10 = {
 			}
 		}
 	}
+	
+	# modded content
+	modifier = {
+		federation_experience_add = 2
+	}
+	###
 	on_enact = {
 		set_federation_succession_term = years_10
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10 
+		if = {
+			limit = { has_federation_law = succession_type_election }
+			set_federation_succession_term = status_change
+			set_federation_succession_term = years_40
+		}
+		###
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
 			add_modifier = {
@@ -89,8 +104,21 @@ succession_term_years_20 = {
 			}
 		}
 	}
+	# modded content
+	modifier = {
+		federation_experience_add = 1.5
+	}
+	###
 	on_enact = {
 		set_federation_succession_term = years_20
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		if = {
+			limit = { has_federation_law = succession_type_election }
+			set_federation_succession_term = status_change
+			set_federation_succession_term = years_40
+		}
+		###
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
 			add_modifier = {
@@ -187,9 +215,23 @@ succession_term_years_30 = {
 				has_any_federation_law_in_category = law_category_succession_term
 			}
 		}
+		# modded content
+		has_federation_law = centralization_very_high
+		###
 	}
+	# modded content
+	cohesion_growth = -4
+	###
 	on_enact = {
 		set_federation_succession_term = years_30
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		if = {
+			limit = { has_federation_law = succession_type_election }
+			set_federation_succession_term = status_change
+			set_federation_succession_term = years_40
+		}
+		###
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
 			add_modifier = {
@@ -252,9 +294,26 @@ succession_term_years_40 = {
 				has_any_federation_law_in_category = law_category_succession_term
 			}
 		}
+		# modded content
+		NOT = { has_federation_law = assembly_grand }
+		###
 	}
+	# modded content 
+	required_centralization = {
+		base = 5
+	}
+	cohesion_growth = -6
+	###
 	on_enact = {
 		set_federation_succession_term = years_40
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		if = {
+			limit = { has_federation_law = succession_type_election }
+			set_federation_succession_term = status_change
+			set_federation_succession_term = years_40
+		}
+		###
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
 			add_modifier = {
@@ -340,6 +399,10 @@ succession_term_status_change = {
 	potential = {
 		always = yes
 		NOT = { has_federation_flag = special_federation }
+		
+		#modded content
+		NOT = { has_federation_law = succession_type_election }
+		###
 	}
 	allow = {
 		custom_tooltip = {
@@ -368,6 +431,9 @@ succession_term_status_change = {
 		}
 	}
 	on_enact = {
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		###
 		set_federation_succession_term = status_change
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }

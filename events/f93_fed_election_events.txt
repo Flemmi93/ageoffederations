@@ -1,0 +1,508 @@
+namespace = f93_fed_election
+
+country_event = {
+	id = f93_fed_election.0
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		exists = federation
+		is_federation_leader = yes
+		federation = {
+			has_federation_law = succession_type_election
+			NOT = { has_federation_flag = f93_fed_election }
+		}
+	}
+	immediate = {
+		federation = {
+			every_member = { country_event = { id = f93_fed_election.1 } }
+			set_federation_flag = ongoing_election_process
+		}
+	}
+}
+####################
+# Elections UI
+####################
+country_event = {
+	id = f93_fed_election.101
+	title = f93_fed_election.101.name
+	desc = f93_fed_election.101.desc
+	is_triggered_only = yes
+	picture = GFX_evt_three_sided_deal#
+	option = {
+		name = f93_fed_election.101.a
+		country_event = { id = f93_fed_election.1 days = 60 }
+	}
+}
+country_event = {
+	id = f93_fed_election.1
+	title = f93_fed_election.1.name
+	desc = f93_fed_election.1.desc
+	is_triggered_only = yes
+	# diplomatic = yes
+	# custom_gui = "lotor_elections_window"
+	picture = GFX_Evt_f93_election_event_picture
+	trigger = { NOT = { has_country_flag = election_ui_open } }
+	immediate = {
+		if = {
+			limit = { NOT = { any_situation = { has_situation_flag = federation_elections_situation } } }
+			start_situation = { type = f93_fed_election_situation }
+		}
+		set_country_flag = election_ui_open
+	}
+	option = {
+		name = f93_fed_election.1.nominate
+		allow = {
+			NOT = { has_country_flag = f93_fed_nominated }
+		}
+		hidden_effect = {
+			remove_country_flag = election_ui_open
+			set_country_flag = f93_fed_nominated
+			country_event = { id = f93_fed_election.1 }
+		}
+		ai_chance = {
+			base = 30
+			modifier = {
+				factor = 2
+				resource_stockpile_compare = {
+					resource = influence
+					value > 400
+				}
+			}
+			modifier = {
+				factor = 2
+				resource_income_compare = {
+					resource = influence
+					value >= 2
+				}
+			}
+		}
+	}
+	option = { #first boost
+		name = f93_fed_election.1.boost_nominate
+		trigger = { NOR = { has_country_flag = f93_fed_nomination_boosted_1 has_country_flag = f93_fed_nomination_boosted_2 } }
+		allow = {
+			has_country_flag = f93_fed_nominated
+			NOT = { has_country_flag = f93_fed_nomination_boosted_2 }
+		}
+		hidden_effect = {
+			remove_country_flag = election_ui_open
+			country_event = { id = f93_fed_election.1 }
+			if = {
+				limit = { has_country_flag = f93_fed_nomination_boosted_1 }
+				set_country_flag = f93_fed_nomination_boosted_2
+			}
+			else = { set_country_flag = f93_fed_nomination_boosted_1 }
+		}
+		
+		ai_chance = {
+			base = 30
+			modifier = {
+				factor = 2
+				resource_income_compare = {
+					resource = influence
+					value >= 3
+				}
+			}
+		}
+	}
+	option = { #second boost
+		name = f93_fed_election.1.boost_nominate
+		trigger = { has_country_flag = f93_fed_nomination_boosted_1 }
+		allow = {
+			has_country_flag = f93_fed_nominated
+			NOT = { has_country_flag = f93_fed_nomination_boosted_2 }
+		}
+		hidden_effect = {
+			remove_country_flag = election_ui_open
+			country_event = { id = f93_fed_election.1 }
+			if = {
+				limit = { has_country_flag = f93_fed_nomination_boosted_1 }
+				set_country_flag = f93_fed_nomination_boosted_2
+			}
+			else = { set_country_flag = f93_fed_nomination_boosted_1 }
+		}
+		
+		ai_chance = {
+			base = 30
+			modifier = {
+				factor = 2
+				resource_income_compare = {
+					resource = influence
+					value >= 4
+				}
+			}
+		}
+	}
+	option = {
+		name = f93_fed_election.1.revoke_nominate
+		allow = {
+			has_country_flag = f93_fed_nominated
+		}
+		hidden_effect = {
+			remove_country_flag = election_ui_open
+			country_event = { id = f93_fed_election.1 }
+			remove_country_flag = f93_fed_nominated
+			remove_country_flag = f93_fed_nomination_boosted_1
+			remove_country_flag = f93_fed_nomination_boosted_2
+		}
+		ai_chance = { base = 0 }
+	}
+	option = {
+		name = f93_fed_election.1.end_nominate
+		remove_country_flag = election_ui_open
+		ai_chance = {
+			base = 50
+		}
+	}
+}
+
+country_event = {
+	id = f93_fed_election.2
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = { NOT = { has_country_flag = election_happened } }
+	immediate = {
+		federation = {
+			every_member = { country_event = { id = f93_fed_election.3 days = 1 } set_timed_country_flag = { flag = election_happened days = 30 } }
+			random_member = {
+				limit = { has_country_flag = f93_fed_nominated }
+				country_event = { id = f93_fed_election.301 days = 180 } 
+				weights = {
+					base = 1
+					modifier = {
+						add = 1
+						has_country_flag = f93_fed_nomination_boosted_1
+					}
+					modifier = {
+						add = 2
+						has_country_flag = f93_fed_nomination_boosted_2
+					}
+					modifier = {
+						add = 1
+						any_owned_leader = {
+							is_ruler = yes
+							has_base_skill >= 3
+						}
+					}
+					modifier = {
+						add = 1
+						any_owned_leader = {
+							is_ruler = yes
+							has_base_skill >= 6
+						}
+					}
+					modifier = {
+						add = 1
+						any_owned_leader = {
+							is_ruler = yes
+							has_base_skill >= 9
+						}
+					}
+				}
+				federation = {
+					set_federation_leader = prev
+				}
+			}
+			remove_federation_flag = ongoing_election_process
+		}
+	}
+}
+
+country_event = {
+	id = f93_fed_election.3
+	is_triggered_only = yes
+	title = f93_fed_election.3.name
+	desc = f93_fed_election.3.desc
+	picture = GFX_Evt_f93_election_event_picture
+	immediate = {
+		federation = {
+			set_federation_succession_term = status_change
+			set_federation_succession_term = years_40
+			if = {
+				limit = { has_federation_law = succession_term_years_10 }
+				set_timed_federation_flag = { flag = f93_fed_election days = 3240 }
+				federation_leader = { add_modifier = { modifier = f93_fed_president_country mult = 1 days = 3600 } }
+			}
+			if = {
+				limit = { has_federation_law = succession_term_years_20 }
+				set_timed_federation_flag = { flag = f93_fed_election days = 5040 }
+				federation_leader = { add_modifier = { modifier = f93_fed_president_country mult = 1 days = 5400 } }
+			}
+			if = {
+				limit = { has_federation_law = succession_term_years_30 }
+				set_timed_federation_flag = { flag = f93_fed_election days = 6840 }
+				federation_leader = { add_modifier = { modifier = f93_fed_president_country mult = 1 days = 7200 } }
+			}
+			if = {
+				limit = { has_federation_law = succession_term_years_40 }
+				set_timed_federation_flag = { flag = f93_fed_election days = 8640 }
+				federation_leader = { add_modifier = { modifier = f93_fed_president_country mult = 1 days = 9000 } }
+			}
+		}
+	}
+	option = {
+		name = f93_fed_election.3.a
+		hidden_effect = {
+			remove_country_flag = election_ui_open
+			remove_country_flag = f93_fed_nominated
+			remove_country_flag = f93_fed_nomination_boosted_1
+			remove_country_flag = f93_fed_nomination_boosted_2
+		}
+	}
+}
+country_event = {
+	id = f93_fed_election.301
+	title = f93_fed_election.301.name
+	desc = f93_fed_election.301.desc
+	is_triggered_only = yes
+	picture = GFX_evt_board_meeting
+
+	#####
+	# 10 year terms
+	#####
+	option = {
+		trigger = { federation = { has_federation_law = succession_term_years_10 } }
+		name = f93_fed_election.301.a
+		federation = { every_member = { add_modifier = { modifier = f93_pres_mod_mil mult = 1 days = 3420 } } }
+	}
+	option = {
+		trigger = { federation = { has_federation_law = succession_term_years_10 } }
+		name = f93_fed_election.301.b
+		federation = { every_member = { add_modifier = { modifier = f93_pres_mod_sci mult = 1 days = 3420 } } }
+	}
+	option = {
+		trigger = { federation = { has_federation_law = succession_term_years_10 } }
+		name = f93_fed_election.301.c
+		federation = { every_member = { add_modifier = { modifier = f93_pres_mod_job mult = 1 days = 3420 } } }
+	}
+	option = {
+		trigger = { federation = { has_federation_law = succession_term_years_10 } }
+		name = f93_fed_election.301.d
+		add_modifier = { modifier = f93_pres_mod_adm mult = 1 days = 3420 }
+	}
+	#####
+	# 15 year terms
+	#####
+	option = {
+		trigger = { federation = { has_federation_law = succession_term_years_20 } }
+		name = f93_fed_election.301.a
+		federation = { every_member = { add_modifier = { modifier = f93_pres_mod_mil mult = 1 days = 5220 } } }
+	}
+	option = {
+		trigger = { federation = { has_federation_law = succession_term_years_20 } }
+		name = f93_fed_election.301.b
+		federation = { every_member = { add_modifier = { modifier = f93_pres_mod_sci mult = 1 days = 5220 } } }
+	}
+	option = {
+		trigger = { federation = { has_federation_law = succession_term_years_20 } }
+		name = f93_fed_election.301.c
+		federation = { every_member = { add_modifier = { modifier = f93_pres_mod_job mult = 1 days = 5220 } } }
+	}
+	option = {
+		trigger = { federation = { has_federation_law = succession_term_years_20 } }
+		name = f93_fed_election.301.d
+		add_modifier = { modifier = f93_pres_mod_adm mult = 1 days = 5220 }
+	}
+	#####
+	# 20 year terms
+	#####
+	option = {
+		trigger = { federation = { has_federation_law = succession_term_years_30 } }
+		name = f93_fed_election.301.a
+		federation = { every_member = { add_modifier = { modifier = f93_pres_mod_mil mult = 1 days = 7020 } } }
+	}
+	option = {
+		trigger = { federation = { has_federation_law = succession_term_years_30 } }
+		name = f93_fed_election.301.b
+		federation = { every_member = { add_modifier = { modifier = f93_pres_mod_sci mult = 1 days = 7020 } } }
+	}
+	option = {
+		trigger = { federation = { has_federation_law = succession_term_years_30 } }
+		name = f93_fed_election.301.c
+		federation = { every_member = { add_modifier = { modifier = f93_pres_mod_job mult = 1 days = 7020 } } }
+	}
+	option = {
+		trigger = { federation = { has_federation_law = succession_term_years_30 } }
+		name = f93_fed_election.301.d
+		add_modifier = { modifier = f93_pres_mod_adm mult = 1 days = 7020 }
+	}
+	#####
+	# 25 year terms
+	#####
+	option = {
+		trigger = { federation = { has_federation_law = succession_term_years_40 } }
+		name = f93_fed_election.301.a
+		federation = { every_member = { add_modifier = { modifier = f93_pres_mod_mil mult = 1 days = 8820 } } }
+	}
+	option = {
+		trigger = { federation = { has_federation_law = succession_term_years_40 } }
+		name = f93_fed_election.301.b
+		federation = { every_member = { add_modifier = { modifier = f93_pres_mod_sci mult = 1 days = 8820 } } }
+	}
+	option = {
+		trigger = { federation = { has_federation_law = succession_term_years_40 } }
+		name = f93_fed_election.301.c
+		federation = { every_member = { add_modifier = { modifier = f93_pres_mod_job mult = 1 days = 8820 } } }
+	}
+	option = {
+		trigger = { federation = { has_federation_law = succession_term_years_40 } }
+		name = f93_fed_election.301.d
+		add_modifier = { modifier = f93_pres_mod_adm mult = 1 days = 8820 }
+	}
+}
+country_event = {
+	id = f93_fed_election.302
+	title = f93_fed_election.302.name
+	desc = f93_fed_election.302.desc
+	is_triggered_only = yes
+	picture = GFX_Evt_f93_election_event_picture
+	option = {
+		name = f93_fed_election.302.a
+		if = {
+			limit = { is_federation_leader = yes }
+			federation = { add_federation_experience = 50 }
+		}
+	}
+
+}
+#vote of no confidence
+country_event = {
+	id = f93_fed_election.4
+	is_triggered_only = yes
+	title = f93_fed_election.4.name
+	desc = f93_fed_election.4.desc
+	picture = GFX_Evt_f93_election_event_picture
+	immediate = {
+		country_event = { id = f93_fed_election.5 days = 60 }
+	}
+	option = {
+		name = f93_fed_election.4.a
+		ai_chance = {
+			base = 5
+		}
+		hidden_effect = { set_timed_country_flag = { flag = voted_to_keep days = 360 } }
+	}
+	option = {
+		name = f93_fed_election.4.b
+		ai_chance = {
+			base = 5
+		}
+		hidden_effect = { set_timed_country_flag = { flag = voted_to_kick days = 360 } }
+	}
+}
+#vote of no confidence
+country_event = {
+	id = f93_fed_election.5
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		set_variable = { which = vote_result value = 0 }
+		federation = {
+			every_member = {
+				limit = { has_country_flag = voted_to_keep }
+				root = { change_variable = { which = vote_result value = 1 } }
+			}
+			every_member = {
+				limit = { has_country_flag = voted_to_kick }
+				root = { change_variable = { which = vote_result value = -1 } }
+			}
+		}
+		if = {
+			limit = { has_country_flag = voted_to_keep }
+			change_variable = { which = vote_result value = 1 }
+		}
+		if = {
+			limit = { has_country_flag = voted_to_kick }
+			change_variable = { which = vote_result value = -1 }
+		}
+		if = {
+			limit = { check_variable = { which = vote_result value < 0 } }
+			country_event = { id = f93_fed_election.7 }
+			federation = {
+				federation_leader = {
+					add_modifier = {
+						modifier = f93_cohesion
+						mult = -5
+						days = 1800
+					}
+				}
+				every_member = {
+					if = {
+						limit = { NOT = { has_country_flag = no_confidence_happened } }
+						country_event = { id = f93_fed_election.1 days = 60 }
+					}
+					set_timed_country_flag = { flag = no_confidence_happened days = 180 }
+				}
+			}
+		}
+		else = {
+			country_event = { id = f93_fed_election.6 }
+			federation = {
+				every_member = {
+					set_timed_country_flag = { flag = no_confidence_happened days = 1080 } # 3 year cool-down
+				}
+				federation_leader = {
+					add_modifier = {
+						modifier = f93_cohesion
+						mult = -2
+						days = 1080
+					}
+				}
+			}
+		}
+	}
+}
+# kept
+country_event = {
+	id = f93_fed_election.6
+	is_triggered_only = yes
+	title = f93_fed_election.6.name
+	desc = f93_fed_election.6.desc
+	picture = GFX_Evt_f93_election_event_picture
+	option = {
+		trigger = { has_country_flag = voted_to_keep }
+		name = f93_fed_election.6.a
+	}
+	option = {
+		trigger = { has_country_flag = voted_to_kick }
+		name = f93_fed_election.6.b
+	}
+}
+#kicked
+country_event = {
+	id = f93_fed_election.7
+	is_triggered_only = yes
+	title = f93_fed_election.7.name
+	desc = f93_fed_election.7.desc
+	picture = GFX_Evt_f93_election_event_picture
+	option = {
+		trigger = { has_country_flag = voted_to_keep }
+		name = f93_fed_election.7.a
+	}
+	option = {
+		trigger = { has_country_flag = voted_to_kick }
+		name = f93_fed_election.7.b
+	}
+}
+# died
+country_event = {
+	id = f93_fed_election.8
+	is_triggered_only = yes
+	title = f93_fed_election.8.name
+	desc = f93_fed_election.8.desc
+	picture = GFX_Evt_f93_election_event_picture
+	immediate = {
+		federation = {
+			every_member = {
+				set_timed_country_flag = { flag = president_died_happened days = 180 }
+				if = {
+					limit = { NOT = { has_country_flag = president_died_happened } }
+					country_event = { id = f93_fed_election.1 days = 30 }
+				}
+			}
+		}
+	}
+	option = {
+		name = f93_fed_election.7.a
+	}
+}

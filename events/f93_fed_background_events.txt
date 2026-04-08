@@ -1,0 +1,161 @@
+namespace = f93_fed_background
+
+# Federation Clear Outside Treaties
+country_event = {
+	id = f93_fed_background.0
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		every_country = {
+			limit = {
+				has_communications = root
+				NOT = { is_in_federation_with = root }
+				NOT = { has_association_status = root }
+			}
+			end_all_treaties_with = root
+			root = {
+				end_all_treaties_with = prev
+			}
+		}
+	}
+}
+
+# Federation has slavery
+country_event = {
+	id = f93_fed_background.1
+	is_triggered_only = yes
+	title = f93_fed_background.1.name
+	desc = f93_fed_background.1.desc
+	picture = GFX_evt_hand_shake
+	immediate = {
+		every_country = {
+			limit = {
+				has_communications = root
+				NOT = { is_in_federation_with = root }
+				NOT = { has_association_status = root }
+			}
+			end_all_treaties_with = root
+			root = {
+				end_all_treaties_with = prev
+			}
+		}
+	}
+	option = {
+		name = f93_fed_background.1.a
+		if = {
+			limit = { has_policy_flag = slavery_allowed }
+			set_policy = { policy = slavery option = slavery_not_allowed cooldown = yes }
+		}
+		if = {
+			limit = { has_policy_flag = interference_aggressive }
+			set_policy = { policy = interference option = interference_active cooldown = yes }
+		}
+		if = {
+			limit = { has_policy_flag = refugees_not_allowed }
+			set_policy = { policy = refugees option = refugees_only_citizens cooldown = yes }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = f93_fed_background.1.b
+		leave_alliance = {
+			override_requirements = yes
+			apply_opinion_penalty = yes
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				has_policy_flag = slavery_allowed
+				add = 9
+			}
+		}
+	}
+}
+country_event = {
+	id = f93_fed_background.2
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = federation
+		federation = {
+			NOR = {
+				has_federation_law = fed_accords_none
+				has_federation_law = fed_accords_coop
+				has_federation_law = fed_accords_unyielding
+			}
+		}
+	}
+	immediate = {
+		federation = { set_federation_law = fed_accords_none }
+	}
+}
+country_event = {
+	id = f93_fed_background.3
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = federation
+		federation = {
+			OR = {
+				has_federation_law = centralization_high
+				has_federation_law = centralization_very_high
+			}
+		}
+	}
+	immediate = {
+		set_timed_country_flag = { flag = ai_no_leave_fed days = 31 }
+	}
+}
+# no confidence counter
+country_event = {
+	id = f93_fed_background.4
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = federation
+		is_federation_leader = yes
+		any_federation = { federation_cohesion <= 0 }
+		NOT = { has_country_flag = no_confidence_happened }
+	}
+	immediate = {
+		if = {
+			limit = { NOT = { is_variable_set = no_confidence_counter } }
+			set_variable = { which = no_confidence_counter value = 1 }
+		}
+		set_timed_country_flag = { flag = no_confidence_counter days = 400 }
+		change_variable = { which = no_confidence_counter value = 1 }
+		if = {
+			limit = { check_variable = { which = no_confidence_counter value = 12 } }
+			set_timed_country_flag = { flag = no_confidence days = 400 }
+			set_variable = { which = no_confidence_counter value = 0 }
+			country_event = { id = f93_fed_background.5 days = 5 random = 10 }
+		}
+	}
+}
+# no confidence counter
+country_event = {
+	id = f93_fed_background.5
+	title = f93_fed_background.5.name
+	desc = f93_fed_background.5.desc
+	picture = GFX_evt_civil_action
+	is_triggered_only = yes
+	option = {
+		name = f93_fed_background.5.a
+		federation = {
+			every_member = {
+				country_event = { id = f93_fed_election.4 days = 60 }
+			}
+		}
+	}
+}
+# left or kicked from federation
+country_event = {
+	id = f93_fed_background.6
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		from = { remove_aoe_content_by_removing_from_federation = yes }
+	}
+}

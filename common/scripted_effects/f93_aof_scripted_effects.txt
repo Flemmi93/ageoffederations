@@ -1,0 +1,15 @@
+remove_aoe_content_by_removing_from_federation = {
+	remove_market_modifier = yes
+	remove_accord_modifier = yes
+}
+remove_market_modifier = {
+	remove_modifier = f93_aof_market_mix
+	remove_modifier = f93_aof_market_extract
+	remove_modifier = f93_aof_market_civilian
+	remove_modifier = f93_aof_market_military
+	remove_modifier = f93_aof_market_science
+}
+remove_accord_modifier = {
+	remove_modifier = f93_fed_accord_coop
+	remove_modifier = f93_fed_accord_unyielding
+}

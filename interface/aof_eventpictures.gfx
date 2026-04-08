@@ -1,0 +1,25 @@
+spriteTypes = {
+
+	spriteType = {
+		name = "GFX_assembly"
+		texturefile = "gfx/event_pictures/Assembly_ui.dds" #custom 1
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_election_situation"
+		texturefile = "gfx/event_pictures/election_situation.dds" #custom 1
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_Evt_f93_election_event_picture"
+		texturefile = "gfx/event_pictures/f93_election_event_picture.dds" #custom 1
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	
+	# Elections icons
+	spriteType = { name = "GFX_galactic_republic" texturefile = "gfx/interface/galacticCommunity/galactic_republic.dds" }
+	spriteType = { name = "GFX_elections_frame" texturefile = "gfx/interface/galacticCommunity/elections_frame.dds" }
+}

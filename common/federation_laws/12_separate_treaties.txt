@@ -1,4 +1,5 @@
 @cooldown = 3600
+@cohesion_loss = -20
 
 treaties_separate_no = {
 	potential = {
@@ -17,7 +18,7 @@ treaties_separate_no = {
 		}
 	}
 	required_centralization = {
-		base = 2
+		base = 3
 	}
 	cohesion_growth = -0.10
 	on_enact = {
@@ -28,9 +29,11 @@ treaties_separate_no = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
 		every_member = {
-			country_event = { id = action.215 } # Clear treaties with non-Federation members
+			country_event = { id = f93_fed_background.0 } # Clear treaties with non-Federation members # originally action.215
+		###
 		}
 	}
 
@@ -58,6 +61,81 @@ treaties_separate_no = {
 	}
 }
 
+# modded content / edit
+treaties_separate_ethical_partners = {
+	potential = {
+		host_has_dlc = Federations
+		NOT = { has_federation_flag = special_federation }
+	}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = treaties_separate_no }
+					has_modifier = federation_law_category_separate_treaties_cooldown
+					has_any_federation_law_in_category = law_category_separate_treaties
+				}
+			}
+		}
+		has_federation_law = centralization_medium
+		has_federation_law = assembly_grand
+	}
+	required_centralization = {
+		base = 3
+	}
+	modifier = {
+		federation_experience_add = 1
+	}
+	on_enact = {
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_category_separate_treaties_cooldown
+				days = @cooldown
+			}
+		}
+		add_cohesion = @cohesion_loss
+		every_member = {
+			country_event = { id = f93_fed_background.0 } # Clear treaties with non-Federation members
+		}
+	}
+	
+	ai_weight = {
+		base = 0
+		
+		#Default support
+		modifier = {
+			desc = federation_acceptance_generally_positive
+			add = 26
+		}
+		
+		#Behaviour-specific
+		modifier = {
+			desc = federation_acceptance_xenophobe
+			add = -5
+			is_xenophobe = yes
+		}
+		modifier = {
+			desc = federation_acceptance_president
+			add = -10
+			is_xenophobe = yes
+			is_federation_leader = yes
+		}
+		modifier = {
+			desc = federation_acceptance_xenophobe
+			add = -5
+			is_authoritarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_president
+			add = -10
+			is_xenophobe = yes
+			is_federation_leader = yes
+		}
+	}
+}
+###
+
 treaties_separate_yes = {
 	potential = {
 		NOT = { has_federation_flag = special_federation }
@@ -81,7 +159,9 @@ treaties_separate_yes = {
 				days = @cooldown
 			}
 		}
-		add_cohesion = -5
+		# modded content / edit
+		add_cohesion = @cohesion_loss # original value -10
+		###
 	}
 
 	ai_weight = {
