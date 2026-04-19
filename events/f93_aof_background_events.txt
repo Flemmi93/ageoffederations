@@ -116,9 +116,11 @@ country_event = {
 	trigger = {
 		exists = federation
 		is_federation_leader = yes
+		
 		any_federation = {
 			any_member = { is_same_value = root }
 			federation_cohesion <= 0
+			has_federation_flag = first_election_happened
 		}
 		NOT = { has_country_flag = no_confidence_happened }
 	}
