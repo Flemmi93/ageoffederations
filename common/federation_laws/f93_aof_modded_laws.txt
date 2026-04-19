@@ -291,10 +291,14 @@ fed_accords_coop = {
 				}
 			}
 		}
+		has_federation_law = treaties_separate_no
 	}
 	modifier = {
 		federation_research_sharing_mult = 0.1
 		federation_experience_add = 4
+	}
+	required_centralization = {
+		base = 4
 	}
 	on_enact = {
 		every_member = {
@@ -337,6 +341,10 @@ fed_accords_unyielding = {
 				}
 			}
 		}
+		has_federation_law = treaties_separate_ethical_partners
+	}
+	required_centralization = {
+		base = 4
 	}
 	on_enact = {
 		every_member = {

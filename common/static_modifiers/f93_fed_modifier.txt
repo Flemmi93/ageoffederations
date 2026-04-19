@@ -33,6 +33,7 @@ f93_pres_mod_job = {
 	pop_cat_specialist_bonus_workforce_mult = 0.05
 }
 f93_pres_mod_adm = {
+	icon = "gfx/interface/icons/modifiers/mod_leader_species_exp_gain.dds"
 	federation_experience_add = 2
 }
 f93_aof_market_mix = {

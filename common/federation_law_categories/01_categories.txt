@@ -184,6 +184,7 @@ law_category_aof_accords = {
 }
 law_category_aof_market = {
 	laws = {
+		fed_market_none
 		fed_market_mix
 		fed_market_extraction
 		fed_market_civilian

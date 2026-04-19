@@ -23,7 +23,7 @@ f93_aof_election_situation = {
 	}
 
 	monthly_progress = {
-		base = 10
+		base = 1
 	}
 
 	stages = {
@@ -31,37 +31,37 @@ f93_aof_election_situation = {
 		republic_elections_1 = {
 			icon = GFX_situation_stage_1
 			icon_background = GFX_situation_approach_bg_yellow
-			end = 100
+			end = 12
 			on_first_enter = {
 				owner = {
 					set_country_flag = federation_elections_situation_1
 				}
 			}
 		}
-		# Stage 2 - Voting
-		republic_elections_2 = {
-			icon = GFX_situation_stage_2
-			icon_background = GFX_situation_approach_bg_yellow
-			end = 110
-			on_first_enter = {
-				owner = {
-					remove_country_flag = federation_elections_situation_1
-					set_country_flag = federation_elections_situation_2
-				}
-			}
-		}
-		# Stage 3 - Results
-		republic_elections_3 = {
-			icon = GFX_situation_stage_3
-			icon_background = GFX_situation_approach_bg_yellow
-			end = 120
-			on_first_enter = {
-				owner = {
-					remove_country_flag = federation_elections_situation_2
-					set_country_flag = federation_elections_situation_3
-				}
-			}
-		}
+		# # Stage 2 - Voting
+		# republic_elections_2 = {
+		# 	icon = GFX_situation_stage_2
+		# 	icon_background = GFX_situation_approach_bg_yellow
+		# 	end = 110
+		# 	on_first_enter = {
+		# 		owner = {
+		# 			remove_country_flag = federation_elections_situation_1
+		# 			set_country_flag = federation_elections_situation_2
+		# 		}
+		# 	}
+		# }
+		# # Stage 3 - Results
+		# republic_elections_3 = {
+		# 	icon = GFX_situation_stage_3
+		# 	icon_background = GFX_situation_approach_bg_yellow
+		# 	end = 120
+		# 	on_first_enter = {
+		# 		owner = {
+		# 			remove_country_flag = federation_elections_situation_2
+		# 			set_country_flag = federation_elections_situation_3
+		# 		}
+		# 	}
+		# }
 	}
 	# Situation complete - New Chancellor takes office
 	on_progress_complete = {

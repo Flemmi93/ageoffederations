@@ -9,17 +9,10 @@ on_monthly_pulse_country = {
 }
 on_yearly_pulse_country = {
 	events = {
-		f93_aof_galcom.0
 		f93_aof_galcom.1
+		f93_aof_galcom.2
 	}
 }
-# on_decade_pulse_country = {
-# 	events = {
-# 		# f93_aof_market.0
-# 	}
-# }
-
-
 #This = Federation leader
 #From = Leaving member
 on_leave_federation = {

@@ -21,6 +21,7 @@
  f93_aof_election.302.a: "A strong foundation for our shared future!"
  f93_aof_election.3.name: "Election Results"
  f93_aof_election.3.desc: "§Y[Root.Federation.Federation_Leader.GetRulerName]§! has been Elected the President of $MY_FEDERATION$."
+ f93_aof_election.3.b.desc: "§Y[Root.Federation.Federation_Leader.GetRulerName]§! has been Elected the President of $MY_FEDERATION$.\n\n$f93_federation_one_station$ will soon be oribiting §Y[Root.Federation.Federation_Leader.Capital.GetName]§!."
  f93_aof_election.3.a: "Long may they reign!"
  f93_aof_election.4.name: "Vote of no confidence"
  f93_aof_election.4.desc: "Formal proceedings have begun as many in the Assembly claim President [Root.Federation.Federation_Leader.GetRulerName] has shown to be unfit for office. The motion of impeachment is now on the floor as the future of the Presidency remains uncertain."
@@ -187,3 +188,11 @@
 
  f93_aof_federation_one: "Federation One"
  f93_aof_federation_one_desc: "Being in control of the market has great benefits!"
+
+ law_category_separate_treaties: "$Galactic$ $RELATIONS$"
+ treaties_separate_yes: "No Limitations"
+ treaties_separate_no: "Internal Treaties"
+ treaties_separate_no_effect: "§G+10%§! federal market volume."
+ fed_market_none: "$fleet_contribution_none$"
+ no_federation_one: "§RThe Federal Market has to be established by constructing§! §Y$f93_federation_one_station$§!"
+ required_high_assembly: "Requires the law: §Y$assembly_high$§!"

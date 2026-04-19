@@ -1,7 +1,17 @@
 @cooldown = 3600
 @cohesion_loss = -20
 
-
+fed_market_none = {
+	potential = {
+		NOR = {
+			has_federation_law = fed_market_mix
+			has_federation_law = fed_market_civilian
+			has_federation_law = fed_market_military
+			has_federation_law = fed_market_science
+			has_federation_law = fed_market_extraction
+		}
+	}
+}
 fed_market_mix = {
 	potential = {}
 	allow = {
@@ -13,6 +23,10 @@ fed_market_mix = {
 					has_any_federation_law_in_category = law_category_aof_market
 				}
 			}
+		}
+		custom_tooltip = {
+			has_federation_flag = federation_one_enabled
+			fail_text = no_federation_one
 		}
 	}
 	required_centralization = {
@@ -65,6 +79,10 @@ fed_market_civilian = {
 					has_any_federation_law_in_category = law_category_aof_market
 				}
 			}
+		}
+		custom_tooltip = {
+			has_federation_flag = federation_one_enabled
+			fail_text = no_federation_one
 		}
 	}
 	required_centralization = {
@@ -123,6 +141,10 @@ fed_market_military = {
 					has_any_federation_law_in_category = law_category_aof_market
 				}
 			}
+		}
+		custom_tooltip = {
+			has_federation_flag = federation_one_enabled
+			fail_text = no_federation_one
 		}
 	}
 	required_centralization = {
@@ -183,6 +205,10 @@ fed_market_science = {
 				}
 			}
 		}
+		custom_tooltip = {
+			has_federation_flag = federation_one_enabled
+			fail_text = no_federation_one
+		}
 	}
 	required_centralization = {
 		base = 3
@@ -240,6 +266,10 @@ fed_market_extraction = {
 					has_any_federation_law_in_category = law_category_aof_market
 				}
 			}
+		}
+		custom_tooltip = {
+			has_federation_flag = federation_one_enabled
+			fail_text = no_federation_one
 		}
 	}
 	required_centralization = {

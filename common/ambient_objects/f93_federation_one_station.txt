@@ -1,6 +1,14 @@
-#Capitol One
+#Capitol One vanilla
 ambient_object = {
 	name = "f93_federation_one_station"
+	entity = "caravaneer_station_01_section_entity"
+	selectable = yes
+	show_name = no
+	tooltip = "f93_federation_one_station_desc"
+	description = "f93_federation_one_station_desc"
+}
+ambient_object = {
+	name = "f93_federation_one_station_no_dlc"
 	entity = "caravaneer_station_01_section_entity"
 	selectable = yes
 	show_name = no

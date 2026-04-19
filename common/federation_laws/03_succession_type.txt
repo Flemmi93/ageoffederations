@@ -278,7 +278,7 @@ succession_type_election = {
 			base = 3
 		}
 		on_enact = {
-			every_member = { country_event = { id = f93_aof_election.1 } }
+			# every_member = { country_event = { id = f93_aof_election.1 } }
 			set_federation_succession_type = random
 			set_federation_succession_term = years_40
 			set_federation_law = assembly_high
