@@ -361,7 +361,10 @@ centralization_medium = {
 			# set_federation_flag = federation_one_enabled
 		}
 		add_cohesion = -25 # original value -10
-		set_federation_law = succession_type_election
+		if = {
+			limit = { NOT = { has_federation_law = succession_type_election } }
+			set_federation_law = succession_type_election
+		}
 		###
 	}
 	ai_weight = {
@@ -570,6 +573,7 @@ centralization_high = {
 	# Modded content
 	modifier = {
 		federation_experience_add = 1
+		delegate_cohesion_effect_mult = -0.5
 	}
 	###
 	cohesion_growth = -3
@@ -794,6 +798,7 @@ centralization_very_high = {
 	}
 	modifier = {
 		federation_experience_add = 1
+		delegate_cohesion_effect_mult = -0.5
 	}
 	cohesion_growth = -4
 	on_enact = {

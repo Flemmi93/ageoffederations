@@ -159,6 +159,7 @@ diplomatic_bloc_common_voice = {
 diplomatic_bloc_clear_voice = {
 	potential = {}
 	allow = {
+		has_federation_law = vote_weight_equal
 		custom_tooltip = {
 			NOT = {
 				AND = {
@@ -242,43 +243,6 @@ diplomatic_bloc_united = {
 	}
 }
 
-fed_accords_none = {
-	potential = {}
-	allow = {
-		custom_tooltip = {
-			NOT = {
-				AND = {
-					NOT = { has_federation_law = fed_accords_none }
-					has_modifier = federation_law_category_aof_accords_cooldown
-					has_any_federation_law_in_category = law_category_aof_accords
-				}
-			}
-		}
-	}
-	
-	on_enact = {
-		every_member = {
-			remove_modifier = f93_aof_accord_unyielding
-			remove_modifier = f93_aof_accord_coop
-		}
-		if = {
-			limit = { has_federation_flag = enable_federation_cooldowns }
-			add_modifier = {
-				modifier = federation_law_category_aof_accords_cooldown
-				days = @cooldown
-			}
-		}
-	}
-	ai_weight = { 
-		base = 0
-		
-		#Default support
-		modifier = {
-			desc = federation_acceptance_generally_positive
-			add = 30
-		}
-	}
-}
 fed_accords_coop = {
 	potential = {}
 	allow = {
@@ -291,7 +255,10 @@ fed_accords_coop = {
 				}
 			}
 		}
-		has_federation_law = treaties_separate_no
+		# custom_tooltip = {
+			has_federation_law = treaties_separate_no
+		# 	fail_text = "Requires Internal treaties"
+		# }
 	}
 	modifier = {
 		federation_research_sharing_mult = 0.1
@@ -372,6 +339,43 @@ fed_accords_unyielding = {
 			desc = federation_acceptance_militarist
 			add = 20
 			is_militarist = yes
+		}
+	}
+}
+fed_accords_none = {
+	potential = {}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = fed_accords_none }
+					has_modifier = federation_law_category_aof_accords_cooldown
+					has_any_federation_law_in_category = law_category_aof_accords
+				}
+			}
+		}
+	}
+	
+	on_enact = {
+		every_member = {
+			remove_modifier = f93_aof_accord_unyielding
+			remove_modifier = f93_aof_accord_coop
+		}
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_category_aof_accords_cooldown
+				days = @cooldown
+			}
+		}
+	}
+	ai_weight = { 
+		base = 0
+		
+		#Default support
+		modifier = {
+			desc = federation_acceptance_generally_positive
+			add = 30
 		}
 	}
 }

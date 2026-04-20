@@ -116,11 +116,12 @@ country_event = {
 	trigger = {
 		exists = federation
 		is_federation_leader = yes
-		
 		any_federation = {
 			any_member = { is_same_value = root }
 			federation_cohesion <= 0
 			has_federation_flag = first_election_happened
+			NOT = { has_federation_flag = ongoing_election_process }
+			any_member = { has_modifier = f93_cohesion }
 		}
 		NOT = { has_country_flag = no_confidence_happened }
 	}
@@ -162,5 +163,15 @@ country_event = {
 	is_triggered_only = yes
 	immediate = {
 		from = { remove_aoe_content_by_removing_from_federation = yes }
+	}
+}
+
+# removed cooldown
+country_event = {
+	id = f93_aof_background.7
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		federation = { remove_modifier = federation_law_category_aof_accords_cooldown }
 	}
 }

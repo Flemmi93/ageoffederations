@@ -5,10 +5,10 @@ f93_aof_election_situation = {
 	start_value = 0
 	progress_direction = monodirectional
 	category = neutral
-	fail_icon_frame = GFX_situation_outcome_frame_red
-	fail_icon = GFX_situation_outcome_negative
-	complete_icon_frame = GFX_situation_outcome_frame_green
-	complete_icon = GFX_situation_outcome_positive
+	fail_icon_frame = GFX_situation_outcome_frame_green
+	fail_icon = GFX_situation_outcome_meh
+	# complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_diplomacy_status_associate
 
 	on_start = {
 		set_situation_flag = federation_elections_situation
@@ -29,8 +29,8 @@ f93_aof_election_situation = {
 	stages = {
 		# Stage 1 - Nominations
 		republic_elections_1 = {
-			icon = GFX_situation_stage_1
-			icon_background = GFX_situation_approach_bg_yellow
+			icon = GFX_diplomacy_status_associate
+			# icon_background = GFX_situation_approach_bg_green
 			end = 12
 			on_first_enter = {
 				owner = {
@@ -66,7 +66,7 @@ f93_aof_election_situation = {
 	# Situation complete - New Chancellor takes office
 	on_progress_complete = {
 		custom_tooltip = situation_lotor_republic_elections_complete_effect
-		destroy_situation = this
+		hidden_effect = { destroy_situation = this }
 		owner = {
 			remove_country_flag = federation_elections_situation_3 
 		}

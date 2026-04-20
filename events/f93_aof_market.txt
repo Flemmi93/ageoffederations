@@ -26,7 +26,7 @@ country_event = {
 				}
 				if = {
 					limit = { exists = federation federation = { has_federation_law = treaties_separate_no } }
-					multiply_variable = { which = aof_market_volume value = 1.1 }
+					multiply_variable = { which = aof_market_volume value = 1.2 } #20% market volume boost
 				}
 			}			
 		}
@@ -65,6 +65,7 @@ country_event = {
 				mult = aof_market_volume
 			}
 		}
+		round_variable = aof_market_volume
 	}
 }
 
@@ -88,7 +89,15 @@ country_event = {
 	title = f93_aof_market.4.name
 	desc = f93_aof_market.4.desc
 	picture = GFX_evt_payback
-	immediate = { country_event = { id = f93_aof_market.5 } federation = { set_federation_flag = federation_one_enabled } }
+	immediate = {
+		federation = {
+			set_federation_flag = federation_one_enabled
+			federation_leader = {
+				capital_scope = { set_planet_flag = f93_has_federation_one }
+				country_event = { id = f93_aof_market.5 }
+			}	
+		}
+	}
 	option = {
 		name = f93_aof_market.4.a
 	}
@@ -97,7 +106,7 @@ country_event = {
 	id = f93_aof_market.5
 	hide_window = yes
 	is_triggered_only = yes
-	trigger = { has_global_flag = f93_federation_one_recently } #avoid spam
+	trigger = { NOT = { has_global_flag = f93_federation_one_recently } } #avoid spam
 	immediate = {
 		set_timed_global_flag = { flag = f93_federation_one_recently days = 1 }
 		every_ambient_object = {

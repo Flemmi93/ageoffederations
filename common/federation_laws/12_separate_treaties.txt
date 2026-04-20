@@ -30,6 +30,8 @@ treaties_separate_no = {
 			}
 		}
 		# modded content / edit
+		set_federation_law = fed_accords_none
+		federation_leader = { country_event = { id = f93_aof_background.7 days = 1 } }
 		add_cohesion = @cohesion_loss # original value -10
 		every_member = {
 			country_event = { id = f93_aof_background.0 } # Clear treaties with non-Federation members # originally action.215
@@ -60,6 +62,14 @@ treaties_separate_no = {
 			is_xenophobe = yes
 			is_federation_leader = yes
 		}
+		modifier = {
+			desc = federation_acceptance_president
+			add = 20
+			OR = {
+				is_megacorp = yes
+				has_valid_civic = civic_merchant_guilds
+			}
+		}
 	}
 }
 
@@ -79,7 +89,6 @@ treaties_separate_ethical_partners = {
 				}
 			}
 		}
-		has_federation_law = centralization_medium
 		has_federation_law = assembly_grand
 	}
 	required_centralization = {
@@ -96,10 +105,23 @@ treaties_separate_ethical_partners = {
 				days = @cooldown
 			}
 		}
+		# modded content 
+		set_federation_law = fed_accords_none 
+		federation_leader = { country_event = { id = f93_aof_background.7 days = 1 } }
 		add_cohesion = @cohesion_loss
 		every_member = {
 			country_event = { id = f93_aof_background.0 } # Clear treaties with non-Federation members
 		}
+		every_member = {
+			limit = {
+				OR = {
+					has_policy_flag = interference_aggressive
+					has_policy_flag = slavery_allowed
+				}
+			}
+			country_event = { id = f93_aof_background.1 }
+		}
+		####
 	}
 	
 	ai_weight = {

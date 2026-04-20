@@ -1,7 +1,7 @@
 namespace = f93_aof_galcom
 
 country_event = {
-	id = f93_aof_galcom.2
+	id = f93_aof_galcom.0
 	is_triggered_only = yes
 	title = f93_aof_galcom.0.name
 	desc = f93_aof_galcom.0.desc
@@ -9,7 +9,9 @@ country_event = {
 	trigger = {
 		has_galactic_custodian = yes
 		exists = federation
+		federation = { NOT = { has_federation_flag = galcom_0_happened } }
 	}
+	immediate = { federation = { set_federation_flag = galcom_0_happened } }
 	option = {
 		name = f93_aof_galcom.0.a
 		trigger = { is_galactic_custodian = no }

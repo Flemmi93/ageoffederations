@@ -62,6 +62,11 @@ vote_weight_diplomatic = {
 			}
 		}
 		NOT = { has_federation_law = centralization_very_high }
+		NOR = {
+			has_federation_law = diplomatic_bloc_common_voice
+			has_federation_law = diplomatic_bloc_clear_voice
+			has_federation_law = diplomatic_bloc_united
+		}
 	}
 	required_centralization = {
 		base = 3

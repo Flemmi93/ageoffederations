@@ -5,12 +5,12 @@ on_monthly_pulse_country = {
 		f93_aof_background.3
 		f93_aof_background.4
 		f93_aof_market.1
+		f93_aof_galcom.1
 	}
 }
 on_yearly_pulse_country = {
 	events = {
-		f93_aof_galcom.1
-		f93_aof_galcom.2
+		f93_aof_galcom.0
 	}
 }
 #This = Federation leader
