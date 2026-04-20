@@ -1,34 +1,6 @@
 namespace = f93_aof_market
 # Initializing market
 country_event = {
-	id = f93_aof_market.0
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		exists = federation
-		# any_federation_ally = { is_federation_leader = yes NOT = { any_owned_planet = { has_planet_flag = f93_has_federation_one } } }
-	}
-	immediate = {
-		# ordered_galaxy_planet = {
-		# 	limit = {
-		# 		exists = owner
-		# 		owner = {
-		# 			is_in_federation_with = root
-		# 			is_subject = no
-		# 		}
-		# 	}
-		# 	position = 0
-		# 	order_by = value:f93_planet_trade_income_compare
-		# 	set_timed_planet_flag = { flag = f93_has_federation_one days = 360 }
-		# 	owner = { add_modifier = { modifier = f93_aof_federation_one mult = 1 } }
-		# }
-		capital_scope = {
-			set_timed_planet_flag = { flag = f93_has_federation_one days = 360 }
-		}
-		country_event = { id = f93_aof_market.5 }
-	}
-}
-country_event = {
 	id = f93_aof_market.1
 	hide_window = yes
 	is_triggered_only = yes
@@ -51,6 +23,10 @@ country_event = {
 				if = {
 					limit = { is_hive_empire = no }
 					change_variable = { which = aof_market_volume value = prev.value:f93_planet_cg_income_compare }
+				}
+				if = {
+					limit = { exists = federation federation = { has_federation_law = treaties_separate_no } }
+					multiply_variable = { which = aof_market_volume value = 1.1 }
 				}
 			}			
 		}
@@ -112,6 +88,7 @@ country_event = {
 	title = f93_aof_market.4.name
 	desc = f93_aof_market.4.desc
 	picture = GFX_evt_payback
+	immediate = { country_event = { id = f93_aof_market.5 } federation = { set_federation_flag = federation_one_enabled } }
 	option = {
 		name = f93_aof_market.4.a
 	}
@@ -120,13 +97,16 @@ country_event = {
 	id = f93_aof_market.5
 	hide_window = yes
 	is_triggered_only = yes
+	trigger = { has_global_flag = f93_federation_one_recently } #avoid spam
 	immediate = {
+		set_timed_global_flag = { flag = f93_federation_one_recently days = 1 }
 		every_ambient_object = {
 			limit = { has_ambient_object_flag = f93_federation_one_station }
 			destroy_ambient_object = this
+
 		}
 		every_galaxy_planet = {
-			limit = { has_planet_flag = f93_has_federation_one NOT = { has_planet_flag = f93_federation_one_recently } }
+			limit = { has_planet_flag = f93_has_federation_one }
 			create_ambient_object = { type = "f93_federation_one_station" location = this }
 			last_created_ambient_object = {
 				set_ambient_object_flag = f93_federation_one_station
@@ -134,9 +114,18 @@ country_event = {
 					target = prev
 					distance = 0
 				}
-				prev = { set_name = capitol }
 			}
-			set_timed_planet_flag = { flag = f93_federation_one_recently days = 360 }
 		}
 	}
 }
+
+# country_event = {
+# 	id = f93_aof_market.6
+# 	is_triggered_only = yes
+# 	title = f93_aof_market.6.name
+# 	desc = f93_aof_market.6.desc
+# 	picture = GFX_evt_payback
+# 	option = {
+# 		name = f93_aof_market.6.a
+# 	}
+# }

@@ -1,7 +1,7 @@
 namespace = f93_aof_galcom
 
 country_event = {
-	id = f93_aof_galcom.0
+	id = f93_aof_galcom.2
 	is_triggered_only = yes
 	title = f93_aof_galcom.0.name
 	desc = f93_aof_galcom.0.desc

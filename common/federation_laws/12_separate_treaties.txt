@@ -36,7 +36,9 @@ treaties_separate_no = {
 		###
 		}
 	}
-
+	modifier = {
+		custom_tooltip = treaties_separate_no_effect
+	}
 	ai_weight = {
 		base = 0
 

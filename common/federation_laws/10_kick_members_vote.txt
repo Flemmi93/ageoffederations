@@ -63,7 +63,10 @@ kick_members_president_vote = {
 			}
 		}
 		# Modded content
-		NOT = { has_federation_law = assembly_grand }
+		custom_tooltip = {
+			NOT = { has_federation_law = assembly_grand }
+			fail_text = required_high_assembly
+		}
 		###
 	}
 	required_centralization = {
@@ -129,7 +132,10 @@ kick_members_president_vote_hegemony = {
 			}
 		}
 		# Modded content
-		NOT = { has_federation_law = assembly_grand }
+		custom_tooltip = {
+			NOT = { has_federation_law = assembly_grand }
+			fail_text = required_high_assembly
+		}
 		###
 	}
 
