@@ -1,0 +1,111 @@
+building_aof_federal_holdings = {
+	base_buildtime = @b2_time
+	# owner_type = subject_holding
+	icon = building_aof_federal_holdings
+	planet_limit = 1
+
+	category = trade
+	potential = {
+		always = yes
+		# owner = {
+		# 	exists = federation
+		# 	federation = {
+		# 		has_federation_law = succession_type_election
+		# 	}
+		# 	has_country_flag = permission_to_build_fed_holding
+		# }
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = aof_one_holding_per_legislature
+			owner = {
+				exists = federation
+				federation = {
+					has_federation_flag = aof_can_build_holding
+				}
+			}
+		}
+	}
+	on_queued = {
+		owner = { federation = { remove_federation_flag = aof_can_build_holding } } #an action when queued
+		owner = { remove_country_flag = permission_to_build_fed_holding } #an action when queued
+		# this has access to the variables "local_spent_<resource>"
+	}
+	
+	on_unqueued = {
+		owner = { federation = { set_federation_flag = aof_can_build_holding } } #an action when unqueued
+		owner = { remove_country_flag = permission_to_build_fed_holding } #an action when queued
+		# this has access to the variables "local_spent_<resource>"
+	}
+	on_destroy = {
+		owner = { add_resource = { trade = 15000 } } #an action when destroyed
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				exists = federation
+				federation = { federation_level > 0 }
+			}
+		}
+		job_trader_add = 50
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				exists = federation
+				federation = { federation_level > 1 }
+			}
+		}
+		job_trader_add = 100
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				exists = federation
+				federation = { federation_level > 2 }
+			}
+		}
+		job_trader_add = 150
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				exists = federation
+				federation = { federation_level > 3 }
+			}
+		}
+		job_trader_add = 200
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				exists = federation
+				federation = { federation_level > 4 }
+			}
+		}
+		job_trader_add = 250
+	}
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				exists = federation
+				federation = { federation_level > 5 } # only with another mod increasing fed levels
+			}
+		}
+		job_trader_add = 300
+	}
+
+	resources = {
+		category = planet_holdings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = @b1_upkeep
+			consumer_goods = 5
+		}
+	}
+	ai_weight = {
+		base = 10000
+	}
+}

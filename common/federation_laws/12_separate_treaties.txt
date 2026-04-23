@@ -106,8 +106,11 @@ treaties_separate_ethical_partners = {
 			}
 		}
 		# modded content 
-		set_federation_law = fed_accords_none 
-		federation_leader = { country_event = { id = f93_aof_background.7 days = 1 } }
+		if = {
+			limit = { OR = { has_federation_law = fed_accords_coop has_federation_law = fed_accords_unyielding } }
+			set_federation_law = fed_accords_none 
+			federation_leader = { country_event = { id = f93_aof_background.7 days = 1 } }
+		}
 		add_cohesion = @cohesion_loss
 		every_member = {
 			country_event = { id = f93_aof_background.0 } # Clear treaties with non-Federation members

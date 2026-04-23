@@ -1,0 +1,140 @@
+@cooldown = 3600
+@cohesion_loss = -20
+
+
+fed_accords_coop = {
+	potential = {}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = fed_accords_coop }
+					has_modifier = federation_law_category_aof_accords_cooldown
+					has_any_federation_law_in_category = law_category_aof_accords
+				}
+			}
+		}
+		# custom_tooltip = {
+			has_federation_law = treaties_separate_no
+		# 	fail_text = "Requires Internal treaties"
+		# }
+	}
+	modifier = {
+		federation_research_sharing_mult = 0.1
+		federation_experience_add = 4
+	}
+	required_centralization = {
+		base = 4
+	}
+	on_enact = {
+		every_member = {
+			remove_modifier = f93_aof_accord_unyielding
+			add_modifier = { modifier = f93_aof_accord_coop mult = 1 }
+		}
+		add_cohesion = @cohesion_loss
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_category_aof_accords_cooldown
+				days = @cooldown
+			}
+		}
+	}
+	ai_weight = { 
+		base = 0
+		
+		#Default support
+		modifier = {
+			desc = federation_acceptance_generally_positive
+			add = 20
+		}
+		modifier = {
+			desc = federation_acceptance_materialist
+			add = 20
+			is_materialist = yes
+		}
+	}
+}
+fed_accords_unyielding = {
+	potential = {}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = fed_accords_unyielding }
+					has_modifier = federation_law_category_aof_accords_cooldown
+					has_any_federation_law_in_category = law_category_aof_accords
+				}
+			}
+		}
+		has_federation_law = treaties_separate_ethical_partners
+	}
+	required_centralization = {
+		base = 4
+	}
+	on_enact = {
+		every_member = {
+			remove_modifier = f93_aof_accord_coop
+			add_modifier = { modifier = f93_aof_accord_unyielding mult = 1 }
+		}
+		add_cohesion = @cohesion_loss
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_category_aof_accords_cooldown
+				days = @cooldown
+			}
+		}
+	}
+	ai_weight = { 
+		base = 0
+		
+		#Default support
+		modifier = {
+			desc = federation_acceptance_generally_positive
+			add = 20
+		}
+		modifier = {
+			desc = federation_acceptance_militarist
+			add = 20
+			is_militarist = yes
+		}
+	}
+}
+fed_accords_none = {
+	potential = {}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = fed_accords_none }
+					has_modifier = federation_law_category_aof_accords_cooldown
+					has_any_federation_law_in_category = law_category_aof_accords
+				}
+			}
+		}
+	}
+	
+	on_enact = {
+		every_member = {
+			remove_modifier = f93_aof_accord_unyielding
+			remove_modifier = f93_aof_accord_coop
+		}
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_category_aof_accords_cooldown
+				days = @cooldown
+			}
+		}
+	}
+	ai_weight = { 
+		base = 0
+		
+		#Default support
+		modifier = {
+			desc = federation_acceptance_generally_positive
+			add = 10
+		}
+	}
+}

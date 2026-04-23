@@ -1,0 +1,108 @@
+@cooldown = 3600
+@cohesion_loss = -20
+assembly_none = {
+	potential = {
+		NOR = {
+			has_federation_law = assembly_high
+			has_federation_law = assembly_grand
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = assembly_none }
+					has_modifier = federation_law_category_assembly_cooldown
+					has_any_federation_law_in_category = law_category_assembly
+				}
+			}
+		}
+	}
+	on_enact = {
+		add_cohesion = @cohesion_loss
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_category_assembly_cooldown
+				days = @cooldown
+			}
+		}
+	}
+}
+assembly_high = {
+	potential = {}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = assembly_high }
+					has_modifier = federation_law_category_assembly_cooldown
+					has_any_federation_law_in_category = law_category_assembly
+				}
+			}
+		}
+	}
+	modifier = {}
+	on_enact = {
+		add_cohesion = @cohesion_loss
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_category_assembly_cooldown
+				days = @cooldown
+			}
+		}
+	}
+	ai_weight = { 
+		base = 0
+		
+		#Default support
+		modifier = {
+			desc = federation_acceptance_generally_positive
+			add = 41
+		}
+	}
+}
+assembly_grand = {
+	potential = {}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = assembly_grand }
+					has_modifier = federation_law_category_assembly_cooldown
+					has_any_federation_law_in_category = law_category_assembly
+				}
+			}
+		}
+	}
+	modifier = {
+		federation_experience_add = 3
+	}
+	on_enact = {
+		if = {
+			limit = { NOT = { has_federation_flag = had_grand_assembly } }
+			every_member = {
+				country_event = { id = f93_aof_election.302 }
+			}
+			set_federation_flag = had_grand_assembly
+		}
+		add_cohesion = @cohesion_loss
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_category_assembly_cooldown
+				days = @cooldown
+			}
+		}
+	}
+		ai_weight = {
+		base = 0
+
+		# AI will always accept, but not suggest
+		modifier = {
+			desc = federation_acceptance_generally_positive
+			add = 31
+		}
+	}
+}

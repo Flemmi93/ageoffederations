@@ -330,7 +330,9 @@ country_event = {
 	desc = f93_aof_election.301.desc
 	is_triggered_only = yes
 	picture = GFX_evt_tradedeal
-
+	immediate = {
+		federation = { set_federation_flag = aof_can_build_holding }
+	}
 	#####
 	# 10 year terms
 	#####
@@ -579,17 +581,87 @@ country_event = {
 	desc = f93_aof_election.8.desc
 	picture = GFX_evt_space_funeral
 	immediate = {
-		federation = {
-			every_member = {
-				set_timed_country_flag = { flag = president_died_happened days = 180 }
-				if = {
-					limit = { NOT = { has_country_flag = president_died_happened } }
-					country_event = { id = f93_aof_election.1 days = 30 }
+	}
+	option = {
+		name = f93_aof_election.7.a
+		allow = {
+			any_owned_planet = {
+				NOT = { has_building = building_aof_federal_holdings }
+			}
+		}
+		hidden_effect = { set_country_flag = permission_to_build_fed_holding }
+	}
+	option = {
+		trigger = { is_multiplayer = no }
+		name = f93_aof_election.7.b
+		allow = {
+			federation = {
+				any_member = {
+					NOT = { is_same_value = root }
+					any_owned_planet = { NOT = { has_building = building_aof_federal_holdings } }
+				}
+			}
+		}
+		hidden_effect = {
+			federation = {
+				random_member = {
+					limit = {
+						NOT = { is_same_value = root }
+						any_owned_planet = { NOT = { has_building = building_aof_federal_holdings } }
+					}
+					set_country_flag = permission_to_build_fed_holding
 				}
 			}
 		}
 	}
 	option = {
-		name = f93_aof_election.7.a
+		trigger = { is_multiplayer = yes }
+		name = f93_aof_election.7.c
+		allow = {
+			federation = {
+				any_member = {
+					is_ai = no
+					NOT = { is_same_value = root }
+					any_owned_planet = { NOT = { has_building = building_aof_federal_holdings } }
+				}
+			}
+		}
+		hidden_effect = {
+			federation = {
+				random_member = {
+					limit = {
+						is_ai = no
+						NOT = { is_same_value = root }
+						any_owned_planet = { NOT = { has_building = building_aof_federal_holdings } }
+					}
+					set_country_flag = permission_to_build_fed_holding
+				}
+			}
+		}
+	}
+	option = {
+		trigger = { is_multiplayer = yes }
+		name = f93_aof_election.7.d
+		allow = {
+			federation = {
+				any_member = {
+					is_ai = yes
+					NOT = { is_same_value = root }
+					any_owned_planet = { NOT = { has_building = building_aof_federal_holdings } }
+				}
+			}
+		}
+		hidden_effect = {
+			federation = {
+				random_member = {
+					limit = {
+						is_ai = yes
+						NOT = { is_same_value = root }
+						any_owned_planet = { NOT = { has_building = building_aof_federal_holdings } }
+					}
+					set_country_flag = permission_to_build_fed_holding
+				}
+			}
+		}
 	}
 }

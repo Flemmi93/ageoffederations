@@ -44,9 +44,10 @@ law_category_succession_type = {
 # Modded content
 law_category_assembly = {
 	potential = {
-		has_federation_law = succession_type_election
+		# has_federation_law = succession_type_election
 	}
 	laws = {
+		assembly_none
 		assembly_high
 		assembly_grand
 	}

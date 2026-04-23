@@ -28,6 +28,16 @@ country_event = {
 					limit = { exists = federation federation = { has_federation_law = treaties_separate_no } }
 					multiply_variable = { which = aof_market_volume value = 1.2 } #20% market volume boost
 				}
+				if  = {
+					limit = {
+						prev = { has_building = building_aof_federal_holdings }
+						# has_holding = {
+						# 	holding = holding_aof_federal_holdings
+						# 	owner = planet.owner.federation.federation_leader
+						# }
+					}
+					multiply_variable = { which = aof_market_volume value = 1.05 } #5% market volume boost
+				}
 			}			
 		}
 		if  = {

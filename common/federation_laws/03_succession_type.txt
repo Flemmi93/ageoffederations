@@ -267,34 +267,6 @@ succession_type_challenge = {
 		}
 	}
 }
-#New Modded Succession Type
-succession_type_election = {
-		potential = {} # trigger, scope is federation
-		allow = { # trigger, scope is federation
-		}	
-		modifier = {
-			federation_experience_add = -5
-		}
-	# modded content 
-		required_centralization = {
-			base = 3
-		}
-		on_enact = {
-			# every_member = { country_event = { id = f93_aof_election.1 } }
-			set_federation_succession_type = random
-			set_federation_succession_term = years_40
-			if = {
-				limit = {
-					NOR = {
-						has_federation_law = assembly_high
-						has_federation_law = assembly_grand
-					}
-				}
-				set_federation_law = assembly_high
-			}
-		}
-}
-# Vanilla Types but edited, main edit is that once election is selected the rest is disabled. this election type is forced by centralisation medium
 succession_type_random = {
 	potential = {
 		host_has_dlc = Federations
