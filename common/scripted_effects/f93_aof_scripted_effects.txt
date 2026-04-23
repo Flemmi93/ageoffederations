@@ -13,3 +13,12 @@ remove_accord_modifier = {
 	remove_modifier = f93_aof_accord_coop
 	remove_modifier = f93_aof_accord_unyielding
 }
+add_aof_fed_permit = {
+	if = {
+		limit = { is_variable_set = aof_fed_permit }
+		change_variable = { which = aof_fed_permit value = $ADD$ }
+	}
+	else = {
+		set_variable = { which = aof_fed_permit value = $ADD$ }
+	}
+}

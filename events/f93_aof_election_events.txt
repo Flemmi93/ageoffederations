@@ -330,9 +330,6 @@ country_event = {
 	desc = f93_aof_election.301.desc
 	is_triggered_only = yes
 	picture = GFX_evt_tradedeal
-	immediate = {
-		federation = { set_federation_flag = aof_can_build_holding }
-	}
 	#####
 	# 10 year terms
 	#####
@@ -589,7 +586,7 @@ country_event = {
 				NOT = { has_building = building_aof_federal_holdings }
 			}
 		}
-		hidden_effect = { set_country_flag = permission_to_build_fed_holding }
+		hidden_effect = { add_aof_fed_permit = { ADD = 1 } }
 	}
 	option = {
 		trigger = { is_multiplayer = no }
@@ -609,7 +606,7 @@ country_event = {
 						NOT = { is_same_value = root }
 						any_owned_planet = { is_sector_capital = yes NOT = { has_building = building_aof_federal_holdings } }
 					}
-					set_country_flag = permission_to_build_fed_holding
+					add_aof_fed_permit = { ADD = 1 }
 				}
 			}
 		}
@@ -634,7 +631,7 @@ country_event = {
 						NOT = { is_same_value = root }
 						any_owned_planet = { is_sector_capital = yes NOT = { has_building = building_aof_federal_holdings } }
 					}
-					set_country_flag = permission_to_build_fed_holding
+					add_aof_fed_permit = { ADD = 1 }
 				}
 			}
 		}
@@ -659,7 +656,7 @@ country_event = {
 						NOT = { is_same_value = root }
 						any_owned_planet = { is_sector_capital = yes NOT = { has_building = building_aof_federal_holdings } }
 					}
-					set_country_flag = permission_to_build_fed_holding
+					add_aof_fed_permit = { ADD = 1 }
 				}
 			}
 		}

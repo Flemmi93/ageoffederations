@@ -21,35 +21,44 @@ building_aof_federal_holdings = {
 	}
 	allow = {
 		custom_tooltip = {
-			fail_text = aof_one_holding_per_legislature
-			owner = {
-				exists = federation
-				federation = {
-					has_federation_flag = aof_can_build_holding
-				}
-			}
-		}
-		custom_tooltip = {
 			fail_text = aof_need_permission_to_build
-			owner = { has_country_flag = permission_to_build_fed_holding }
+			owner = { check_variable = { which = aof_fed_permit value > 0 } }
 		}
 	}
 	on_queued = {
-		owner = { federation = { remove_federation_flag = aof_can_build_holding } } #an action when queued
-		owner = { remove_country_flag = permission_to_build_fed_holding } #an action when queued
+		owner = { add_aof_fed_permit = { ADD = -1 } }
 		# this has access to the variables "local_spent_<resource>"
 	}
 	
 	on_unqueued = {
-		owner = { federation = { set_federation_flag = aof_can_build_holding } } #an action when unqueued
-		owner = { remove_country_flag = permission_to_build_fed_holding } #an action when queued
+		owner = { add_aof_fed_permit = { ADD = 1 } }
 		# this has access to the variables "local_spent_<resource>"
 	}
 	destroy_trigger = {
 		is_sector_capital = no
+		owner = {
+			NOT = { exists = federation }
+			AND = {
+				exists = federation
+				federation = { NOT = { has_federation_law = succession_type_election } }
+			}
+		}
 	}
 	on_destroy = {
-		owner = { add_resource = { trade = 15000 } } #an action when destroyed
+		owner = {
+			if = {
+				limit = {
+					exists = federation
+					federation = {
+						has_federation_law = succession_type_election
+					}
+				}
+				add_aof_fed_permit = { ADD = 1 }
+			}
+			else = {
+				add_resource = { trade = 15000 }
+			}
+		}
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -116,7 +125,5 @@ building_aof_federal_holdings = {
 			consumer_goods = 5
 		}
 	}
-	ai_weight = {
-		base = 10000
-	}
+	ai_weight_coefficient = 1000
 }

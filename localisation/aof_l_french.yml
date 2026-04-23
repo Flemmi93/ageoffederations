@@ -107,7 +107,7 @@
 
 # Buildings
  building_aof_federal_holdings: "Federal Holdings"
- building_aof_federal_holdings_desc: "These offices are an outpost of the federation.\nInfo: This Building can only be build on Sector Capitals. Demolishing it, either by moving the Sector Capital or on purpose, will yield $trade_with_icon$: §G15.000§! as compensation."
+ building_aof_federal_holdings_desc: "These offices are an outpost of the federation.\nInfo: This Building can only be build on Sector Capitals. The permit is refunded on demolition."
 
 # Modifier
  federation_law_category_assembly_cooldown:0 "$federation_centralization_cooldown$"
@@ -206,5 +206,4 @@
  f93_aof_civic_shared_burden: "$civic_shared_burden$"
  fed_market_none: "$fleet_contribution_none$"
  required_high_assembly: "Requires the law: §Y$assembly_high$§!"
- aof_one_holding_per_legislature: "§RCan build only one Federal Holdings per legislature period.§!"
- aof_need_permission_to_build: "§RWe lack permission from the Federation to build and staff this building§!"
+ aof_need_permission_to_build: "§RWe lack a Permit from the Federation to build and staff this building§!"
