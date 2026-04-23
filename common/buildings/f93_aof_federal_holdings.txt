@@ -15,6 +15,10 @@ building_aof_federal_holdings = {
 		# 	has_country_flag = permission_to_build_fed_holding
 		# }
 	}
+	building_sets = {
+		government
+		urban
+	}
 	allow = {
 		custom_tooltip = {
 			fail_text = aof_one_holding_per_legislature
