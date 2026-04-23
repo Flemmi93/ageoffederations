@@ -573,17 +573,17 @@ country_event = {
 		}
 	}
 }
-# died
+# federal outpost holding office building thing
 country_event = {
 	id = f93_aof_election.8
 	is_triggered_only = yes
 	title = f93_aof_election.8.name
 	desc = f93_aof_election.8.desc
-	picture = GFX_evt_space_funeral
+	picture = GFX_evt_bribery
 	immediate = {
 	}
 	option = {
-		name = f93_aof_election.7.a
+		name = f93_aof_election.8.a
 		allow = {
 			any_owned_planet = {
 				NOT = { has_building = building_aof_federal_holdings }
@@ -593,12 +593,12 @@ country_event = {
 	}
 	option = {
 		trigger = { is_multiplayer = no }
-		name = f93_aof_election.7.b
+		name = f93_aof_election.8.b
 		allow = {
 			federation = {
 				any_member = {
 					NOT = { is_same_value = root }
-					any_owned_planet = { NOT = { has_building = building_aof_federal_holdings } }
+					any_owned_planet = { is_sector_capital = yes NOT = { has_building = building_aof_federal_holdings } }
 				}
 			}
 		}
@@ -607,7 +607,7 @@ country_event = {
 				random_member = {
 					limit = {
 						NOT = { is_same_value = root }
-						any_owned_planet = { NOT = { has_building = building_aof_federal_holdings } }
+						any_owned_planet = { is_sector_capital = yes NOT = { has_building = building_aof_federal_holdings } }
 					}
 					set_country_flag = permission_to_build_fed_holding
 				}
@@ -616,13 +616,13 @@ country_event = {
 	}
 	option = {
 		trigger = { is_multiplayer = yes }
-		name = f93_aof_election.7.c
+		name = f93_aof_election.8.c
 		allow = {
 			federation = {
 				any_member = {
 					is_ai = no
 					NOT = { is_same_value = root }
-					any_owned_planet = { NOT = { has_building = building_aof_federal_holdings } }
+					any_owned_planet = { is_sector_capital = yes NOT = { has_building = building_aof_federal_holdings } }
 				}
 			}
 		}
@@ -632,7 +632,7 @@ country_event = {
 					limit = {
 						is_ai = no
 						NOT = { is_same_value = root }
-						any_owned_planet = { NOT = { has_building = building_aof_federal_holdings } }
+						any_owned_planet = { is_sector_capital = yes NOT = { has_building = building_aof_federal_holdings } }
 					}
 					set_country_flag = permission_to_build_fed_holding
 				}
@@ -641,13 +641,13 @@ country_event = {
 	}
 	option = {
 		trigger = { is_multiplayer = yes }
-		name = f93_aof_election.7.d
+		name = f93_aof_election.8.d
 		allow = {
 			federation = {
 				any_member = {
 					is_ai = yes
 					NOT = { is_same_value = root }
-					any_owned_planet = { NOT = { has_building = building_aof_federal_holdings } }
+					any_owned_planet = { is_sector_capital = yes NOT = { has_building = building_aof_federal_holdings } }
 				}
 			}
 		}
@@ -657,7 +657,7 @@ country_event = {
 					limit = {
 						is_ai = yes
 						NOT = { is_same_value = root }
-						any_owned_planet = { NOT = { has_building = building_aof_federal_holdings } }
+						any_owned_planet = { is_sector_capital = yes NOT = { has_building = building_aof_federal_holdings } }
 					}
 					set_country_flag = permission_to_build_fed_holding
 				}

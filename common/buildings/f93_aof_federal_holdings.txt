@@ -6,14 +6,14 @@ building_aof_federal_holdings = {
 
 	category = trade
 	potential = {
-		always = yes
-		# owner = {
-		# 	exists = federation
-		# 	federation = {
-		# 		has_federation_law = succession_type_election
-		# 	}
-		# 	has_country_flag = permission_to_build_fed_holding
-		# }
+		# always = yes
+		is_sector_capital = yes
+		owner = {
+			exists = federation
+			federation = {
+				has_federation_law = succession_type_election
+			}
+		}
 	}
 	building_sets = {
 		government
@@ -29,6 +29,10 @@ building_aof_federal_holdings = {
 				}
 			}
 		}
+		custom_tooltip = {
+			fail_text = aof_need_permission_to_build
+			has_country_flag = permission_to_build_fed_holding
+		}
 	}
 	on_queued = {
 		owner = { federation = { remove_federation_flag = aof_can_build_holding } } #an action when queued
@@ -40,6 +44,9 @@ building_aof_federal_holdings = {
 		owner = { federation = { set_federation_flag = aof_can_build_holding } } #an action when unqueued
 		owner = { remove_country_flag = permission_to_build_fed_holding } #an action when queued
 		# this has access to the variables "local_spent_<resource>"
+	}
+	destroy_trigger = {
+		is_sector_capital = no
 	}
 	on_destroy = {
 		owner = { add_resource = { trade = 15000 } } #an action when destroyed

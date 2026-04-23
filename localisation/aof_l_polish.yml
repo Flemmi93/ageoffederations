@@ -86,13 +86,14 @@
  f93_aof_election.6.b: "Save the slogans for next time..."
  f93_aof_election.7.name: "Breaking News: Elections Soon"
  f93_aof_election.7.desc: "The Vote of No Confidence has passed, signaling an end to the current President's mandate. $MY_FEDERATION_PRESIDENT$ will step down and make way for new leadership."
- f93_aof_election.7.a: "we will build it"
- f93_aof_election.7.b: "someone else can do it"
- f93_aof_election.7.c: "someone else can do it (human)"
- f93_aof_election.7.d: "someone else can do it (NPC)"
- f93_aof_election.8.name: "Breaking News: Elections Soon"
- f93_aof_election.8.desc: "Terrible news have reached the citizens of the federation, President $MY_FEDERATION_PRESIDENT$ has passed away. The federal council currently prepares for new elections and an interim president has been chosen to govern until then."
- f93_aof_election.8.a: "rip bozo."
+ f93_aof_election.7.a: "Maybe not everyone deserves a vote."
+ f93_aof_election.7.b: "good riddance"
+ f93_aof_election.8.name: "Federal Office Expansion"
+ f93_aof_election.8.desc: "With the recent elections done, we should expand out Federal Offices again, more paperwork needs to be done and the very first is to find a place to do it.\n\nInfo: This Building can only be build on Sector Capitals."
+ f93_aof_election.8.a: "we will build it"
+ f93_aof_election.8.b: "someone else can do it"
+ f93_aof_election.8.c: "someone else can do it (human)"
+ f93_aof_election.8.d: "someone else can do it (NPC)"
  f93_aof_galcom.0.name: "Shield and Spear"
  f93_aof_galcom.0.desc: "The Galactic Senate has consolidated emergency powers upon a Galactic Custodian to act as its spearhead. Yet, the Federal Council remains wary, unsure if this blade will be used as intended and then laid down or turned against any who dare to stand in its way."
  f93_aof_galcom.0.a: "The Federation's shield will stand ready! "
@@ -106,7 +107,7 @@
 
 # Buildings
  building_aof_federal_holdings: "Federal Holdings"
- building_aof_federal_holdings_desc: "These offices are an outpost of the federation.\n\n When demolished, we can plunder it."
+ building_aof_federal_holdings_desc: "These offices are an outpost of the federation.\nInfo: This Building can only be build on Sector Capitals. Demolishing it, either by moving the Sector Capital or on purpose, will yield $trade_with_icon$: §G15.000§! as compensation."
 
 # Modifier
  federation_law_category_assembly_cooldown:0 "$federation_centralization_cooldown$"
@@ -206,3 +207,4 @@
  fed_market_none: "$fleet_contribution_none$"
  required_high_assembly: "Requires the law: §Y$assembly_high$§!"
  aof_one_holding_per_legislature: "§RCan build only one Federal Holdings per legislature period.§!"
+ aof_need_permission_to_build: "§RWe lack permission from the Federation to build and staff this building§!"
