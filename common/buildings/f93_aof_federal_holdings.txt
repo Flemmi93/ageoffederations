@@ -31,7 +31,7 @@ building_aof_federal_holdings = {
 		}
 		custom_tooltip = {
 			fail_text = aof_need_permission_to_build
-			has_country_flag = permission_to_build_fed_holding
+			owner = { has_country_flag = permission_to_build_fed_holding }
 		}
 	}
 	on_queued = {
