@@ -29,6 +29,7 @@ fed_accords_coop = {
 	on_enact = {
 		every_member = {
 			remove_modifier = f93_aof_accord_unyielding
+			remove_country_flag = aof_agreed_to_fed_accords_unyielding
 			add_modifier = { modifier = f93_aof_accord_coop mult = 1 }
 		}
 		add_cohesion = @cohesion_loss
@@ -72,6 +73,9 @@ fed_accords_unyielding = {
 	required_centralization = {
 		base = 4
 	}
+	modifier = {
+		custom_tooltip = fed_accords_unyielding_effect
+	}
 	on_enact = {
 		every_member = {
 			remove_modifier = f93_aof_accord_coop
@@ -85,21 +89,21 @@ fed_accords_unyielding = {
 				days = @cooldown
 			}
 		}
+		# every_member = {
+		# 	limit = {
+		# 		OR = {
+		# 			has_policy_flag = unrestricted_wars
+		# 		}
+		# 	}
+		# 	country_event = { id = f93_aof_background.8 }
+		# }
 		every_member = {
-			limit = {
-				OR = {
-					has_policy_flag = unrestricted_wars
-				}
-			}
-			country_event = { id = f93_aof_background.8 }
-		}
-		every_member = {
-			limit = {
-				NOR = {
-					has_policy_flag = unrestricted_wars
-				}
-			}
-			set_country_flag = agreed_to_fed_accords_unyielding
+			# limit = {
+			# 	NOR = {
+			# 		has_policy_flag = unrestricted_wars
+			# 	}
+			# }
+			set_country_flag = aof_agreed_to_fed_accords_unyielding
 		}
 	}
 	ai_weight = { 
@@ -135,6 +139,7 @@ fed_accords_none = {
 		every_member = {
 			remove_modifier = f93_aof_accord_unyielding
 			remove_modifier = f93_aof_accord_coop
+			remove_country_flag = aof_agreed_to_fed_accords_unyielding
 		}
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }

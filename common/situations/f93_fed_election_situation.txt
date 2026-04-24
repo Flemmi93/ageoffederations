@@ -8,7 +8,8 @@ f93_aof_election_situation = {
 	fail_icon_frame = GFX_situation_outcome_frame_green
 	fail_icon = GFX_situation_outcome_meh
 	# complete_icon_frame = GFX_situation_outcome_frame_green
-	complete_icon = GFX_diplomacy_status_associate
+	# complete_icon = GFX_envoy_icon
+	complete_icon = GFX_diplomacy_status_federation
 
 	on_start = {
 		set_situation_flag = federation_elections_situation

@@ -24,10 +24,10 @@ country_event = {
 					limit = { is_hive_empire = no }
 					change_variable = { which = aof_market_volume value = prev.value:f93_planet_cg_income_compare }
 				}
-				if = {
-					limit = { exists = federation federation = { has_federation_law = treaties_separate_no } }
-					multiply_variable = { which = aof_market_volume value = 1.2 } #20% market volume boost
-				}
+				# if = { # replaced with 0.5 cohesion
+				# 	limit = { exists = federation federation = { has_federation_law = treaties_separate_no } }
+				# 	multiply_variable = { which = aof_market_volume value = 1.2 } #20% market volume boost
+				# }
 				if  = {
 					limit = {
 						prev = { has_building = building_aof_federal_holdings }

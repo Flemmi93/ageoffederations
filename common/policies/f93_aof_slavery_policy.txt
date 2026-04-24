@@ -362,7 +362,10 @@ slavery = {
 				is_authoritarian = yes
 				is_xenophobe = yes
 			}
-			NOT = { has_country_flag = aof_agreed_to_treaties_separate_ethical_partners }
+			custom_tooltip = {
+				fail_text = aof_agreed_to_treaties_separate_ethical_partners
+				NOT = { has_country_flag = aof_agreed_to_treaties_separate_ethical_partners }
+			}
 		}
 
 		modifier = {

@@ -1,6 +1,13 @@
 remove_aoe_content_by_removing_from_federation = {
 	remove_market_modifier = yes
 	remove_accord_modifier = yes
+	remove_country_flag = aof_agreed_to_treaties_separate_ethical_partners
+	remove_country_flag = aof_agreed_to_fed_accords_unyielding
+	remove_country_flag = federation_elections_situation_1
+	remove_country_flag = election_ui_open
+	remove_country_flag = f93_aof_nominated
+	remove_country_flag = f93_aof_nomination_boosted_1
+	remove_country_flag = f93_aof_nomination_boosted_2
 }
 remove_market_modifier = {
 	remove_modifier = f93_aof_market_basic

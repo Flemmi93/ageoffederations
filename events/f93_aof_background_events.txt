@@ -71,20 +71,20 @@ country_event = {
 			base = 0
 			modifier = {
 				has_policy_flag = slavery_allowed
-				add = 5
+				add = 15
 			}
 		}
 		ai_chance = {
 			base = 0
 			modifier = {
-				has_policy_flag = refugees_not_allowed
-				add = 5
+				has_origin = origin_syncretic_evolution
+				add = 15
 			}
 		}
 		ai_chance = {
 			base = 0
 			modifier = {
-				has_policy_flag = refugees_only_citizens
+				has_policy_flag = interference_aggressive
 				add = 5
 			}
 		}
@@ -116,7 +116,7 @@ country_event = {
 		if = {
 			limit = { has_policy_flag = slavery_allowed }
 			set_policy = { policy = slavery option = slavery_not_allowed cooldown = yes }
-			set_country_flag = agreed_to_fed_accords_unyielding
+			set_country_flag = aof_agreed_to_fed_accords_unyielding
 		}
 		ai_chance = {
 			base = 10

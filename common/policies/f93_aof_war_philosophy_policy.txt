@@ -34,7 +34,10 @@ war_philosophy = {
 				has_ethic = "ethic_fanatic_pacifist"
 				has_valid_civic = "civic_inwards_perfection"
 				has_civic = "civic_crusader_spirit"
-				has_country_flag = agreed_to_fed_accords_unyielding
+			}
+			custom_tooltip = {
+				fail_text = aof_agreed_to_fed_accords_unyielding
+				NOT = { has_country_flag = aof_agreed_to_fed_accords_unyielding }
 			}
 		}
 

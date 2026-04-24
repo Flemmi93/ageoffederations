@@ -7,7 +7,7 @@ f93_planet_trade_income_compare = {
 			type = produces
 		}
 		mode = add
-		mult = 1
+		mult = 1.25
 	}
 }
 f93_planet_cg_income_compare = {

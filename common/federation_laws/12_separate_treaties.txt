@@ -20,7 +20,7 @@ treaties_separate_no = {
 	required_centralization = {
 		base = 3
 	}
-	cohesion_growth = -0.10
+	cohesion_growth = 0.5
 	on_enact = {
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
@@ -35,11 +35,9 @@ treaties_separate_no = {
 		add_cohesion = @cohesion_loss # original value -10
 		every_member = {
 			country_event = { id = f93_aof_background.0 } # Clear treaties with non-Federation members # originally action.215
+			remove_country_flag = aof_agreed_to_treaties_separate_ethical_partners
 		###
 		}
-	}
-	modifier = {
-		custom_tooltip = treaties_separate_no_effect
 	}
 	ai_weight = {
 		base = 0
@@ -199,6 +197,7 @@ treaties_separate_yes = {
 		}
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		every_member = { remove_country_flag = aof_agreed_to_treaties_separate_ethical_partners }
 		###
 	}
 
