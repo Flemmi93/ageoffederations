@@ -330,6 +330,19 @@ country_event = {
 	desc = f93_aof_election.301.desc
 	is_triggered_only = yes
 	picture = GFX_evt_tradedeal
+	immediate = {
+		federation = {
+			every_member = {
+				if = {
+					limit = {
+						NOT = { has_country_flag = f93_aof_election_8_cooldown }
+					}
+					country_event = { id = f93_aof_election.8 days = 1440 random = 1440 }
+					set_timed_country_flag = { flag = f93_aof_election_8_cooldown days = 1440 }
+				}
+			}
+		}
+	}
 	#####
 	# 10 year terms
 	#####
@@ -576,21 +589,27 @@ country_event = {
 	is_triggered_only = yes
 	title = f93_aof_election.8.name
 	desc = f93_aof_election.8.desc
-	picture = GFX_evt_bribery
+	picture = GFX_evt_diplomatic_visit
 	immediate = {
 	}
 	option = {
+		trigger = { is_federation_leader = yes }
 		name = f93_aof_election.8.a
+		custom_tooltip = f93_aof_election.8.a_desc
 		allow = {
 			any_owned_planet = {
 				NOT = { has_building = building_aof_federal_holdings }
 			}
 		}
 		hidden_effect = { add_aof_fed_permit = { ADD = 1 } }
+		ai_chance = {
+			base = 15
+		}
 	}
 	option = {
-		trigger = { is_multiplayer = no }
+		trigger = { is_multiplayer = no is_federation_leader = yes }
 		name = f93_aof_election.8.b
+		custom_tooltip = f93_aof_election.8.b_desc
 		allow = {
 			federation = {
 				any_member = {
@@ -607,13 +626,18 @@ country_event = {
 						any_owned_planet = { is_sector_capital = yes NOT = { has_building = building_aof_federal_holdings } }
 					}
 					add_aof_fed_permit = { ADD = 1 }
+					country_event = { id = f93_aof_election.9 }
 				}
 			}
 		}
+		ai_chance = {
+			base = 15
+		}
 	}
 	option = {
-		trigger = { is_multiplayer = yes }
+		trigger = { is_multiplayer = yes is_federation_leader = yes }
 		name = f93_aof_election.8.c
+		custom_tooltip = f93_aof_election.8.c_desc
 		allow = {
 			federation = {
 				any_member = {
@@ -632,13 +656,18 @@ country_event = {
 						any_owned_planet = { is_sector_capital = yes NOT = { has_building = building_aof_federal_holdings } }
 					}
 					add_aof_fed_permit = { ADD = 1 }
+					country_event = { id = f93_aof_election.9 }
 				}
 			}
 		}
+		ai_chance = {
+			base = 15
+		}
 	}
 	option = {
-		trigger = { is_multiplayer = yes }
+		trigger = { is_multiplayer = yes is_federation_leader = yes }
 		name = f93_aof_election.8.d
+		custom_tooltip = f93_aof_election.8.d_desc
 		allow = {
 			federation = {
 				any_member = {
@@ -657,8 +686,78 @@ country_event = {
 						any_owned_planet = { is_sector_capital = yes NOT = { has_building = building_aof_federal_holdings } }
 					}
 					add_aof_fed_permit = { ADD = 1 }
+					country_event = { id = f93_aof_election.9 }
 				}
 			}
 		}
+		ai_chance = {
+			base = 15
+		}
+	}
+	#     A new reform!
+	option = {
+		name = f93_aof_election.8.e
+		add_modifier = { modifier = aof_a_new_reform days = 3600 }
+		ai_chance = {
+			base = 10
+		}
+	}
+    # Some blackmail!
+	option = {
+		name = f93_aof_election.8.f
+		custom_tooltip = f93_aof_election.8.f_desc
+		add_modifier = { modifier = aof_some_blackmail days = 1800 }
+		federation = {
+			random_member = {
+				limit = { NOT = { is_same_value = root } }
+				root = {
+					add_favors = {
+						target = prev
+						value = 10
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+    # good news everyone
+	option = {
+		name = f93_aof_election.8.g
+		custom_tooltip = f93_aof_election.8.g_desc
+		federation = {
+			random_member = {
+				limit = { NOT = { is_same_value = root } }
+				root = {
+					add_favors = {
+						target = prev
+						value = 2
+					}
+				}
+			}
+		}
+		add_modifier = { modifier = aof_good_news days = 3600 }
+		ai_chance = {
+			base = 1
+			modifier = {
+				any_owned_pop_group = { pop_group_has_happiness = yes }
+				add = 9
+			}
+		}
+	}
+
+
+}
+country_event = {
+	id = f93_aof_election.9
+	is_triggered_only = yes
+	title = f93_aof_election.9.name
+	desc = f93_aof_election.9.desc
+	picture = GFX_evt_diplomatic_visit
+	immediate = {
+	}
+	option = {
+		name = f93_aof_election.9.a
 	}
 }

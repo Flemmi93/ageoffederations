@@ -201,10 +201,7 @@ interference = {
 				has_ethic = "ethic_xenophile"
 				has_ethic = "ethic_fanatic_xenophile"
 				has_valid_civic = civic_machine_exploration_protocol
-				AND = {
-					NOT = { exists = federation }
-					federation = { has_federation_law = treaties_separate_ethical_partners }
-				}
+				has_country_flag = aof_agreed_to_treaties_separate_ethical_partners
 			}
 		}
 		on_enabled = {
@@ -262,10 +259,7 @@ refugees = {
 			NOR = {
 				has_ethic = "ethic_xenophile"
 				has_ethic = "ethic_fanatic_xenophile"
-				AND = {
-					exists = federation
-					federation = { has_federation_law = treaties_separate_ethical_partners }
-				}
+				has_country_flag = aof_agreed_to_treaties_separate_ethical_partners
 			}
 		}
 
@@ -368,13 +362,7 @@ slavery = {
 				is_authoritarian = yes
 				is_xenophobe = yes
 			}
-			OR = {
-				NOT = { exists = federation }
-				AND = {
-					exists = federation
-					NOT = { federation = { has_federation_law = treaties_separate_ethical_partners } }
-				}
-			}
+			NOT = { has_country_flag = aof_agreed_to_treaties_separate_ethical_partners }
 		}
 
 		modifier = {

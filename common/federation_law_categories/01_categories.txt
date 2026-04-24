@@ -47,7 +47,7 @@ law_category_assembly = {
 		# has_federation_law = succession_type_election
 	}
 	laws = {
-		assembly_none
+		# assembly_none
 		assembly_high
 		assembly_grand
 	}
@@ -186,10 +186,9 @@ law_category_aof_accords = {
 law_category_aof_market = {
 	laws = {
 		fed_market_none
-		fed_market_mix
-		fed_market_extraction
-		fed_market_civilian
+		fed_market_basic
+		fed_market_unity
 		fed_market_military
-		fed_market_science
+		fed_market_strategic
 	}
 }

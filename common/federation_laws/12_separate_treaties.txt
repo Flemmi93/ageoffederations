@@ -120,9 +120,20 @@ treaties_separate_ethical_partners = {
 				OR = {
 					has_policy_flag = interference_aggressive
 					has_policy_flag = slavery_allowed
+					has_policy_flag = refugees_not_allowed
 				}
 			}
 			country_event = { id = f93_aof_background.1 }
+		}
+		every_member = {
+			limit = {
+				NOR = {
+					has_policy_flag = interference_aggressive
+					has_policy_flag = slavery_allowed
+					has_policy_flag = refugees_not_allowed
+				}
+			}
+			set_country_flag = aof_agreed_to_treaties_separate_ethical_partners
 		}
 		####
 	}

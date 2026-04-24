@@ -85,6 +85,22 @@ fed_accords_unyielding = {
 				days = @cooldown
 			}
 		}
+		every_member = {
+			limit = {
+				OR = {
+					has_policy_flag = unrestricted_wars
+				}
+			}
+			country_event = { id = f93_aof_background.8 }
+		}
+		every_member = {
+			limit = {
+				NOR = {
+					has_policy_flag = unrestricted_wars
+				}
+			}
+			set_country_flag = agreed_to_fed_accords_unyielding
+		}
 	}
 	ai_weight = { 
 		base = 0

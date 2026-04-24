@@ -139,7 +139,7 @@ centralization_low = {
 		}
 		# modded content / edit
 		add_cohesion = -25 # original value -10
-		set_federation_law = fed_market_mix
+		set_federation_law = fed_market_basic
 		###
 		
 		fire_random_centralisation_flavour_event_effect = yes #potentially fire a flavour event

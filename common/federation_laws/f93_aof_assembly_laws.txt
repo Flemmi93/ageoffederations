@@ -1,34 +1,34 @@
 @cooldown = 3600
 @cohesion_loss = -20
-assembly_none = {
-	potential = {
-		NOR = {
-			has_federation_law = assembly_high
-			has_federation_law = assembly_grand
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			NOT = {
-				AND = {
-					NOT = { has_federation_law = assembly_none }
-					has_modifier = federation_law_category_assembly_cooldown
-					has_any_federation_law_in_category = law_category_assembly
-				}
-			}
-		}
-	}
-	on_enact = {
-		add_cohesion = @cohesion_loss
-		if = {
-			limit = { has_federation_flag = enable_federation_cooldowns }
-			add_modifier = {
-				modifier = federation_law_category_assembly_cooldown
-				days = @cooldown
-			}
-		}
-	}
-}
+# assembly_none = {
+# 	potential = {
+# 		NOR = {
+# 			has_federation_law = assembly_high
+# 			has_federation_law = assembly_grand
+# 		}
+# 	}
+# 	allow = {
+# 		custom_tooltip = {
+# 			NOT = {
+# 				AND = {
+# 					NOT = { has_federation_law = assembly_none }
+# 					has_modifier = federation_law_category_assembly_cooldown
+# 					has_any_federation_law_in_category = law_category_assembly
+# 				}
+# 			}
+# 		}
+# 	}
+# 	on_enact = {
+# 		add_cohesion = @cohesion_loss
+# 		if = {
+# 			limit = { has_federation_flag = enable_federation_cooldowns }
+# 			add_modifier = {
+# 				modifier = federation_law_category_assembly_cooldown
+# 				days = @cooldown
+# 			}
+# 		}
+# 	}
+# }
 assembly_high = {
 	potential = {}
 	allow = {
@@ -78,6 +78,9 @@ assembly_grand = {
 	}
 	modifier = {
 		federation_experience_add = 3
+	}
+	required_centralization = {
+		base = 3
 	}
 	on_enact = {
 		if = {

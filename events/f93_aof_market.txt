@@ -40,42 +40,41 @@ country_event = {
 				}
 			}			
 		}
-		if  = {
-			limit = { has_modifier = f93_aof_market_extract }
+		round_variable = aof_market_volume
+
+		#update modifier
+		if = {
+			limit = { has_modifier = f93_aof_market_basic }
+			remove_market_modifier = yes
 			add_modifier = {
-				modifier = f93_aof_market_extract
-				mult = aof_market_volume
+				modifier = f93_aof_market_basic
+				mult = value:f93_market_policy_basic
 			}
 		}
-		if  = {
-			limit = { has_modifier = f93_aof_market_mix }
+		else_if = {
+			limit = { has_modifier = f93_aof_market_unity }
+			remove_market_modifier = yes
 			add_modifier = {
-				modifier = f93_aof_market_mix
-				mult = aof_market_volume
+				modifier = f93_aof_market_unity
+				mult = value:f93_market_policy_unity
 			}
 		}
-		if  = {
-			limit = { has_modifier = f93_aof_market_civilian }
-			add_modifier = {
-				modifier = f93_aof_market_civilian
-				mult = aof_market_volume
-			}
-		}
-		if  = {
+		else_if = {
 			limit = { has_modifier = f93_aof_market_military }
+			remove_market_modifier = yes
 			add_modifier = {
 				modifier = f93_aof_market_military
-				mult = aof_market_volume
+				mult = value:f93_market_policy_military
 			}
 		}
-		if  = {
-			limit = { has_modifier = f93_aof_market_science }
+		else_if = {
+			limit = { has_modifier = f93_aof_market_strategic }
+			remove_market_modifier = yes
 			add_modifier = {
-				modifier = f93_aof_market_science
-				mult = aof_market_volume
+				modifier = f93_aof_market_strategic
+				mult = value:f93_market_policy_strategic
 			}
 		}
-		round_variable = aof_market_volume
 	}
 }
 

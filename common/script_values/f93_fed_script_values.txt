@@ -22,3 +22,43 @@ f93_planet_cg_income_compare = {
 		mult = 2.5
 	}
 }
+f93_aof_num_member = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger = count_country
+		parameters = {
+			limit = {
+				is_in_federation_with = root
+			}
+		}
+		mode = add
+	}
+	min = 1
+}
+f93_market_policy_basic = {
+	base = 0
+	add = aof_market_volume
+	divide = value:f93_aof_num_member
+	mult = 0.05
+	divide = 3
+}
+f93_market_policy_strategic = {
+	base = 0
+	add = aof_market_volume
+	divide = value:f93_aof_num_member
+	mult = 0.05
+	divide = 25
+}
+f93_market_policy_military = {
+	base = 0
+	add = aof_market_volume
+	divide = value:f93_aof_num_member
+	mult = 0.05
+}
+f93_market_policy_unity = {
+	base = 0
+	add = aof_market_volume
+	divide = value:f93_aof_num_member
+	mult = 0.05
+	divide = 1.75
+}

@@ -60,69 +60,588 @@ building_aof_federal_holdings = {
 			}
 		}
 	}
+	# triggered_planet_modifier = {
+	# 	potential = {
+	# 		exists = owner
+	# 		owner = {
+	# 			exists = federation
+	# 			federation = { federation_level > 2 }
+	# 		}
+	# 	}
+	# 	owner = {
+	# 		cohesion_add = -0.5
+	# 	}
+	# }
+# Galactic Union / default_federation
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = {
+				is_gestalt = no
 				exists = federation
-				federation = { federation_level > 0 }
+				federation = { federation_level > 2 has_federation_type = default_federation }
 			}
 		}
-		job_trader_add = 50
+		modifier = {
+			job_soldier_or_warrior_add = 75
+			job_bureaucrat_add = 75
+		}
 	}
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = {
+				is_gestalt = no
 				exists = federation
-				federation = { federation_level > 1 }
+				federation = { federation_level > 3 has_federation_type = default_federation }
 			}
 		}
-		job_trader_add = 100
+		modifier = {
+			job_soldier_or_warrior_add = 75
+			job_bureaucrat_add = 75
+		}
 	}
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = {
+				is_gestalt = no
 				exists = federation
-				federation = { federation_level > 2 }
+				federation = { federation_level > 4 has_federation_type = default_federation }
+			}
+		}
+		modifier = {
+			job_soldier_or_warrior_add = 150
+			job_bureaucrat_add = 150
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				exists = federation
+				federation = { federation_level > 5 has_federation_type = default_federation } # only with another mod increasing fed levels
+			}
+		}
+		modifier = {
+			job_soldier_or_warrior_add = 300
+			job_bureaucrat_add = 300
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 2 has_federation_type = default_federation }
+			}
+		}
+		job_logistics_drone_add = 150
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 3 has_federation_type = default_federation }
+			}
+		}
+		job_logistics_drone_add = 150
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 4 has_federation_type = default_federation }
+			}
+		}
+		job_logistics_drone_add = 300
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 5 has_federation_type = default_federation } # only with another mod increasing fed levels
+			}
+		}
+		job_logistics_drone_add = 600
+		
+	}
+# Trade League / trade_federation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				exists = federation
+				federation = { federation_level > 2 has_federation_type = trade_federation }
 			}
 		}
 		job_trader_add = 150
 	}
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = {
+				is_gestalt = no
 				exists = federation
-				federation = { federation_level > 3 }
+				federation = { federation_level > 3 has_federation_type = trade_federation }
 			}
 		}
-		job_trader_add = 200
+		job_trader_add = 150
 	}
 	triggered_planet_modifier = {
 		potential = {
+			exists = owner
 			owner = {
+				is_gestalt = no
 				exists = federation
-				federation = { federation_level > 4 }
-			}
-		}
-		job_trader_add = 250
-	}
-	triggered_planet_modifier = {
-		potential = {
-			owner = {
-				exists = federation
-				federation = { federation_level > 5 } # only with another mod increasing fed levels
+				federation = { federation_level > 4 has_federation_type = trade_federation }
 			}
 		}
 		job_trader_add = 300
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				exists = federation
+				federation = { federation_level > 5 has_federation_type = trade_federation } # only with another mod increasing fed levels
+			}
+		}
+		job_trader_add = 600
+		
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 2 has_federation_type = trade_federation }
+			}
+		}
+		job_logistics_drone_add = 150
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 3 has_federation_type = trade_federation }
+			}
+		}
+		job_logistics_drone_add = 150
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 4 has_federation_type = trade_federation }
+			}
+		}
+		job_logistics_drone_add = 300
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 5 has_federation_type = trade_federation } # only with another mod increasing fed levels
+			}
+		}
+		job_logistics_drone_add = 600
+		
+	}
+# Martial Alliance / military_federation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				exists = federation
+				federation = { federation_level > 2 has_federation_type = military_federation }
+			}
+		}
+		modifier = {
+			job_soldier_or_warrior_add = 150
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				exists = federation
+				federation = { federation_level > 3 has_federation_type = military_federation }
+			}
+		}
+		modifier = {
+			job_soldier_or_warrior_add = 150
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				exists = federation
+				federation = { federation_level > 4 has_federation_type = military_federation }
+			}
+		}
+		job_soldier_or_warrior_add = 300
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				exists = federation
+				federation = { federation_level > 5 has_federation_type = military_federation } # only with another mod increasing fed levels
+			}
+		}
+		job_soldier_or_warrior_add = 600
+		
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 2 has_federation_type = military_federation }
+			}
+		}
+		job_logistics_drone_add = 150
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 3 has_federation_type = military_federation }
+			}
+		}
+		job_logistics_drone_add = 150
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 4 has_federation_type = military_federation }
+			}
+		}
+		job_logistics_drone_add = 300
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 5 has_federation_type = military_federation } # only with another mod increasing fed levels
+			}
+		}
+		job_logistics_drone_add = 600
+		
+	}
+# Research Alliance / research_federation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				exists = federation
+				federation = { federation_level > 2 has_federation_type = research_federation }
+			}
+		}
+		job_archaeoengineers_add = 150
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				exists = federation
+				federation = { federation_level > 3 has_federation_type = research_federation }
+			}
+		}
+		job_archaeoengineers_add = 150
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				exists = federation
+				federation = { federation_level > 4 has_federation_type = research_federation }
+			}
+		}
+		job_archaeoengineers_add = 300
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				exists = federation
+				federation = { federation_level > 5 has_federation_type = research_federation } # only with another mod increasing fed levels
+			}
+		}
+		job_archaeoengineers_add = 600
+		
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 2 has_federation_type = research_federation }
+			}
+		}
+		job_archaeo_drone_add = 150
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 3 has_federation_type = research_federation }
+			}
+		}
+		job_archaeo_drone_add = 150
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 4 has_federation_type = research_federation }
+			}
+		}
+		job_archaeo_drone_add = 300
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 5 has_federation_type = research_federation } # only with another mod increasing fed levels
+			}
+		}
+		job_archaeo_drone_add = 600
+		
+	}
+# Holy Covenant / spiritualist_federation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				exists = federation
+				federation = { federation_level > 2 has_federation_type = spiritualist_federation }
+			}
+		}
+		job_archaeoengineers_add = 150
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				exists = federation
+				federation = { federation_level > 3 has_federation_type = spiritualist_federation }
+			}
+		}
+		job_archaeoengineers_add = 150
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				exists = federation
+				federation = { federation_level > 4 has_federation_type = spiritualist_federation }
+			}
+		}
+		job_archaeoengineers_add = 300
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				exists = federation
+				federation = { federation_level > 5 has_federation_type = spiritualist_federation } # only with another mod increasing fed levels
+			}
+		}
+		job_archaeoengineers_add = 600
+		
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 2 has_federation_type = spiritualist_federation }
+			}
+		}
+		job_archaeo_drone_add = 150
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 3 has_federation_type = spiritualist_federation }
+			}
+		}
+		job_archaeo_drone_add = 150
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 4 has_federation_type = spiritualist_federation }
+			}
+		}
+		job_archaeo_drone_add = 300
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 5 has_federation_type = spiritualist_federation } # only with another mod increasing fed levels
+			}
+		}
+		job_archaeo_drone_add = 600
+		
+	}
+# Hegemony / hegemony_federation
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				exists = federation
+				federation = { federation_level > 2 has_federation_type = hegemony_federation }
+			}
+		}
+		job_politician_add = 75
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				exists = federation
+				federation = { federation_level > 3 has_federation_type = hegemony_federation }
+			}
+		}
+		job_politician_add = 75
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				exists = federation
+				federation = { federation_level > 4 has_federation_type = hegemony_federation }
+			}
+		}
+		job_politician_add = 150
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				exists = federation
+				federation = { federation_level > 5 has_federation_type = hegemony_federation } # only with another mod increasing fed levels
+			}
+		}
+		job_politician_add = 300
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 2 has_federation_type = hegemony_federation }
+			}
+		}
+		job_observator_drone_add = 75
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 3 has_federation_type = hegemony_federation }
+			}
+		}
+		job_observator_drone_add = 75
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 4 has_federation_type = hegemony_federation }
+			}
+		}
+		job_observator_drone_add = 150
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				exists = federation
+				federation = { federation_level > 5 has_federation_type = hegemony_federation } # only with another mod increasing fed levels
+			}
+		}
+		job_observator_drone_add = 300
 	}
 
 	resources = {
 		category = planet_holdings
 		cost = {
 			minerals = @b1_minerals
+			trade = 1000
+			alloys = 250
 		}
 		upkeep = {
 			energy = @b1_upkeep
-			consumer_goods = 5
+			unity = 15
 		}
 	}
 	ai_weight_coefficient = 1000
