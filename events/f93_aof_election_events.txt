@@ -13,10 +13,7 @@ country_event = {
 			federation = {
 				has_federation_law = succession_type_election
 				has_federation_flag = first_election_happened
-				AND = {
-					has_federation_flag = federation_recent_election # to percent false positives
-					federation_leader = { NOT = { has_modifier = f93_aof_president_country } } 
-				}
+				federation_leader = { NOT = { has_modifier = f93_aof_president_country } }
 			}
 			federation = {
 				has_federation_law = succession_type_election
@@ -52,6 +49,7 @@ country_event = {
 	id = f93_aof_election.1
 	title = f93_aof_election.1.name
 	desc = f93_aof_election.1.desc
+	show_sound = event_factions
 	is_triggered_only = yes
 	# diplomatic = yes
 	# custom_gui = "lotor_elections_window"
@@ -72,17 +70,25 @@ country_event = {
 		name = f93_aof_election.1.end_nominate
 		remove_country_flag = election_ui_open
 		ai_chance = {
-			base = 50
+			base = 20
 		}
 	}
 	option = {
 		name = f93_aof_election.1.nominate
 		allow = {
 			hidden_trigger = { NOT = { has_country_flag = f93_aof_nominated } }
-			has_resource = { type = influence amount > 50 }
-			has_resource = { type = unity amount > 500 }
+			if = {
+				limit = { is_ai = no }
+				has_resource = { type = influence amount > 50 }
+				has_resource = { type = unity amount > 500 }
+			}
 		}
 		add_resource = { influence = -50 }
+		if = {
+			limit = { is_ai = yes }
+			add_resource = { influence = 50 }
+			add_resource = { unity = 500 }
+		}
 		add_resource = { unity = -500 }
 		hidden_effect = {
 			remove_country_flag = election_ui_open
@@ -115,9 +121,19 @@ country_event = {
 				has_country_flag = f93_aof_nominated
 				NOT = { has_country_flag = f93_aof_nomination_boosted_2 }
 			}
-			has_resource = { type = influence amount > 200 }
+			if = {
+				limit = { is_ai = no }
+				has_resource = { type = influence amount > 200 }
+			}
+			else = {
+				has_resource = { type = influence amount > 150 }
+			}
 		}
 		add_resource = { influence = -200 }
+		if = {
+			limit = { is_ai = yes }
+			add_resource = { influence = -150 }
+		}
 		hidden_effect = {
 			remove_country_flag = election_ui_open
 			country_event = { id = f93_aof_election.1 }
@@ -249,6 +265,7 @@ country_event = {
 				}
 			}
 			remove_federation_flag = ongoing_election_process
+			set_timed_federation_flag = { flag = ongoing_election_process days = 1080 }
 		}
 	}
 }
@@ -266,6 +283,7 @@ country_event = {
 		text = f93_aof_election.3.b.desc
 	}
 	picture = GFX_Evt_f93_election_event_picture
+	show_sound = event_announcement
 	immediate = {
 		federation = {
 			set_federation_flag = first_election_happened
@@ -458,6 +476,7 @@ country_event = {
 	title = f93_aof_election.4.name
 	desc = f93_aof_election.4.desc
 	picture = GFX_Evt_f93_election_event_picture
+	show_sound = event_assembly_fight
 	immediate = {
 		country_event = { id = f93_aof_election.5 days = 60 }
 	}
@@ -590,6 +609,7 @@ country_event = {
 	title = f93_aof_election.8.name
 	desc = f93_aof_election.8.desc
 	picture = GFX_evt_diplomatic_visit
+	show_sound = event_galactic_community
 	immediate = {
 	}
 	option = {

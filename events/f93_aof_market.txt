@@ -9,6 +9,7 @@ country_event = {
 		every_galaxy_planet = {
 			limit = {
 				exists = owner
+				owner = { exists = federation }
 				owner = {
 					is_in_federation_with = root
 					# is_subject = no
@@ -125,7 +126,13 @@ country_event = {
 		}
 		every_galaxy_planet = {
 			limit = { has_planet_flag = f93_has_federation_one }
-			create_ambient_object = { type = "f93_federation_one_station" location = this }
+			if = {
+				limit = { has_megacorp = yes }
+				create_ambient_object = { type = "f93_federation_one_station" location = this }
+			}
+			else = {
+				create_ambient_object = { type = "f93_federation_one_station_no_dlc" location = this }
+			}
 			last_created_ambient_object = {
 				set_ambient_object_flag = f93_federation_one_station
 				set_location = {

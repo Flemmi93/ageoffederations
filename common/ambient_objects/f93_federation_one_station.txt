@@ -9,7 +9,7 @@ ambient_object = {
 }
 ambient_object = {
 	name = "f93_federation_one_station_no_dlc"
-	entity = "caravaneer_station_01_section_entity"
+	entity = "station_generic_01_entity"
 	selectable = yes
 	show_name = no
 	tooltip = "f93_federation_one_station_desc"

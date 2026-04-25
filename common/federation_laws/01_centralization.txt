@@ -563,7 +563,11 @@ centralization_high = {
 				}
 			}
 		}
-		# modded content 
+		# Modded content
+		custom_tooltip = {
+			fail_text = requires_law_vote_weight_equal
+			has_federation_law = vote_weight_equal
+		}
 		custom_tooltip = {
 			fail_text = f93_allow_subjects_to_join_yes
 			NOT = { has_federation_law = allow_subjects_to_join_yes }
@@ -787,9 +791,11 @@ centralization_very_high = {
 				}
 			}
 		}
-		
 		# Modded content
-		has_federation_law = vote_weight_equal
+		custom_tooltip = {
+			fail_text = requires_law_vote_weight_equal
+			has_federation_law = vote_weight_equal
+		}
 		custom_tooltip = {
 			fail_text = f93_allow_subjects_to_join_yes
 			NOT = { has_federation_law = allow_subjects_to_join_yes }

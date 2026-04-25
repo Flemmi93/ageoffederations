@@ -3,6 +3,7 @@ tags={
 	"Balance"
 	"Diplomacy"
 }
+picture="thumbnail.png"
 name="Age of Federations"
-supported_version="v4.3.3"
-remote_file_id="3702533463"
+supported_version="v4.3.*"
+remote_file_id="3713780667"

@@ -52,6 +52,14 @@ assembly_high = {
 				days = @cooldown
 			}
 		}
+		if = {
+			limit = {
+				has_federation_flag = had_grand_assembly
+				NOT= { has_federation_flag = already_downgraded_assembly_before }
+			}
+			every_member = { country_event = { id = f93_aof_background.10 } }
+			set_federation_flag = already_downgraded_assembly_before
+		}
 	}
 	ai_weight = { 
 		base = 0
@@ -60,6 +68,11 @@ assembly_high = {
 		modifier = {
 			desc = federation_acceptance_generally_positive
 			add = 41
+		}
+		modifier = {
+			desc = aof_wont_go_back_cant_go_back
+			add = -50
+			federation = { has_federation_law = assembly_grand }
 		}
 	}
 }
@@ -105,7 +118,37 @@ assembly_grand = {
 		# AI will always accept, but not suggest
 		modifier = {
 			desc = federation_acceptance_generally_positive
-			add = 31
+			add = 25
+		}
+		modifier = {
+			desc = federation_acceptance_president
+			add = -15
+			is_federation_leader = yes
+		}
+		modifier = {
+			desc = federation_acceptance_egalitarian
+			add = 20
+			is_egalitarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_xenophile
+			add = 15
+			is_xenophile = yes
+		}
+		modifier = {
+			desc = federation_acceptance_authoritarian
+			add = -10
+			is_authoritarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_pacifist
+			add = 10
+			is_pacifist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_militarist
+			add = -10
+			is_militarist = yes
 		}
 	}
 }

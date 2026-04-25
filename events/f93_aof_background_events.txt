@@ -185,7 +185,6 @@ country_event = {
 			federation_cohesion <= 0
 			has_federation_flag = first_election_happened
 			NOT = { has_federation_flag = ongoing_election_process }
-			any_member = { has_modifier = f93_cohesion }
 		}
 		NOT = { has_country_flag = no_confidence_happened }
 	}
@@ -198,7 +197,7 @@ country_event = {
 		change_variable = { which = no_confidence_counter value = 1 }
 		if = {
 			limit = { check_variable = { which = no_confidence_counter value = 12 } }
-			set_timed_country_flag = { flag = no_confidence days = 400 }
+			set_timed_country_flag = { flag = no_confidence_happened days = 400 } # to make sure the counter can reset at least
 			set_variable = { which = no_confidence_counter value = 0 }
 			country_event = { id = f93_aof_background.5 days = 5 random = 10 }
 		}
@@ -237,5 +236,135 @@ country_event = {
 	is_triggered_only = yes
 	immediate = {
 		federation = { remove_modifier = federation_law_category_aof_accords_cooldown }
+	}
+}
+# buff ai federations
+country_event = {
+	id = f93_aof_background.9
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		is_ai = yes
+		exists = federation
+		is_federation_leader = yes
+		federation = {
+			count_member = {
+				count = 0
+				limit = { is_ai = no }
+			}
+		}
+	}
+	immediate = {
+		add_modifier = {
+			modifier = f93_cohesion
+			mult = 5
+			days = 360
+		}
+	}
+}
+#Flavor Law Events
+country_event = {
+	id = f93_aof_background.10
+	title = f93_aof_background.10.name
+	desc = f93_aof_background.10.desc
+	picture = GFX_evt_partition
+	is_triggered_only = yes
+	option = {
+		name = f93_aof_background.10.a
+		if = {
+			limit = { is_federation_leader = yes }
+			federation = { add_cohesion = -50 }
+		}
+	}
+}
+#Flavor Law Events
+country_event = {
+	id = f93_aof_background.11
+	title = f93_aof_background.11.name
+	desc = f93_aof_background.11.desc
+	picture = GFX_Evt_f93_diplo_bloc
+	is_triggered_only = yes
+	option = {
+		name = f93_aof_background.11.a
+		trigger = {
+			exists = federation
+			federation = { has_federation_flag = just_passed_background_11 }
+		}
+	}
+	option = {
+		name = f93_aof_background.11.b
+		trigger = {
+			exists = federation
+			federation = { NOT = { has_federation_flag = just_passed_background_11 } }
+		}
+	}
+	option = {
+		name = f93_aof_background.11.b
+		trigger = { NOT = { exists = federation } }
+	}
+}
+#Flavor Law Events
+country_event = {
+	id = f93_aof_background.12
+	title = f93_aof_background.12.name
+	desc = f93_aof_background.12.desc
+	picture = GFX_Evt_f93_united_front
+	is_triggered_only = yes
+	option = {
+		name = f93_aof_background.12.a
+		add_resource = { influence = 500 }
+	}
+}
+
+# THIS = System: system being occupied
+# FROM = Country: Conqueror of the system
+# FROMFROM = Country: Original owner of the system
+system_event = {
+	id = f93_aof_background.13
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		any_ambient_object = {
+			has_ambient_object_flag = f93_federation_one_station
+		}
+	}
+	immediate = {
+		FROMFROM = { federation = { every_member = { country_event = { id = f93_aof_background.131 } } } }
+		every_system_ambient_object = {
+			limit = { has_ambient_object_flag = f93_federation_one_station }
+			destroy_ambient_object = this
+		}
+		every_system_planet = {
+			remove_planet_flag = f93_has_federation_one
+		}
+		random_galaxy_planet = {
+			limit = { owner = { is_in_federation_with = FROMFROM } }
+			set_planet_flag = f93_has_federation_one
+			save_event_target_as = f93_has_federation_one
+			if = {
+				limit = { has_megacorp = yes }
+				create_ambient_object = { type = "f93_federation_one_station" location = this }
+			}
+			else = {
+				create_ambient_object = { type = "f93_federation_one_station_no_dlc" location = this }
+			}
+			last_created_ambient_object = {
+				set_ambient_object_flag = f93_federation_one_station
+				set_location = {
+					target = prev
+					distance = 0
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = f93_aof_background.131
+	title = f93_aof_background.13.name
+	desc = f93_aof_background.13.desc
+	picture = GFX_evt_civil_action
+	is_triggered_only = yes
+	option = {
+		name = f93_aof_background.13.a
 	}
 }

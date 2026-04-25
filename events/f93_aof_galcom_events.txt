@@ -9,9 +9,9 @@ country_event = {
 	trigger = {
 		has_galactic_custodian = yes
 		exists = federation
-		federation = { NOT = { has_federation_flag = galcom_0_happened } }
+		NOT = { has_country_flag = galcom_0_happened }
 	}
-	immediate = { federation = { set_federation_flag = galcom_0_happened } }
+	immediate = { set_country_flag = galcom_0_happened }
 	option = {
 		name = f93_aof_galcom.0.a
 		trigger = { is_galactic_custodian = no }
@@ -27,6 +27,10 @@ country_event = {
 	title = f93_aof_galcom.1.name
 	desc = f93_aof_galcom.1.desc
     picture = GFX_evt_imperial_vassal
+	show_sound = {
+		trigger = { has_shroud_dlc = yes }
+		sound = event_mindwarden_enclave
+	}
 	trigger = {
 		OR ={
 			is_voting_on_resolution = resolution_galactic_empire_imperial_crusade
@@ -41,26 +45,18 @@ country_event = {
 		name = f93_aof_galcom.1.a
 		trigger = { is_galactic_custodian = yes }
 	}
-	option ={
-		trigger = {
-			is_ai = yes
-			any_federation_ally = { is_galactic_custodian = yes }
-		}
-		name = OK
-		remove_from_galactic_community = yes
-	}
 	option = {
 		name = f93_aof_galcom.1.c
 		trigger = { is_galactic_community_member = no }
 	}
 	option = {
 		name = f93_aof_galcom.1.b
-		trigger = { is_galactic_community_member = yes }
+		trigger = { is_galactic_community_member = yes is_galactic_custodian = no }
 		remove_from_galactic_community = yes
 	}
 	option = {
 		name = f93_aof_galcom.1.d
-		trigger = { is_galactic_community_member = yes is_ai = no }
+		trigger = { is_galactic_community_member = yes is_ai = no is_galactic_custodian = no }
 		leave_alliance = {
 			override_requirements = yes
 			apply_opinion_penalty = yes

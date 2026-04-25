@@ -14,10 +14,11 @@ fed_accords_coop = {
 				}
 			}
 		}
-		# custom_tooltip = {
+		has_federation_law = assembly_grand
+		OR = {
 			has_federation_law = treaties_separate_no
-		# 	fail_text = "Requires Internal treaties"
-		# }
+			hidden_trigger = { has_federations_dlc = no }
+		}
 	}
 	modifier = {
 		federation_research_sharing_mult = 0.1
@@ -26,6 +27,7 @@ fed_accords_coop = {
 	required_centralization = {
 		base = 4
 	}
+	cohesion_growth = -2
 	on_enact = {
 		every_member = {
 			remove_modifier = f93_aof_accord_unyielding
@@ -51,8 +53,33 @@ fed_accords_coop = {
 		}
 		modifier = {
 			desc = federation_acceptance_materialist
-			add = 20
+			add = 15
 			is_materialist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_spiritualist
+			add = -10
+			is_spiritualist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_militarist
+			add = 5
+			is_militarist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_weaker
+			add = 25
+			relative_power = { who = from category = technology value >= superior }
+		}
+		modifier = {
+			desc = federation_acceptance_erudite_explorers
+			add = 14
+			has_ai_personality = erudite_explorers
+		}
+		modifier = {
+			desc = federation_acceptance_technocracy
+			add = 30
+			has_civic = civic_technocracy
 		}
 	}
 }
@@ -68,7 +95,10 @@ fed_accords_unyielding = {
 				}
 			}
 		}
-		has_federation_law = treaties_separate_ethical_partners
+		OR = {
+			hidden_trigger = { has_federations_dlc = no }
+			has_federation_law = treaties_separate_ethical_partners
+		}
 	}
 	required_centralization = {
 		base = 4
@@ -76,6 +106,7 @@ fed_accords_unyielding = {
 	modifier = {
 		custom_tooltip = fed_accords_unyielding_effect
 	}
+	cohesion_growth = -2
 	on_enact = {
 		every_member = {
 			remove_modifier = f93_aof_accord_coop
@@ -89,14 +120,15 @@ fed_accords_unyielding = {
 				days = @cooldown
 			}
 		}
-		# every_member = {
-		# 	limit = {
-		# 		OR = {
-		# 			has_policy_flag = unrestricted_wars
-		# 		}
-		# 	}
-		# 	country_event = { id = f93_aof_background.8 }
-		# }
+		every_member = {
+			limit = {
+				OR = {
+					has_policy_flag = unrestricted_wars
+				}
+			}
+			set_policy = { policy = war_philosophy option = liberation_wars cooldown = no }
+			# set_country_flag = aof_agreed_to_fed_accords_unyielding
+		}
 		every_member = {
 			# limit = {
 			# 	NOR = {
@@ -116,8 +148,29 @@ fed_accords_unyielding = {
 		}
 		modifier = {
 			desc = federation_acceptance_militarist
-			add = 20
+			add = -20
 			is_militarist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_egalitarian
+			add = 25
+			is_militarist = yes
+			is_egalitarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_pacifist
+			add = 41
+			is_pacifist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_peaceful_traders
+			add = 5
+			has_ai_personality = peaceful_traders
+		}
+		modifier = {
+			desc = federation_acceptance_evangelising_zealots
+			add = -15
+			has_ai_personality = evangelising_zealots
 		}
 	}
 }

@@ -168,6 +168,28 @@ treaties_separate_ethical_partners = {
 			is_xenophobe = yes
 			is_federation_leader = yes
 		}
+		modifier = {
+			desc = federation_acceptance_president
+			add = 25
+			is_xenophile = yes
+			is_federation_leader = yes
+		}
+		modifier = {
+			desc = federation_acceptance_president
+			add = 10
+			is_egalitarian = yes
+			is_federation_leader = yes
+		}
+		modifier = {
+			desc = federation_acceptance_xenophile
+			add = 5
+			is_xenophile = yes
+		}
+		modifier = {
+			desc = federation_acceptance_egalitarian
+			add = 5
+			is_egalitarian = yes
+		}
 	}
 }
 ###

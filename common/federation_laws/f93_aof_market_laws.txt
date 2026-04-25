@@ -10,6 +10,9 @@ fed_market_none = {
 			has_federation_law = fed_market_strategic
 		}
 	}
+	ai_weight = {
+		base = -10
+	}
 }
 fed_market_basic = {
 	potential = {}
@@ -56,14 +59,17 @@ fed_market_basic = {
 		#Default support
 		modifier = {
 			desc = federation_acceptance_generally_positive
-			add = 30
+			add = 21
 		}
 		modifier = {
-			desc = f93_has_federation_one
-			add = 50
-			any_owned_planet = {
-				has_planet_flag = f93_federation_one
-			}
+			desc = federation_acceptance_peaceful_traders
+			add = 20
+			has_ai_personality = peaceful_traders
+		}
+		modifier = {
+			desc = federation_acceptance_materialist
+			add = 5
+			is_materialist = yes
 		}
 	}
 }
@@ -144,7 +150,7 @@ fed_market_unity = {
 		#Default support
 		modifier = {
 			desc = federation_acceptance_generally_positive
-			add = 20
+			add = 31
 		}
 		modifier = {
 			desc = federation_acceptance_pacifist
@@ -152,12 +158,14 @@ fed_market_unity = {
 			is_pacifist = yes
 		}
 		modifier = {
-			desc = f93_has_federation_one
-			add = 50
-			is_pacifist = yes
-			any_owned_planet = {
-				has_planet_flag = f93_federation_one
-			}
+			desc = federation_acceptance_egalitarian
+			add = 10
+			is_egalitarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_peaceful_traders
+			add = 10
+			has_ai_personality = peaceful_traders
 		}
 	}
 }
@@ -236,7 +244,7 @@ fed_market_strategic = {
 		#Default support
 		modifier = {
 			desc = federation_acceptance_generally_positive
-			add = 20
+			add = 31
 		}
 		modifier = {
 			desc = federation_acceptance_materialist
@@ -244,12 +252,19 @@ fed_market_strategic = {
 			is_materialist = yes
 		}
 		modifier = {
-			desc = f93_has_federation_one
-			add = 50
-			is_materialist = yes
-			any_owned_planet = {
-				has_planet_flag = f93_federation_one
-			}
+			desc = federation_acceptance_technocracy
+			add = 10
+			has_civic = civic_technocracy
+		}
+		modifier = {
+			desc = federation_acceptance_erudite_explorers
+			add = 15
+			has_ai_personality = erudite_explorers
+		}
+		modifier = {
+			desc = federation_acceptance_peaceful_traders
+			add = 10
+			has_ai_personality = peaceful_traders
 		}
 	}
 }
@@ -321,7 +336,7 @@ fed_market_military = {
 		#Default support
 		modifier = {
 			desc = federation_acceptance_generally_positive
-			add = 20
+			add = 31
 		}
 		modifier = {
 			desc = federation_acceptance_militarist
@@ -329,12 +344,19 @@ fed_market_military = {
 			is_militarist = yes
 		}
 		modifier = {
-			desc = f93_has_federation_one
-			add = 50
-			is_militarist = yes
-			any_owned_planet = {
-				has_planet_flag = f93_federation_one
-			}
+			desc = federation_acceptance_authoritarian
+			add = 20
+			is_authoritarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_peaceful_traders
+			add = -5
+			has_ai_personality = peaceful_traders
+		}
+		modifier = {
+			desc = federation_acceptance_evangelising_zealots
+			add = 10
+			has_ai_personality = evangelising_zealots
 		}
 	}
 }

@@ -7,7 +7,6 @@ succession_type_election = {
 		modifier = {
 			federation_experience_add = -5
 		}
-	# modded content 
 		required_centralization = {
 			base = 3
 		}

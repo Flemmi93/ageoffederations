@@ -2,19 +2,31 @@ spriteTypes = {
 
 	spriteType = {
 		name = "GFX_assembly"
-		texturefile = "gfx/event_pictures/Assembly_ui.dds" #custom 1
+		texturefile = "gfx/event_pictures/aof_assembly_ui.dds" #custom 1
 		masking_texture = "gfx/interface/situation_log/event_mask.dds"
 		alwaystransparent = yes
 	}
 	spriteType = {
 		name = "GFX_election_situation"
-		texturefile = "gfx/event_pictures/election_situation.dds" #custom 1
+		texturefile = "gfx/event_pictures/aof_election_situation.dds" #custom 1
 		masking_texture = "gfx/interface/situation_log/event_mask.dds"
 		alwaystransparent = yes
 	}
 	spriteType = {
 		name = "GFX_Evt_f93_election_event_picture"
-		texturefile = "gfx/event_pictures/f93_election_event_picture.dds" #custom 1
+		texturefile = "gfx/event_pictures/aof_election_event_picture.dds" #custom 1
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_Evt_f93_united_front"
+		texturefile = "gfx/event_pictures/aof_united_front.dds" #custom 1
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_Evt_f93_diplo_bloc"
+		texturefile = "gfx/event_pictures/aof_diplo_bloc.dds" #custom 1
 		masking_texture = "gfx/interface/situation_log/event_mask.dds"
 		alwaystransparent = yes
 	}
