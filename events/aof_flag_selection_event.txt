@@ -1,0 +1,30 @@
+namespace = aof_flag_selection
+
+country_event = {
+	id = aof_flag_selection.0
+	is_triggered_only = yes
+	title = aof_flag_selection.0.name
+	desc = aof_flag_selection.0.desc
+	picture = GFX_Evt_aof_flag_event
+	trigger = {
+		NOT = { has_country_flag = aof_flag_selection_happend }
+	}
+	immediate = {
+		set_country_flag = aof_flag_selection_happend
+	}
+	option = {
+		name = aof_flag_selection.0.a
+		change_country_flag = { icon = { category = aof_planet_state file = aof_planet_state_flag.dds } background = { category = backgrounds file = diagonal_stripe.dds } colors = { "dark_red" "red" "null" "null" } }
+	}
+	option = {
+		name = aof_flag_selection.0.b
+		change_country_flag = { icon = { category = aof_planet_state file = aof_planet_state_flag_y.dds } background = { category = backgrounds file = diagonal_stripe.dds } colors = { "yellow" "ochre_brown" "null" "null" } }
+	}
+	option = {
+		name = aof_flag_selection.0.c
+		change_country_flag = { icon = { category = aof_planet_state file = aof_planet_state_flag.dds } background = { category = backgrounds file = diagonal_stripe.dds } colors = { "blue" "light_blue" "null" "null" } }
+	}
+	option = {
+		name = aof_flag_selection.0.d
+	}
+}

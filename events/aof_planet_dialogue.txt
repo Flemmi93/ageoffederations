@@ -1,0 +1,609 @@
+namespace = aof_planet_dip
+# unused
+country_event = {
+	id = aof_planet_dip.0
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		every_country = {
+			limit = {
+				is_variable_set = aof_federation_id
+				is_in_federation_with = root
+				is_country_type = aof_planet_nation
+			}
+			prev = {
+				every_owned_colony = {
+					limit = { is_variable_set = aof_federation_id check_variable = { which = aof_federation_id value = prevprev.aof_federation_id } }
+					prevprev = { set_custom_capital_location = prev }
+				}
+			}
+		}
+	}
+}
+# Initial greeting window
+country_event = {
+	id = aof_planet_dip.1
+	# Does not inherit from leviathans.500 due to 'attacked' status
+	title = aof_current_planet_name
+	desc = aof_current_planet_greeting
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	custom_gui_option = "enclave_curator_option"
+	picture_event_data = {
+		portrait = from
+		room = aof_planet_state_room
+	}
+	location = event_target:current_planet
+
+	trigger = {
+		from = { is_country_type = aof_planet_nation }
+	}
+	immediate = {
+		from = { save_event_target_as = planet_state }
+		from = {
+			prev = {
+				every_owned_colony = {
+					limit = { is_variable_set = aof_federation_id check_variable = { which = aof_federation_id value = prevprev.aof_federation_id } }
+					prevprev = { set_custom_capital_location = prev }
+					save_event_target_as = current_planet
+				}
+			}
+		}
+	}
+	option = {
+		name = aof_current_planet_local_governance_option
+		hidden_effect = {
+			country_event = {
+				id = aof_planet_dip.2
+				scopes = {
+					from = event_target:planet_state
+				}
+			}
+		}
+	}
+	option = {
+		name = aof_current_planet_security_matters_option
+		allow = {
+			custom_tooltip = {
+				fail_text = need_aof_advancedd_federation_perk_1
+				federation = { has_federation_perk = aof_advancedd_federation_perk_1 }
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = aof_planet_dip.3
+				scopes = {
+					from = event_target:planet_state
+				}
+			}
+		}
+	}
+	option = {
+		name = aof_current_planet_federal_services_option
+		hidden_effect = {
+			country_event = {
+				id = aof_planet_dip.4
+				scopes = {
+					from = event_target:planet_state
+				}
+			}
+		}
+	}
+	option = {
+		name = aof_current_planet_close
+		default_hide_option = yes
+	}
+}
+# Local Governence menu
+country_event = {
+	id = aof_planet_dip.2
+	# Does not inherit from leviathans.500 due to 'attacked' status
+	title = aof_current_planet_name
+	desc = aof_current_planet_local_governance
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	custom_gui_option = "enclave_curator_option"
+	picture_event_data = {
+		portrait = from
+		room = aof_planet_state_room
+	}
+	location = event_target:current_planet
+
+	trigger = {
+		from = { is_country_type = aof_planet_nation }
+	}
+	immediate = {
+		from = { save_event_target_as = planet_state }
+		from = {
+			prev = {
+				every_owned_colony = {
+					limit = { is_variable_set = aof_federation_id check_variable = { which = aof_federation_id value = prevprev.aof_federation_id } }
+					prevprev = { set_custom_capital_location = prev }
+					save_event_target_as = current_planet
+				}
+			}
+		}
+	}
+	# Enforce
+	option = {
+		name = aof_current_planet_local_enforce
+		event_target:current_planet= {
+			add_modifier = {
+				modifier = aof_local_gov_enforce
+			}
+			hidden_effect = {
+				remove_modifier = aof_local_gov_enable
+				remove_modifier = aof_local_gov_encurage
+				remove_modifier = aof_local_gov_enforce
+				country_event = {
+					id = aof_planet_dip.2
+					scopes = {
+						from = event_target:planet_state
+					}
+				}
+			}
+		}
+	}
+	# Encurage, see event
+	option = {
+		name = aof_current_planet_local_encurage
+		event_target:current_planet= {
+			add_modifier = {
+				modifier = aof_local_gov_encurage
+			}
+			hidden_effect = {
+				remove_modifier = aof_local_gov_enable
+				remove_modifier = aof_local_gov_encurage
+				remove_modifier = aof_local_gov_enforce
+				country_event = {
+					id = aof_planet_dip.2
+					scopes = {
+						from = event_target:planet_state
+					}
+				}
+			}
+		}
+	}
+	# Enable
+	option = {
+		name = aof_current_planet_local_enable
+		event_target:current_planet= {
+			add_modifier = {
+				modifier = aof_local_gov_enable
+			}
+			hidden_effect = {
+				remove_modifier = aof_local_gov_enable
+				remove_modifier = aof_local_gov_encurage
+				remove_modifier = aof_local_gov_enforce
+				country_event = {
+					id = aof_planet_dip.2
+					scopes = {
+						from = event_target:planet_state
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = aof_current_planet_local_BACK
+		hidden_effect = {
+			country_event = {
+				id = aof_planet_dip.1
+				scopes = {
+					from = event_target:planet_state
+				}
+			}
+		}
+	}
+}
+# Security Matters
+country_event = {
+	id = aof_planet_dip.3
+	# Does not inherit from leviathans.500 due to 'attacked' status
+	title = aof_current_planet_name
+	desc = aof_current_planet_security_matters
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	custom_gui_option = "enclave_curator_option"
+	picture_event_data = {
+		portrait = from
+		room = aof_planet_state_room
+	}
+	location = event_target:current_planet
+
+	trigger = {
+		from = { is_country_type = aof_planet_nation }
+	}
+	immediate = {
+		from = { save_event_target_as = planet_state }
+		from = {
+			prev = {
+				every_owned_colony = {
+					limit = { is_variable_set = aof_federation_id check_variable = { which = aof_federation_id value = prevprev.aof_federation_id } }
+					prevprev = { set_custom_capital_location = prev }
+					save_event_target_as = current_planet
+				}
+			}
+		}
+	}
+	# Supplement
+	option = {
+		name = aof_current_planet_security_police
+		trigger = {
+			event_target:current_planet = { NOT = { has_planet_flag = aof_current_planet_security_police } }
+		}
+		allow = { federation = { has_federation_perk = aof_advancedd_federation_perk_2 } has_resource = { type = alloys amount >= 1000 } }
+		hidden_effect = {
+			country_event = {
+				id = aof_planet_dip.3
+				scopes = {
+					from = event_target:planet_state
+				}
+			}
+		}
+		add_resource = { alloys = -1000 }
+		event_target:current_planet = {
+			hidden_effect = {
+				set_planet_flag = aof_current_planet_security_police
+			}
+			create_fleet = {
+				name = "event_target:current_planet"
+				effect = {
+					set_owner = root
+					create_ship = {
+						name = random
+						design = "NAME_Citadel"
+					}
+					set_location = event_target:current_planet
+					set_fleet_flag = aof_current_planet_security_police
+					fleet_event = {
+						id = aof_planet_dip.31
+						days = 9000
+						scopes = {
+							from = event_target:planet_state
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = aof_planet_dip.31.b
+		trigger = {
+			event_target:current_planet = { has_planet_flag = aof_current_planet_security_police }
+		}
+		event_target:current_planet = {
+			remove_planet_flag = aof_current_planet_security_police
+			every_fleet_in_orbit = {
+				limit = { has_fleet_flag = aof_current_planet_security_police }
+				destroy_fleet = this
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = aof_planet_dip.3
+				scopes = {
+					from = event_target:planet_state
+				}
+			}
+		}
+	}
+	# Shipyards
+	option = {
+		name = aof_current_planet_security_fleets
+		allow = { federation = { has_federation_perk = aof_advancedd_federation_perk_3 } has_resource = { type = alloys amount >= 1000 } has_resource = { type = trade amount >= 2000 } }
+		add_resource = { alloys = -1000 trade = -2000  }
+		hidden_effect = {
+			country_event = {
+				id = aof_planet_dip.3
+				scopes = {
+					from = event_target:planet_state
+				}
+			}
+		}
+		random_list = {
+			1 = { hidden_effect = { create_fleet = { effect = { set_owner = root create_ship = { design = NAME_Dagger } set_location = event_target:current_planet } } } }
+			1 = { hidden_effect = { create_fleet = { effect = { set_owner = root create_ship = { design = NAME_Ravager } set_location = event_target:current_planet } } } }
+			1 = { hidden_effect = { create_fleet = { effect = { set_owner = root create_ship = { design = NAME_Derelict } set_location = event_target:current_planet } } } }
+			1 = { hidden_effect = { create_fleet = { effect = { set_owner = root create_ship = { design = NAME_Unplugged_Machine_Legacy_Battleship } set_location = event_target:current_planet } } } }
+		}
+	}
+	# Homeguard
+	option = {
+		name = aof_current_planet_security_homeguard
+		allow = {
+			custom_tooltip = aof_current_planet_security_homeguard_cooldown
+			hidden_trigger = { NOT = { has_modifier = aof_security_homeguard } }
+		}
+		hidden_effect = {
+			set_saved_date = {
+				key = aof_homeguard_mobilized
+				days_from_present = 3600
+				expires = 3600
+			}
+		}	
+		add_modifier = {
+			modifier = aof_security_homeguard
+			days = 3600
+		}
+	}
+	option = {
+		name = aof_current_planet_security_back
+		hidden_effect = {
+			country_event = {
+				id = aof_planet_dip.1
+				scopes = {
+					from = event_target:planet_state
+				}
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+# Offer to supplement orbital policing
+fleet_event = {
+	id = aof_planet_dip.31
+	# Does not inherit from leviathans.500 due to 'attacked' status
+	title = aof_planet_dip.31.name
+	desc = aof_planet_dip.31.desc
+	picture = GFX_evt_salute
+	is_triggered_only = yes
+	
+	trigger = {
+		from = { is_country_type = aof_planet_nation }
+	}
+	option = {
+		name = aof_planet_dip.31.a
+		allow = { owner = { has_resource = { type = alloys amount >= 1000 } } }
+		owner = {  add_resource = { alloys = -1000 } }
+		fleet_event = { id = aof_planet_dip.31 days = 9000 }
+		default_hide_option = yes
+	}
+	option = {
+		name = aof_planet_dip.31.b
+		destroy_fleet = this
+	}
+	option = {
+		name = aof_planet_dip.31.c
+		add_modifier = {
+			modifier = aof_station_generic_01_upkeep
+		}
+	}
+}
+# Federal Services
+country_event = {
+	id = aof_planet_dip.4
+	# Does not inherit from leviathans.500 due to 'attacked' status
+	title = aof_current_planet_name
+	desc = aof_current_planet_federal_services
+
+	is_triggered_only = yes
+	diplomatic = yes
+	custom_gui = "enclave_curator_window"
+	custom_gui_option = "enclave_curator_option"
+	picture_event_data = {
+		portrait = from
+		room = aof_planet_state_room
+	}
+	location = event_target:current_planet
+
+	trigger = {
+		from = { is_country_type = aof_planet_nation }
+	}
+	immediate = {
+		from = { save_event_target_as = planet_state }
+		from = {
+			prev = {
+				every_owned_colony = {
+					limit = { is_variable_set = aof_federation_id check_variable = { which = aof_federation_id value = prevprev.aof_federation_id } }
+					prevprev = { set_custom_capital_location = prev }
+					save_event_target_as = current_planet
+				}
+			}
+		}
+	}
+	# Mailing
+	option = {
+		name = aof_current_planet_federal_services_mailing
+		allow = {
+			event_target:current_planet = { NOT = { has_deposit = aof_service_mailing } }
+			custom_tooltip = {
+				fail_text = aof_services_cooldown_trigger
+				FROM = { NOT = { has_country_flag = aof_current_planet_federal_services_cooldown } }
+			}
+		}
+		event_target:current_planet = {
+			add_deposit = aof_service_mailing
+		}
+		hidden_effect = {
+			country_event = {
+				id = aof_planet_dip.4
+				scopes = {
+					from = event_target:planet_state
+				}
+			}
+			if = {
+				limit = { exists = federation federation = { has_federation_flag = enable_federation_cooldowns } }
+				FROM = {
+					set_timed_country_flag = {
+						flag = aof_current_planet_federal_services_cooldown
+						days = @aof_servicec_cooldown
+					}
+				}
+			}
+		}
+	}
+	# Network
+	option = {
+		name = aof_current_planet_federal_services_broadcast
+		allow = {
+			event_target:current_planet = { NOT = { has_deposit = aof_service_network } }
+			custom_tooltip = {
+				fail_text = aof_services_cooldown_trigger
+				FROM = { NOT = { has_country_flag = aof_current_planet_federal_services_cooldown } }
+			}
+		}
+		event_target:current_planet = {
+			add_deposit = aof_service_network
+		}
+		hidden_effect = {
+			country_event = {
+				id = aof_planet_dip.4
+				scopes = {
+					from = event_target:planet_state
+				}
+			}
+			if = {
+				limit = { exists = federation federation = { has_federation_flag = enable_federation_cooldowns } }
+				FROM = {
+					set_timed_country_flag = {
+						flag = aof_current_planet_federal_services_cooldown
+						days = @aof_servicec_cooldown
+					}
+				}
+			}
+		}
+	}
+	# Atmosphere
+	option = {
+		name = aof_current_planet_federal_services_atmos
+		allow = {
+			event_target:current_planet = { NOT = { has_deposit = aof_service_atmos } }
+			custom_tooltip = {
+				fail_text = aof_services_cooldown_trigger
+				FROM = { NOT = { has_country_flag = aof_current_planet_federal_services_cooldown } }
+			}
+		}
+		event_target:current_planet = {
+			add_deposit = aof_service_atmos
+		}
+		hidden_effect = {
+			country_event = {
+				id = aof_planet_dip.4
+				scopes = {
+					from = event_target:planet_state
+				}
+			}
+			if = {
+				limit = { exists = federation federation = { has_federation_flag = enable_federation_cooldowns } }
+				FROM = {
+					set_timed_country_flag = {
+						flag = aof_current_planet_federal_services_cooldown
+						days = @aof_servicec_cooldown
+					}
+				}
+			}
+		}
+	}
+	# Transit
+	option = {
+		name = aof_current_planet_federal_services_transit
+		allow = {
+			event_target:current_planet = { NOT = { has_deposit = aof_service_transit } }
+			custom_tooltip = {
+				fail_text = aof_services_cooldown_trigger
+				FROM = { NOT = { has_country_flag = aof_current_planet_federal_services_cooldown } }
+			}
+		}
+		event_target:current_planet = {
+			add_deposit = aof_service_transit
+		}
+		hidden_effect = {
+			country_event = {
+				id = aof_planet_dip.4
+				scopes = {
+					from = event_target:planet_state
+				}
+			}
+			if = {
+				limit = { exists = federation federation = { has_federation_flag = enable_federation_cooldowns } }
+				FROM = {
+					set_timed_country_flag = {
+						flag = aof_current_planet_federal_services_cooldown
+						days = @aof_servicec_cooldown
+					}
+				}
+			}
+		}
+	}
+	# Health
+	option = {
+		name = aof_current_planet_federal_services_health
+		allow = {
+			event_target:current_planet = { NOT = { has_deposit = aof_service_health } }
+			custom_tooltip = {
+				fail_text = aof_services_cooldown_trigger
+				FROM = { NOT = { has_country_flag = aof_current_planet_federal_services_cooldown } }
+			}
+		}
+		event_target:current_planet = {
+			add_deposit = aof_service_health
+		}
+		hidden_effect = {
+			country_event = {
+				id = aof_planet_dip.4
+				scopes = {
+					from = event_target:planet_state
+				}
+			}
+			if = {
+				limit = { exists = federation federation = { has_federation_flag = enable_federation_cooldowns } }
+				FROM = {
+					set_timed_country_flag = {
+						flag = aof_current_planet_federal_services_cooldown
+						days = @aof_servicec_cooldown
+					}
+				}
+			}
+		}
+	}
+	# Education
+	option = {
+		name = aof_current_planet_federal_services_education
+		allow = {
+			event_target:current_planet = { NOT = { has_deposit = aof_service_education } }
+			custom_tooltip = {
+				fail_text = aof_services_cooldown_trigger
+				FROM = { NOT = { has_country_flag = aof_current_planet_federal_services_cooldown } }
+			}
+		}
+		event_target:current_planet = {
+			add_deposit = aof_service_education
+		}
+		hidden_effect = {
+			country_event = {
+				id = aof_planet_dip.4
+				scopes = {
+					from = event_target:planet_state
+				}
+			}
+			if = {
+				limit = { exists = federation federation = { has_federation_flag = enable_federation_cooldowns } }
+				FROM = {
+					set_timed_country_flag = {
+						flag = aof_current_planet_federal_services_cooldown
+						days = @aof_servicec_cooldown
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = aof_current_planet_federal_services_back
+		hidden_effect = {
+			country_event = {
+				id = aof_planet_dip.1
+				scopes = {
+					from = event_target:planet_state
+				}
+			}
+		}
+	}
+}

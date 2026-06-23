@@ -32,6 +32,7 @@ invite_members_unanimous_vote = {
 		}
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 35 }
 		###
 	}
 
@@ -89,6 +90,7 @@ invite_members_president_vote = {
 		}
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 36 }
 		###
 	}
 
@@ -155,6 +157,7 @@ invite_members_president_vote_hegemony = {
 		}
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 37 }
 		###
 	}
 
@@ -216,6 +219,7 @@ invite_members_majority_vote = {
 		}
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 38 }
 		###
 	}
 

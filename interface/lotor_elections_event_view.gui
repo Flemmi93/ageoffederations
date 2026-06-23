@@ -2,7 +2,7 @@
 
 guiTypes = {
 	containerWindowType = {
-		name = "lotor_hide_option"
+		name = "aof_hide_option"
 		position = { x = 0 y = 0 }
 		size = { width = 264 height = 0 }
 		moveable = no
@@ -21,7 +21,7 @@ guiTypes = {
 	}
 
 	containerWindowType = {
-		name = "lotor_elections_option"
+		name = "aof_elections_option"
 		position = { x = 0 y = 0 }
 		size = { width = 476 height = 50 }
 		moveable = no
@@ -36,7 +36,7 @@ guiTypes = {
 	
 
 	containerWindowType = {
-		name = "lotor_elections_window"
+		name = "aof_elections_window"
 		orientation = center
 		origo = center
 		moveable = yes
@@ -329,7 +329,7 @@ guiTypes = {
 				position = { x = 26 y = 20 }
 			}
 
-			# the 3 main buttons - defined in lotor_elections.100
+			# the 3 main buttons - defined in aof_elections.100
 			listboxType = {
 				name = "option_list"
 				position = { x = 119 y = 230 }

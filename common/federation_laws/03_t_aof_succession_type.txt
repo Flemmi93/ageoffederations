@@ -1,27 +1,33 @@
 # New Modded Succession Type
 # this election type is forced by centralization medium
 succession_type_election = {
-		potential = {} # trigger, scope is federation
-		allow = { # trigger, scope is federation
-		}	
-		modifier = {
-			federation_experience_add = -5
-		}
-		required_centralization = {
-			base = 3
-		}
-		on_enact = {
-			# every_member = { country_event = { id = f93_aof_election.1 } }
-			set_federation_succession_type = random
-			set_federation_succession_term = years_40
-			if = {
-				limit = {
-					NOR = {
-						has_federation_law = assembly_high
-						has_federation_law = assembly_grand
-					}
+	potential = { NOT = { has_federation_type = hegemony_federation } } # trigger, scope is federation
+	allow = { # trigger, scope is federation
+	}	
+	modifier = {
+		federation_experience_add = -5
+	}
+	required_centralization = {
+		base = 3
+	}
+	on_enact = {
+		# every_member = { country_event = { id = f93_aof_election.1 } }
+		set_federation_succession_type = random
+		set_federation_succession_term = years_40
+		if = {
+			limit = {
+				NOR = {
+					has_federation_law = assembly_high
+					has_federation_law = assembly_grand
 				}
+			}
+			if = {
+				limit = { NOT = { has_any_federation_law_in_category = law_category_assembly } }
 				set_federation_law = assembly_high
 			}
 		}
+	}
+	ai_weight = {
+		base = 0
+	}
 }

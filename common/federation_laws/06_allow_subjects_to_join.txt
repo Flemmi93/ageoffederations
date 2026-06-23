@@ -67,10 +67,16 @@ allow_subjects_to_join_yes = {
 			}
 		}
 		# modded content
-		NOR = {
-			has_federation_law = centralization_medium
-			has_federation_law = centralization_high
-			has_federation_law = centralization_very_high
+		custom_tooltip = {
+			fail_text = has_fed_cent_low_or_lower
+			OR = {
+				has_federation_type = hegemony_federation
+				NOR = {
+					has_federation_law = centralization_medium
+					has_federation_law = centralization_high
+					has_federation_law = centralization_very_high
+				}
+			}
 		}
 		###
 	}

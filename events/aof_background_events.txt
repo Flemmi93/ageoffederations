@@ -1,0 +1,851 @@
+namespace = f93_aof_background
+event = {
+	id = f93_aof_background.0
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_global_flag = aof_mod_enabled
+	}
+}
+# Federation Clear Outside Treaties
+country_event = {
+	id = f93_aof_background.25
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		every_country = {
+			limit = {
+				has_communications = root
+				NOT = { is_in_federation_with = root }
+				NOT = { has_association_status = root }
+			}
+			end_all_treaties_with = root
+			root = {
+				end_all_treaties_with = prev
+			}
+		}
+	}
+}
+
+# Federation has slavery
+country_event = {
+	id = f93_aof_background.1
+	is_triggered_only = yes
+	title = f93_aof_background.1.name
+	desc = f93_aof_background.1.desc
+	picture = GFX_evt_hand_shake
+	immediate = {
+		every_country = {
+			limit = {
+				has_communications = root
+				NOT = { is_in_federation_with = root }
+				NOT = { has_association_status = root }
+			}
+			end_all_treaties_with = root
+			root = {
+				end_all_treaties_with = prev
+			}
+		}
+	}
+	option = {
+		name = f93_aof_background.1.a
+		if = {
+			limit = { has_policy_flag = slavery_allowed }
+			set_policy = { policy = slavery option = slavery_not_allowed cooldown = yes }
+			set_country_flag = aof_agreed_to_treaties_separate_ethical_partners
+		}
+		if = {
+			limit = { has_policy_flag = interference_aggressive }
+			set_policy = { policy = interference option = interference_active cooldown = yes }
+			set_country_flag = aof_agreed_to_treaties_separate_ethical_partners
+		}
+		if = {
+			limit = { has_policy_flag = refugees_not_allowed }
+			set_policy = { policy = refugees option = refugees_only_citizens cooldown = yes }
+			set_country_flag = aof_agreed_to_treaties_separate_ethical_partners
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = f93_aof_background.1.b
+		leave_alliance = {
+			override_requirements = yes
+			apply_opinion_penalty = yes
+		}
+		ai_chance = {
+			base = 0
+			modifier = {
+				has_policy_flag = slavery_allowed
+				add = 15
+			}
+		}
+		ai_chance = {
+			base = 0
+			modifier = {
+				has_origin = origin_syncretic_evolution
+				add = 15
+			}
+		}
+		ai_chance = {
+			base = 0
+			modifier = {
+				has_policy_flag = interference_aggressive
+				add = 5
+			}
+		}
+	}
+}
+
+# Federation has unrestricted war philosophy
+country_event = {
+	id = f93_aof_background.8
+	is_triggered_only = yes
+	title = f93_aof_background.8.name
+	desc = f93_aof_background.8.desc
+	picture = GFX_evt_hand_shake
+	immediate = {
+		every_country = {
+			limit = {
+				has_communications = root
+				NOT = { is_in_federation_with = root }
+				NOT = { has_association_status = root }
+			}
+			end_all_treaties_with = root
+			root = {
+				end_all_treaties_with = prev
+			}
+		}
+	}
+	option = {
+		name = f93_aof_background.1.a
+		if = {
+			limit = { has_policy_flag = slavery_allowed }
+			set_policy = { policy = slavery option = slavery_not_allowed cooldown = yes }
+			set_country_flag = aof_agreed_to_aof_accords_unyielding
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = f93_aof_background.1.b
+		leave_alliance = {
+			override_requirements = yes
+			apply_opinion_penalty = yes
+		}
+		ai_chance = {
+			base = 0
+			modifier = {
+				has_policy_flag = unrestricted_wars
+				add = 5
+			}
+		}
+	}
+}
+#unused
+country_event = {
+	id = f93_aof_background.2
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		
+	}
+}
+country_event = {
+	id = f93_aof_background.17
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = federation
+		federation = { has_federation_law = aof_doctrines_illuminism }
+		NAND = {
+			has_technology = tech_psionic_disruptor
+			has_technology = tech_psionic_bombers
+			has_technology = tech_psionic_shield
+			has_technology = tech_zro_launcher
+		}
+	}
+	immediate = {
+		give_technology = { tech = tech_psionic_disruptor }
+		give_technology = { tech = tech_psionic_bombers }
+		give_technology = { tech = tech_psionic_shield }
+		give_technology = { tech = tech_zro_launcher }
+	}
+}
+country_event = {
+	id = f93_aof_background.18
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = federation
+		federation = { has_federation_law = aof_doctrines_rationalism }
+		NAND = {
+			has_technology =  tech_fe_affluence_1
+			has_technology =  tech_fe_nourishment_1
+			has_technology =  tech_fe_fabricator_1
+			has_technology =  tech_fe_singularity_1
+			has_technology =  tech_fe_forge_1
+			has_technology =  tech_fe_dome_1
+			has_technology =  tech_fe_fortress_1
+			has_technology =  tech_fe_administration_1
+			has_technology =  tech_fe_assembly_1
+			has_technology =  tech_fe_clinic_1
+			has_technology =  tech_fe_security_1
+			has_technology =  tech_fe_market_1
+			has_technology =  tech_fe_silo_1
+			has_technology =  tech_fe_entertainment_1
+			has_technology =  tech_fe_lab_1
+			has_technology =  tech_fe_mine_1
+		}
+	}
+	immediate = {
+		random_list = {
+			1 = { add_research_option = tech_fe_affluence_1 }
+			1 = { add_research_option = tech_fe_nourishment_1 }
+			1 = { add_research_option = tech_fe_fabricator_1 }
+			1 = { add_research_option = tech_fe_singularity_1 }
+			1 = { add_research_option = tech_fe_forge_1 }
+			1 = { add_research_option = tech_fe_dome_1 }
+			1 = { add_research_option = tech_fe_fortress_1 }
+			1 = { add_research_option = tech_fe_administration_1 }
+			1 = { add_research_option = tech_fe_assembly_1 }
+			1 = { add_research_option = tech_fe_clinic_1 }
+			1 = { add_research_option = tech_fe_security_1 }
+			1 = { add_research_option = tech_fe_market_1 }
+			1 = { add_research_option = tech_fe_silo_1 }
+			1 = { add_research_option = tech_fe_entertainment_1 }
+			1 = { add_research_option = tech_fe_lab_1 }
+			1 = { add_research_option = tech_fe_mine_1 }
+		}
+	}
+}
+country_event = {
+	id = f93_aof_background.19
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = federation
+		federation = { has_federation_law = aof_doctrines_exclusionism }
+	}
+	immediate = {
+		set_variable = { which = aof_n_w_c value = 0 }
+		every_neighbor_country = {
+			limit = {  }
+			root = { change_variable = { which = aof_n_w_c value = 1 } }
+		}
+		if = {
+			limit = { check_variable = { which = aof_n_w_c value > 0 } }
+			add_modifier = { modifier = aof_exclusionism_mod mult = aof_n_w_c days = 31 }
+		}
+	}
+}
+country_event = {
+	id = f93_aof_background.3
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = federation
+		federation = {
+			OR = {
+				has_federation_law = centralization_high
+				has_federation_law = centralization_very_high
+			}
+		}
+	}
+	immediate = {
+		set_timed_country_flag = { flag = ai_no_leave_fed days = 31 }
+	}
+}
+# no confidence counter
+country_event = {
+	id = f93_aof_background.4
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = federation
+		is_federation_leader = yes
+		federation = {
+			is_aof_advanced_federation = no
+			NOT = { has_federation_flag = ongoing_election_process }
+			federation_cohesion <= 0
+			has_federation_flag = first_election_happened
+		}
+		NOT = { has_country_flag = no_confidence_happened }
+	}
+	immediate = {
+		if = {
+			limit = { NOT = { is_variable_set = no_confidence_counter } }
+			set_variable = { which = no_confidence_counter value = 1 }
+		}
+		set_timed_country_flag = { flag = no_confidence_counter days = 400 }
+		change_variable = { which = no_confidence_counter value = 1 }
+		if = {
+			limit = { check_variable = { which = no_confidence_counter value = 12 } }
+			set_timed_country_flag = { flag = no_confidence_happened days = 400 } # to make sure the counter can reset at least
+			set_variable = { which = no_confidence_counter value = 0 }
+			country_event = { id = f93_aof_background.5 days = 5 random = 10 }
+		}
+	}
+}
+# no confidence counter
+country_event = {
+	id = f93_aof_background.5
+	title = f93_aof_background.5.name
+	desc = f93_aof_background.5.desc
+	picture = GFX_evt_civil_action
+	is_triggered_only = yes
+	option = {
+		name = f93_aof_background.5.a
+		federation = {
+			every_member = {
+				country_event = { id = f93_aof_election.4 days = 60 }
+			}
+		}
+	}
+}
+# left or kicked from federation
+country_event = {
+	id = f93_aof_background.6
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		from = { remove_aoe_content_by_removing_from_federation = yes }
+	}
+}
+
+# removed cooldown
+country_event = {
+	id = f93_aof_background.7
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		federation = { remove_modifier = federation_law_category_aof_accords_cooldown }
+	}
+}
+# buff ai federations
+country_event = {
+	id = f93_aof_background.9
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		is_ai = yes
+		exists = federation
+		is_federation_leader = yes
+		federation = {
+			count_member = {
+				count = 0
+				limit = { is_ai = no }
+			}
+		}
+	}
+	immediate = {
+		add_modifier = {
+			modifier = f93_cohesion
+			mult = 5
+			days = 360
+		}
+	}
+}
+#Flavor Law Events
+country_event = {
+	id = f93_aof_background.10
+	title = f93_aof_background.10.name
+	desc = f93_aof_background.10.desc
+	picture = GFX_evt_partition
+	is_triggered_only = yes
+	option = {
+		name = f93_aof_background.10.a
+		if = {
+			limit = { is_federation_leader = yes }
+			federation = { add_cohesion = -50 }
+		}
+	}
+}
+#Flavor Law Events
+country_event = {
+	id = f93_aof_background.11
+	title = f93_aof_background.11.name
+	desc = f93_aof_background.11.desc
+	picture = GFX_Evt_f93_diplo_bloc
+	is_triggered_only = yes
+	trigger = {
+		is_galactic_community_formed = yes
+		federation = {
+			any_member = {
+				is_galactic_community_member = yes
+			}
+		}
+	}
+	option = {
+		name = f93_aof_background.11.a
+		trigger = {
+			exists = federation
+			federation = { has_federation_flag = just_passed_background_11 }
+		}
+	}
+	option = {
+		name = f93_aof_background.11.b
+		trigger = {
+			exists = federation
+			federation = { NOT = { has_federation_flag = just_passed_background_11 } }
+		}
+	}
+	option = {
+		name = f93_aof_background.11.b
+		trigger = { NOT = { exists = federation } }
+	}
+}
+#Flavor Law Events
+country_event = {
+	id = f93_aof_background.12
+	title = f93_aof_background.12.name
+	desc = f93_aof_background.12.desc
+	picture = GFX_Evt_f93_united_front
+	is_triggered_only = yes
+	option = {
+		name = f93_aof_background.12.a
+		add_resource = { influence = 500 }
+	}
+}
+
+# THIS = System: system being occupied
+# FROM = Country: Conqueror of the system
+# FROMFROM = Country: Original owner of the system
+system_event = {
+	id = f93_aof_background.13
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		any_ambient_object = {
+			has_ambient_object_flag = f93_federation_one_station
+		}
+		NOT = { FROMFROM = { is_in_federation_with = FROM } }
+	}
+	immediate = {
+		every_system_planet = {
+			save_global_event_target_as = f93_had_federation_one
+			remove_planet_flag = f93_has_federation_one
+		}
+		FROMFROM = { federation = { every_member = { country_event = { id = f93_aof_background.131 } } } }
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = f93_federation_one_station }
+			destroy_ambient_object = this
+		}
+		random_galaxy_planet = {
+			# Planet needs to be in federation of FROMFROM
+			limit = { owner = { is_in_federation_with = FROMFROM } }
+			# Make the planet more likely to be a capital and less likly to be on the frontlines
+			weights = {
+				base = 10
+				modifier = { factor = 10 is_capital = yes }
+				modifier = { factor = 0.1 solar_system = { any_neighbor_system = { exists = owner starbase = { controller = { is_hostile = FROMFROM } } } } }
+			}
+			set_planet_flag = f93_has_federation_one
+			save_global_event_target_as = f93_has_federation_one
+			FROMFROM = { country_event = { id = f93_aof_market.5 } }
+		}
+	}
+}
+country_event = {
+	id = f93_aof_background.131
+	title = f93_aof_background.13.name
+	desc = f93_aof_background.13.desc
+	picture = GFX_evt_civil_action
+	is_triggered_only = yes
+	option = {
+		name = f93_aof_background.13.a
+	}
+	after = {
+		clear_global_event_target = f93_had_federation_one
+	}
+}
+country_event = {
+	id = f93_aof_background.142
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		set_global_flag = aof_planet_fed_activated
+	}
+}
+country_event = {
+	id = f93_aof_background.141
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		set_country_flag = activating_planet_federation
+		if = {
+			limit = { exists = federation }
+			federation = {
+				# set_federation_type = planet_federation
+				every_member = {
+					every_owned_colony = {
+						limit = { is_capital = no }
+						carrier = {
+							planet_event = { id = f93_aof_background.14 }
+						}
+					}
+				}
+			}
+		}
+		else = {
+			every_owned_colony = {
+				limit = { is_capital = no }
+				carrier = {
+					planet_event = { id = f93_aof_background.14 }
+				}
+			}
+		}
+	}
+}
+planet_event = {
+	id = f93_aof_background.14
+	hide_window = yes
+	is_triggered_only = yes
+	# pre_triggers = {
+	# }
+	trigger = {
+		has_owner = yes
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+		OR = {
+			is_artificial = no
+			is_ringworld = yes
+		}
+		# this part is to ensure only finished colonies are converted
+		count_owned_pop_amount = { count >= 100 }
+		has_building = yes
+		
+		OR = {
+			owner = {
+				exists = federation
+				federation = { has_federation_type = planet_federation }
+				count_owned_colony = {
+					count > 1
+					limit = { count_owned_pop_amount = { count >= 100 } }
+				}
+			}
+			owner = {
+				NOT =  { exists = federation }
+				has_country_flag = activating_planet_federation
+			}
+		}
+		NOT = {
+			solar_system = {
+				any_system_planet = {
+					is_capital = yes
+				}
+			}
+		}
+	}
+	immediate = {
+		save_event_target_as = current_planet
+		owner = {
+			save_event_target_as = current_country
+			federation = {
+				save_event_target_as = current_federation
+			}
+		}
+		create_country = {
+			name = random
+			type = default
+			civics = random
+			species = root.owner_main_species
+			flag = random
+			ethos = random
+			origin = origin_default
+			set_capital_from_species = yes
+		}
+		while = {
+			limit = { count_owned_pop_amount = { count < 1000 } }
+			event_target:current_federation = {
+				random_member = {
+					limit = { count_owned_pop_amount = { count > 1100 } }
+					weights = {
+						base = 1
+						modifier = {
+							factor = 0
+							count_owned_pop_amount = { count = all limit = { root = { habitability = { who = prev value < 0.5 } } } }
+						}
+						modifier = {
+							factor = 4
+							count_owned_pop_amount = { count >= 100 limit = { root = { habitability = { who = prev value >= 0.5 } } } }
+						}
+						modifier = {
+							factor = 8
+							count_owned_pop_amount = { count >= 100 limit = { root = { habitability = { who = prev value >= 0.75 } } } }
+						}
+						modifier = {
+							factor = 16
+							count_owned_pop_amount = { count >= 100 limit = { root = { habitability = { who = prev value >= 1 } } } }
+						}
+					}
+					random_owned_pop_group = {
+						limit = { pop_group_size > 100 }
+						weights = {
+							base = 1
+							modifier = {
+								factor = 0.01
+								root = { habitability = { who = PREV value < 0.5 } }
+							}
+							modifier = {
+								factor = 4
+								root = { habitability = { who = PREV value >= 0.5 } }
+							}
+							modifier = {
+								factor = 8
+								root = { habitability = { who = PREV value >= 0.75 } }
+							}
+							modifier = {
+								factor = 16
+								root = { habitability = { who = PREV value >= 1 } }
+							}
+						}
+						resettle_pop_group = {
+							POP_GROUP = this
+							PLANET = root
+							AMOUNT = 100
+						}
+					}
+				}
+			}
+		}
+		add_district = district_city
+		add_district = district_farming
+		add_district = district_mining
+		add_district = district_generator
+		upgrade_colony_shelter = yes
+		
+		if = {
+			limit = { is_sector_capital = yes }
+			sector = {
+				every_system_within_border = {
+					starbase = { set_owner = last_created_country }
+				}
+			}
+		}
+		solar_system = {
+			starbase = {
+				set_owner = last_created_country
+				if = {
+					limit = { has_starbase_size = starbase_outpost }
+					set_starbase_size = starbase_starport
+					set_starbase_module = {
+						slot = 1
+						module = shipyard
+					}
+				}
+			}
+		}
+		last_created_country = {
+			if = {
+				limit = { event_target:current_country = { exists = federation } }
+				join_alliance = {
+					who = event_target:current_federation
+					override_requirements = yes
+				}
+				federation = {
+					add_cohesion = 100
+				}
+			}
+			else = {
+				join_alliance = {
+					who = event_target:current_country
+					override_requirements = yes
+				}
+				federation = {
+					add_cohesion = 100
+				}
+			}
+			copy_ethos_and_authority = event_target:current_country
+			copy_traditions_from = { target = event_target:current_country exceptions = {} }
+			copy_techs_from = { target = event_target:current_country }
+			if = {
+				limit = { event_target:current_country = { is_galactic_community_member = yes } }
+				add_to_galactic_community_no_message = yes
+			}
+			add_resource = {
+				minerals = 1200
+			}
+		}
+		every_country = {
+			limit = { has_communications = event_target:current_country }
+			establish_communications_no_message = last_created_country
+		}
+	}
+}
+
+# switches criminal enterprise members to non criminal ones
+country_event = {
+	id = f93_aof_background.15
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		has_valid_civic = civic_criminal_heritage
+		exists = federation
+		federation = {
+			has_federation_type = planet_federation
+		}
+	}
+	immediate = {
+		force_remove_civic = civic_criminal_heritage
+		force_add_civic = civic_ruthless_competition
+	}
+}
+
+country_event = {
+	id = f93_aof_background.16
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = federation
+		is_country_type = default
+		federation = { has_federation_flag = aof_has_planet_nations }
+	}
+	immediate = {
+		# If new planets are colonized and have sufficient population a new world state is established
+		aof_create_planet_nation = yes
+		# If new integrateable members join they are integrated. Anything that is not a subject or World State
+		if = {
+			limit = { federation = { is_aof_advanced_federation = yes } }
+			aof_integrate_members = yes
+		}
+		# Updating the World States diplomatic weights. Based on the planets population - population weight is unused currently.
+		if = {
+			limit = { federation = { has_federation_flag = aof_uses_pop_weight } }
+			federation = {
+				every_member = {
+					limit = { is_aof_world_state = yes }
+					aof_remove_all_eco_modifications = yes
+				}
+			}
+			aof_diplo_weight_per_pop = yes
+		}
+		# World States Diplo weight based on Economic Power
+		else_if = {
+			limit = { federation = { has_federation_flag = aof_uses_eco_weight } }
+			aof_update_planet_nation_income = yes
+		}
+		# World States can be unhappy and this can cause issue. Happiness is tracked with population happiness of the planet
+		aof_planet_nation_happiness = yes
+		# World States have opinion on Votes, they are loosly based on the planets pops ethics.
+		if = {
+			limit = { NOT = { has_country_flag = align_world_states_cooldown } }
+			aof_align_world_state_to_pop_random = yes
+			aof_world_states_are_liked = yes
+			set_timed_country_flag = { flag = align_world_states_cooldown days = 360 }
+		}
+		# ensures that World States are not war participants, as they should not be
+		if = {
+			limit = { any_war = { exists = this any_war_participant = { is_aof_world_state = yes } } }
+			federation = { aof_keep_world_states_out_of_War = yes }
+		}
+		# Keep World States up to date on technology, if this is needed in the future
+		federation = {
+			every_member = {
+				limit = { is_aof_world_state = yes }
+				copy_techs_from = { 
+					target = root
+				}
+			}
+		}
+		# keep worldstate out of galactic community
+		# every_country = {
+		# 	limit = { is_aof_world_state = yes }
+		# 	remove_from_galactic_community = yes
+		# }
+		# Update Defense Stations
+		set_variable = { which = fleet_power value = trigger:fleet_power }
+		every_owned_fleet = {
+			limit = { has_fleet_flag = aof_current_planet_security_police NOT = { has_fleet_flag = aof_current_planet_security_police_cooldown } }
+			add_modifier = {
+				modifier = aof_station_generic_01_def_buff mult = root.fleet_power
+			}
+			add_modifier = {
+				modifier = aof_station_generic_01_atk_buff mult = root.fleet_power
+			}
+			set_timed_fleet_flag = { flag = aof_current_planet_security_police_cooldown days = 3600 }
+		}
+	}
+}
+# debug event display the laws enacted law with a unique number. this is set up for all laws that causes bulk cohesion loss
+country_event = {
+	id = f93_aof_background.20
+	is_triggered_only = yes
+	title = OK
+	desc = aof_read_out_number
+	picture = GFX_evt_fleet_good
+	immediate = {
+	}
+	option = {
+		name = OK
+	}
+}
+# Proclaiming the Unionstate
+country_event = {
+	id = f93_aof_background.21
+	is_triggered_only = yes
+	title = f93_aof_background.21.name
+	desc = f93_aof_background.21.desc
+	picture = GFX_evt_unify_federation
+	option = {
+		name = f93_aof_background.21.a
+		add_resource = {
+			influence = 1000
+			minerals = 20000
+			consumer_goods = 10000
+			trade = 50000
+		}
+		every_owned_colony = {
+			add_modifier = {
+				modifier = aof_unification_build_speed_buff
+				mult = 5
+				days = 360
+			}
+		}
+	}
+}
+country_event = {
+	id = f93_aof_background.22
+	is_triggered_only = yes
+	title = f93_aof_background.21.name
+	desc = f93_aof_background.21.desc
+	picture = GFX_evt_unify_federation
+	option = {
+		name = f93_aof_background.21.b
+	}
+}
+country_event = {
+	id = f93_aof_background.23
+	is_triggered_only = yes
+	title = f93_aof_background.23.name
+	desc = f93_aof_background.23.desc
+	picture = GFX_evt_galactic_community
+	option = {
+		name = f93_aof_background.23.a
+	}
+}
+country_event = {
+	id = f93_aof_background.24
+	is_triggered_only = yes
+	title = f93_aof_background.24.name
+	desc = {
+		text = f93_aof_background.24.desc
+		trigger = {
+			federation = { has_federation_law = aof_outlook_authoritarian }
+		}
+	}
+	desc = {
+		text = f93_aof_background.24.desc_2
+		trigger = {
+			federation = { has_federation_law = aof_outlook_egalitarian }
+		}
+	}
+	picture = GFX_evt_galactic_community
+	option = {
+		name = f93_aof_background.24.a
+	}
+}

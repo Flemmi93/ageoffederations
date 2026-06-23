@@ -18,6 +18,7 @@ challenge_type_arena_combat = {
 	on_enact = {
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 47 }
 		###
 		if = {
 			limit = {
@@ -132,6 +133,7 @@ challenge_type_psionic_battle = {
 	on_enact = {
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 48 }
 		###
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
@@ -222,6 +224,7 @@ challenge_type_bidding_war = {
 	on_enact = {
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 49 }
 		###
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
@@ -288,6 +291,7 @@ challenge_type_thesis = {
 	on_enact = {
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 50 }
 		###
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
@@ -310,7 +314,7 @@ challenge_type_thesis = {
 		modifier = {
 			desc = federation_acceptance_materialist
 			add = 5
-			is_materialist = yes
+			is_aof_materialist = yes
 		}
 
 		modifier = {
@@ -345,6 +349,7 @@ challenge_type_conclave = {
 	on_enact = {
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 51 }
 		###
 		if = {
 			limit = { has_federation_flag = enable_federation_cooldowns }
@@ -367,7 +372,7 @@ challenge_type_conclave = {
 		modifier = {
 			desc = federation_acceptance_spiritualist
 			add = 26
-			is_spiritualist = yes
+			is_aof_spiritualist = yes
 		}
 
 		modifier = {
@@ -385,7 +390,7 @@ challenge_type_conclave = {
 		modifier = {
 			desc = federation_acceptance_materialist
 			add = -50
-			is_materialist = yes
+			is_aof_materialist = yes
 		}
 
 		modifier = {

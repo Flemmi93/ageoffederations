@@ -38,6 +38,7 @@ declare_war_unanimous_vote = {
 		}
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 31 }
 		###
 	}
 
@@ -94,6 +95,7 @@ declare_war_majority_vote = {
 		}
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 32 }
 		###
 	}
 
@@ -148,6 +150,7 @@ declare_war_majority_vote_hegemony = {
 		}
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 33 }
 		###
 	}
 
@@ -210,6 +213,7 @@ declare_war_president_vote = {
 		}
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 34 }
 		###
 	}
 

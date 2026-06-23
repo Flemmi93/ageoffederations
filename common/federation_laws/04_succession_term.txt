@@ -35,6 +35,7 @@ succession_term_years_10 = {
 		set_federation_succession_term = years_10
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10 
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 24 }
 		if = {
 			limit = { has_federation_law = succession_type_election }
 			set_federation_succession_term = status_change
@@ -113,6 +114,7 @@ succession_term_years_20 = {
 		set_federation_succession_term = years_20
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 25 }
 		if = {
 			limit = { has_federation_law = succession_type_election }
 			set_federation_succession_term = status_change
@@ -215,10 +217,12 @@ succession_term_years_30 = {
 				has_any_federation_law_in_category = law_category_succession_term
 			}
 		}
-		# modded content
-		has_federation_law = centralization_very_high
-		###
 	}
+	# modded content
+	required_centralization = {
+		base = 4
+	}
+	###
 	# modded content
 	cohesion_growth = -4
 	###
@@ -226,6 +230,7 @@ succession_term_years_30 = {
 		set_federation_succession_term = years_30
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 26 }
 		if = {
 			limit = { has_federation_law = succession_type_election }
 			set_federation_succession_term = status_change
@@ -308,6 +313,7 @@ succession_term_years_40 = {
 		set_federation_succession_term = years_40
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 27 }
 		if = {
 			limit = { has_federation_law = succession_type_election }
 			set_federation_succession_term = status_change
@@ -433,6 +439,7 @@ succession_term_status_change = {
 	on_enact = {
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 28 }
 		###
 		set_federation_succession_term = status_change
 		if = {

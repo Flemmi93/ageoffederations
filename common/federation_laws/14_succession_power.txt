@@ -30,6 +30,7 @@ succession_power_economy = {
 		}
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 52 }
 		###
 	}
 
@@ -109,6 +110,7 @@ succession_power_diplomatic_weight = {
 		}
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 53 }
 		###
 	}
 
@@ -207,6 +209,7 @@ succession_power_tech = {
 		}
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 54 }
 		###
 	}
 
@@ -292,6 +295,7 @@ succession_power_fleet = {
 		}
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 55 }
 		###
 	}
 
