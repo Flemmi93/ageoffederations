@@ -4,6 +4,7 @@
 vote_weight_equal = {
 	potential = {
 		NOT = { has_federation_type = imperial_loyalists_federation }
+		is_aof_advanced_federation = no
 	}
 	allow = {
 		custom_tooltip = {
@@ -32,6 +33,7 @@ vote_weight_equal = {
 		}
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 29 }
 		###
 	}
 
@@ -42,6 +44,7 @@ vote_weight_equal = {
 		modifier = {
 			desc = federation_acceptance_generally_positive
 			add = 51
+			is_aof_world_state = no
 		}
 	}
 }
@@ -49,6 +52,7 @@ vote_weight_equal = {
 vote_weight_diplomatic = {
 	potential = {
 		NOT = { has_federation_type = imperial_loyalists_federation }
+		is_aof_advanced_federation = no
 		host_has_dlc = Federations
 	}
 	allow = {
@@ -69,9 +73,6 @@ vote_weight_diplomatic = {
 			has_federation_law = centralization_very_high
 		}
 	}
-	required_centralization = {
-		# base = 3
-	}
 	on_enact = {
 		set_equal_voting_power = no
 		if = {
@@ -83,6 +84,7 @@ vote_weight_diplomatic = {
 		}
 		# modded content / edit
 		add_cohesion = @cohesion_loss # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 30 }
 		###
 	}
 
@@ -93,6 +95,7 @@ vote_weight_diplomatic = {
 		modifier = {
 			desc = federation_acceptance_generally_positive
 			add = 26
+			is_aof_world_state = no
 		}
 	}
 }

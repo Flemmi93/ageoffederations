@@ -1,0 +1,113 @@
+# our ethic checks, used for world nations without government
+is_aof_xenophile = {
+	OR = {
+		is_xenophile = yes
+		if = {
+			limit = { is_scope_type = country }
+			has_country_flag = is_xenophile
+		}
+		else = {
+			owner = {
+				has_country_flag = is_xenophile
+			}
+		}
+	}
+}
+is_aof_xenophobe = {
+	OR = {
+		is_xenophobe = yes
+		if = {
+			limit = { is_scope_type = country }
+			has_country_flag = is_xenophobe
+		}
+		else = {
+			owner = {
+				has_country_flag = is_xenophobe
+			}
+		}
+	}
+}
+is_aof_authoritarian = {
+	OR = {
+		is_authoritarian = yes
+		if = {
+			limit = { is_scope_type = country }
+			has_country_flag = is_authoritarian
+		}
+		else = {
+			owner = {
+				has_country_flag = is_authoritarian
+			}
+		}
+	}
+}
+is_aof_egalitarian = {
+	OR = {
+		is_egalitarian = yes
+		if = {
+			limit = { is_scope_type = country }
+			has_country_flag = is_egalitarian
+		}
+		else = {
+			owner = {
+				has_country_flag = is_egalitarian
+			}
+		}
+	}
+}
+is_aof_spiritualist = {
+	OR = {
+		is_spiritualist = yes
+		if = {
+			limit = { is_scope_type = country }
+			has_country_flag = is_spiritualist
+		}
+		else = {
+			owner = {
+				has_country_flag = is_spiritualist
+			}
+		}
+	}
+}
+is_aof_materialist = {
+	OR = {
+		is_materialist = yes
+		if = {
+			limit = { is_scope_type = country }
+			has_country_flag = is_materialist
+		}
+		else = {
+			owner = {
+				has_country_flag = is_materialist
+			}
+		}
+	}
+}
+is_aof_militarist = {
+	OR = {
+		is_militarist = yes
+		if = {
+			limit = { is_scope_type = country }
+			has_country_flag = is_militarist
+		}
+		else = {
+			owner = {
+				has_country_flag = is_militarist
+			}
+		}
+	}
+}
+is_aof_pacifist = {
+	OR = {
+		is_pacifist = yes
+		if = {
+			limit = { is_scope_type = country }
+			has_country_flag = is_pacifist
+		}
+		else = {
+			owner = {
+				has_country_flag = is_pacifist
+			}
+		}
+	}
+}

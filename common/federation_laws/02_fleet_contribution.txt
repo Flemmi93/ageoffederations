@@ -96,7 +96,7 @@ fleet_contribution_none = {
 		modifier = {
 			desc = federation_acceptance_militarist
 			add = -5
-			is_militarist = yes
+			is_aof_militarist = yes
 		}
 	}
 }
@@ -137,6 +137,7 @@ fleet_contribution_low = {
 		}
 		# modded content / edit
 		add_cohesion = -25 # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 6 }
 		###
 		hidden_effect = {
 			if = {
@@ -210,7 +211,7 @@ fleet_contribution_low = {
 		modifier = {
 			desc = federation_acceptance_militarist
 			add = 5
-			is_militarist = yes
+			is_aof_militarist = yes
 		}
 
 		#Attempt to lower contribution by a step when there is bad cohesion
@@ -287,6 +288,7 @@ fleet_contribution_medium = {
 		}
 		# modded content / edit
 		add_cohesion = -25 # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 7 }
 		###
 		hidden_effect = {
 			if = {
@@ -356,7 +358,7 @@ fleet_contribution_medium = {
 		modifier = {
 			desc = federation_acceptance_militarist
 			add = 5
-			is_militarist = yes
+			is_aof_militarist = yes
 		}
 
 		#Attempt to lower contribution by a step when there is bad cohesion
@@ -433,6 +435,7 @@ fleet_contribution_high = {
 		}
 		# modded content / edit
 		add_cohesion = -25 # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 8 }
 		###
 		hidden_effect = {
 			if = {
@@ -502,7 +505,7 @@ fleet_contribution_high = {
 		modifier = {
 			desc = federation_acceptance_militarist
 			add = 5
-			is_militarist = yes
+			is_aof_militarist = yes
 		}
 	}
 }
@@ -543,6 +546,7 @@ fleet_contribution_low_trade = {
 		}
 		# modded content / edit
 		add_cohesion = -25 # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 9 }
 		###
 		hidden_effect = {
 			if = {
@@ -611,7 +615,7 @@ fleet_contribution_low_trade = {
 		modifier = {
 			desc = federation_acceptance_militarist
 			add = 5
-			is_militarist = yes
+			is_aof_militarist = yes
 		}
 		modifier = {
 			desc = federation_acceptance_ruthless_capitalists
@@ -698,6 +702,7 @@ fleet_contribution_medium_trade = {
 		}
 		# modded content / edit
 		add_cohesion = -25 # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 10 }
 		###
 		hidden_effect = {
 			if = {
@@ -757,7 +762,7 @@ fleet_contribution_medium_trade = {
 		modifier = {
 			desc = federation_acceptance_militarist
 			add = 5
-			is_militarist = yes
+			is_aof_militarist = yes
 		}
 		modifier = {
 			desc = federation_acceptance_ruthless_capitalists
@@ -849,6 +854,7 @@ fleet_contribution_high_trade = {
 		}
 		# modded content / edit
 		add_cohesion = -25 # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 11 }
 		###
 		hidden_effect = {
 			if = {
@@ -908,7 +914,7 @@ fleet_contribution_high_trade = {
 		modifier = {
 			desc = federation_acceptance_militarist
 			add = 5
-			is_militarist = yes
+			is_aof_militarist = yes
 		}
 		modifier = {
 			desc = federation_acceptance_ruthless_capitalists
@@ -967,6 +973,7 @@ fleet_contribution_low_research = {
 		}
 		# modded content / edit
 		add_cohesion = -25 # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 12 }
 		###
 		hidden_effect = {
 			if = {
@@ -1035,7 +1042,7 @@ fleet_contribution_low_research = {
 		modifier = {
 			desc = federation_acceptance_militarist
 			add = 5
-			is_militarist = yes
+			is_aof_militarist = yes
 		}
 		modifier = {
 			desc = federation_acceptance_xenophobic_isolationists
@@ -1120,6 +1127,7 @@ fleet_contribution_medium_research = {
 		}
 		# modded content / edit
 		add_cohesion = -25 # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 13 }
 		###
 		hidden_effect = {
 			if = {
@@ -1179,7 +1187,7 @@ fleet_contribution_medium_research = {
 		modifier = {
 			desc = federation_acceptance_militarist
 			add = 5
-			is_militarist = yes
+			is_aof_militarist = yes
 		}
 		modifier = {
 			desc = federation_acceptance_xenophobic_isolationists
@@ -1226,6 +1234,7 @@ fleet_contribution_low_martial = {
 		}
 		# modded content / edit
 		add_cohesion = -25 # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 14 }
 		###
 		hidden_effect = {
 			if = {
@@ -1299,7 +1308,7 @@ fleet_contribution_low_martial = {
 		modifier = {
 			desc = federation_acceptance_militarist
 			add = 5
-			is_militarist = yes
+			is_aof_militarist = yes
 		}
 
 		#Attempt to lower contribution by a step when there is bad cohesion
@@ -1376,6 +1385,7 @@ fleet_contribution_medium_martial = {
 		}
 		# modded content / edit
 		add_cohesion = -25 # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 15 }
 		###
 		hidden_effect = {
 			if = {
@@ -1449,7 +1459,7 @@ fleet_contribution_medium_martial = {
 		modifier = {
 			desc = federation_acceptance_militarist
 			add = 5
-			is_militarist = yes
+			is_aof_militarist = yes
 		}
 		modifier = {
 			desc = federation_acceptance_xenophobic_isolationists
@@ -1531,6 +1541,7 @@ fleet_contribution_high_martial = {
 		}
 		# modded content / edit
 		add_cohesion = -25 # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 16 }
 		###
 		hidden_effect = {
 			if = {
@@ -1604,7 +1615,7 @@ fleet_contribution_high_martial = {
 		modifier = {
 			desc = federation_acceptance_militarist
 			add = 5
-			is_militarist = yes
+			is_aof_militarist = yes
 		}
 		modifier = {
 			desc = federation_acceptance_xenophobic_isolationists
@@ -1647,6 +1658,7 @@ fleet_contribution_low_hegemony = {
 		}
 		# modded content / edit
 		add_cohesion = -25 # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 17 }
 		###
 		hidden_effect = {
 			if = {
@@ -1720,7 +1732,7 @@ fleet_contribution_low_hegemony = {
 		modifier = {
 			desc = federation_acceptance_militarist
 			add = 5
-			is_militarist = yes
+			is_aof_militarist = yes
 		}
 
 		#Attempt to lower contribution by a step when there is bad cohesion
@@ -1797,6 +1809,7 @@ fleet_contribution_medium_hegemony = {
 		}
 		# modded content / edit
 		add_cohesion = -25 # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 18 }
 		###
 		hidden_effect = {
 			if = {
@@ -1861,7 +1874,7 @@ fleet_contribution_medium_hegemony = {
 		modifier = {
 			desc = federation_acceptance_militarist
 			add = 5
-			is_militarist = yes
+			is_aof_militarist = yes
 		}
 
 		#Attempt to lower contribution by a step when there is bad cohesion
@@ -1938,6 +1951,7 @@ fleet_contribution_high_hegemony = {
 		}
 		# modded content / edit
 		add_cohesion = -25 # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 19 }
 		###
 		hidden_effect = {
 			if = {
@@ -2002,7 +2016,7 @@ fleet_contribution_high_hegemony = {
 		modifier = {
 			desc = federation_acceptance_militarist
 			add = 5
-			is_militarist = yes
+			is_aof_militarist = yes
 		}
 	}
 }

@@ -1,0 +1,165 @@
+#Perks Example
+#<perk_name>={
+#	Modifier for federation scope
+#	federation_modifier = {}
+#	Modifier for all members (leader included)
+#	members_modifier = {}
+#	Modifier for exclusively leader
+#	leader_modifier = {}
+#	member_triggered_modifier, federation_triggered_modifier and leader_triggered_modifier also exist
+#	envoy_modifier = {}
+#	Modifier applied to federation x number of envoys assigned to it
+#	On activate effect in federation scope
+#	on_activate = {}
+#	On deactivate effect in federation scope
+#}
+
+### Passive, starting bonuses
+planet_federation_passive = {
+	federation_modifier = {
+		federation_leader_diplo_weight_contribution_add = 0.1
+		federation_research_sharing_mult = 0.75
+	}
+}
+### Perks
+planet_federation_auto_resettlement_1 = {
+	members_modifier = {
+		planet_resettlement_unemployed_mult = 0.25
+		planet_colony_development_speed_mult = 0.25
+	}
+}
+planet_federation_auto_resettlement_2 = {
+	members_modifier = {
+		planet_resettlement_unemployed_mult = 0.35
+		planet_colony_development_speed_mult = 0.5
+	}
+}
+aof_super_state_union_perk_passive = {
+	federation_modifier = {
+		description = default_federation_passive_effect
+		cohesion_ethics_penalty_mult = -0.50
+	}
+	leader_modifier = {
+		description = damage_crisis_aof_modifier_desc
+		damage_vs_country_type_synth_queen_mult = 0.4
+		damage_vs_country_type_swarm_mult = 0.4
+		damage_vs_country_type_extradimensional_mult = 0.4
+		damage_vs_country_type_extradimensional_2_mult = 0.4
+		damage_vs_country_type_extradimensional_3_mult = 0.4
+		damage_vs_country_type_ai_empire_mult = 0.4
+		damage_vs_country_type_gray_goo_mult = 0.4
+		damage_vs_player_crisis_mult = 0.4
+		federation_influence_produces_add = 2
+	}
+}
+# trade_federation_passive
+aof_super_state_trade_perk_passive = {
+	leader_modifier = {
+		description = damage_crisis_1_modifier_desc
+		damage_vs_country_type_synth_queen_mult = 0.25
+		damage_vs_country_type_swarm_mult = 0.25
+		damage_vs_country_type_extradimensional_mult = 0.25
+		damage_vs_country_type_extradimensional_2_mult = 0.25
+		damage_vs_country_type_extradimensional_3_mult = 0.25
+		damage_vs_country_type_ai_empire_mult = 0.25
+		damage_vs_country_type_gray_goo_mult = 0.25
+		damage_vs_player_crisis_mult = 0.25
+	}
+	members_modifier = {
+		country_trade_produces_mult = 0.35
+	}
+}
+# rare_tech_boost
+aof_super_state_research_perk_passive = {
+	leader_modifier = {
+		country_megastructure_build_cap_add = 1
+		all_technology_research_speed = 0.3
+	}
+}
+aof_super_state_martial_perk_passive = {
+	leader_modifier = {
+		ship_starting_experience_add = 100
+		army_starting_experience_add = 100
+		starbase_shipyard_build_speed_mult = 0.25
+		description = damage_crisis_aof_modifier_desc
+		damage_vs_country_type_synth_queen_mult = 0.4
+		damage_vs_country_type_swarm_mult = 0.4
+		damage_vs_country_type_extradimensional_mult = 0.4
+		damage_vs_country_type_extradimensional_2_mult = 0.4
+		damage_vs_country_type_extradimensional_3_mult = 0.4
+		damage_vs_country_type_ai_empire_mult = 0.4
+		damage_vs_country_type_gray_goo_mult = 0.4
+		damage_vs_player_crisis_mult = 0.4
+	}
+}
+# spiritualist_federation_passive
+# zro_catalysis_1
+# all_the_priests_1
+# all_the_priests_2
+aof_super_state_spiritual_perk_passive = {
+	leader_modifier = {
+		planet_civilians_unity_produces_add = 2
+		planetary_ascension_cost_mult = 0.2
+	}
+}
+# hegemony_federation_passive
+aof_super_state_hegemony_perk_passive = {
+	leader_modifier = {
+		description = aof_super_state_hegemony_perk_passive_president
+		country_federation_fleet_contribution_naval_cap_reduction_discount = 1
+		damage_vs_country_type_synth_queen_mult = 0.25
+		damage_vs_country_type_swarm_mult = 0.25
+		damage_vs_country_type_extradimensional_mult = 0.25
+		damage_vs_country_type_extradimensional_2_mult = 0.25
+		damage_vs_country_type_extradimensional_3_mult = 0.25
+		damage_vs_country_type_ai_empire_mult = 0.25
+		damage_vs_country_type_gray_goo_mult = 0.25
+		damage_vs_player_crisis_mult = 0.25
+		planet_jobs_produces_mult = 0.15
+		envoys_add = 1
+		federation_influence_produces_add = 1
+	}
+	federation_modifier = {
+		description = aof_super_state_hegemony_perk_passive_federation
+		federation_join_malus_mult = -0.5
+		federation_leader_fleet_scale_mult = 0.1
+		federation_leader_diplo_weight_from_members_mult = 0.10
+	}
+	members_modifier = {
+		description = aof_super_state_hegemony_perk_passive_members
+	}
+	on_activate = {
+		set_diplomacy_action_setting = {
+			action = action_ask_to_leave_federation
+			settings = {
+				acceptance_type = leader
+			}
+		}
+	}
+	on_deactivate = {
+		set_diplomacy_action_setting = {
+			action = action_ask_to_leave_federation
+			settings = {
+				acceptance_type = default
+			}
+		}
+	}
+}
+
+aof_advancedd_federation_perk_1 = {
+	custom_tooltip = aof_world_police_unlock
+}
+aof_advancedd_federation_perk_2 = {
+	custom_tooltip = aof_union_assembly_unlock
+}
+aof_advancedd_federation_perk_3 = {
+	custom_tooltip = aof_subsidized_shipyards_unlock
+}
+aof_advancedd_federation_perk_4 = {
+	leader_modifier = {
+		empire_size_colonies_mult = -0.3
+	}
+}
+aof_advancedd_federation_perk_5 = {
+	custom_tooltip = aof_federal_inivtations_unlock
+}

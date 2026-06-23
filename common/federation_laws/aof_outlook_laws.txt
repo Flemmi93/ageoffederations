@@ -1,0 +1,222 @@
+@cooldown = 3600
+@cohesion_loss = -20
+aof_outlook_authoritarian = {
+	potential = {}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = aof_outlook_authoritarian }
+					has_modifier = federation_law_aof_common_outlook_cooldown
+					has_any_federation_law_in_category = law_aof_common_outlook
+				}
+			}
+		}
+		hidden_trigger = {
+			has_federation_flag = aof_outlook_unlocked
+		}
+	}
+	cohesion_growth = -1
+	required_centralization = {
+		base = 5
+	}
+	on_enact = {
+		
+		custom_tooltip = aof_ethic_shift_authoritarian
+		add_cohesion = @cohesion_loss
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 71 }
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_aof_common_outlook_cooldown
+				days = @cooldown
+			}
+		}
+		every_member = {
+			custom_tooltip = aof_ethic_shift_authoritarian
+			country_event = { id = f93_aof_background.24 }
+			if = {
+				limit = { is_gestalt = no }
+				shift_ethic = ethic_authoritarian
+			}
+		}
+	}
+	ai_weight = { 
+		base = 0
+		
+		#Default support
+		modifier = {
+			desc = federation_acceptance_generally_positive
+			add = 26
+		}
+		modifier = {
+			desc = federation_acceptance_authoritarian
+			add = 50
+			is_aof_authoritarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_authoritarian
+			add = -50
+			is_aof_authoritarian = no
+		}
+		modifier = {
+			desc = federation_acceptance_egalitarian
+			add = -50
+			is_aof_egalitarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_corporate
+			add = -15
+			is_megacorp = yes
+		}
+	}
+}
+aof_outlook_none = {
+	potential = {}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = aof_outlook_none }
+					has_modifier = federation_law_aof_common_outlook_cooldown
+					has_any_federation_law_in_category = law_aof_common_outlook
+				}
+			}
+		}
+	}
+	on_enact = {
+		add_cohesion = @cohesion_loss
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 72 }
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_aof_common_outlook_cooldown
+				days = @cooldown
+			}
+		}
+		hidden_effect = {
+			set_federation_flag = aof_outlook_unlocked
+		}
+	}
+	ai_weight = { 
+		base = 0
+		
+		#Default support
+		modifier = {
+			desc = federation_acceptance_generally_positive
+			add = 26
+		}
+		modifier = {
+			desc = federation_acceptance_corporate
+			add = 10
+			is_megacorp = yes
+		}
+		modifier = {
+			desc = federation_acceptance_xenophile
+			add = 5
+			is_aof_xenophile = yes
+		}
+		modifier = {
+			desc = federation_acceptance_xenophobe
+			add = -5
+			is_aof_xenophobe = yes
+		}
+		modifier = {
+			desc = federation_acceptance_authoritarian
+			add = -5
+			is_aof_authoritarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_egalitarian
+			add = 5
+			is_aof_egalitarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_spiritualist
+			add = -5
+			is_aof_spiritualist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_materialist
+			add = 5
+			is_aof_materialist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_militarist
+			add = -5
+			is_aof_militarist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_pacifist
+			add = 15
+			is_aof_pacifist = yes
+		}
+	}
+}
+aof_outlook_egalitarian = {
+	potential = {}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = aof_outlook_egalitarian }
+					has_modifier = federation_law_aof_common_outlook_cooldown
+					has_any_federation_law_in_category = law_aof_common_outlook
+				}
+			}
+		}
+		hidden_trigger = {
+			has_federation_flag = aof_outlook_unlocked
+		}
+	}
+	required_centralization = {
+		base = 5
+	}
+	cohesion_growth = -1 # adjsuted for balance from -2
+	on_enact = {
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_aof_common_outlook_cooldown
+				days = @cooldown
+			}
+		}
+		every_member = {
+			custom_tooltip = aof_ethic_shift_egalitarian
+			country_event = { id = f93_aof_background.24 }
+			if = {
+				limit = { is_gestalt = no }
+				shift_ethic = ethic_egalitarian
+			}
+		}
+	}
+	ai_weight = { 
+		base = 0
+		
+		#Default support
+		modifier = {
+			desc = federation_acceptance_generally_positive
+			add = 26
+		}
+		modifier = {
+			desc = federation_acceptance_egalitarian
+			add = 50
+			is_aof_egalitarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_egalitarian
+			add = -50
+			is_aof_egalitarian = no
+		}
+		modifier = {
+			desc = federation_acceptance_authoritarian
+			add = -50
+			is_aof_authoritarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_corporate
+			add = -15
+			is_megacorp = yes
+		}
+	}
+}

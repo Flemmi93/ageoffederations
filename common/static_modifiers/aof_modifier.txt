@@ -1,0 +1,283 @@
+f93_aof_president_country = {
+	country_influence_produces_mult = 0.25
+	delegate_cohesion_effect_mult = 1 # balacne adjustment to give the president more control over cohesion
+}
+f93_aof_accord_coop = {
+	all_technology_research_speed = 0.15
+}
+f93_aof_accord_unyielding = {
+	country_naval_cap_add = 500
+	army_damage_mult = 0.2
+}
+aof_quid_pro_quo = {
+	diplo_weight_mult = -0.15
+}
+f93_pres_mod_mil = {
+	ships_upkeep_mult = -0.2
+}
+f93_pres_mod_sci = {
+	all_technology_research_speed = 0.05
+}
+f93_pres_mod_job = {
+	pop_cat_specialist_bonus_workforce_mult = 0.05
+}
+f93_pres_mod_adm = {
+	icon = "gfx/interface/icons/modifiers/mod_leader_species_exp_gain.dds"
+	federation_experience_add = 2
+}
+@market_strength = 1
+f93_aof_market_basic = {
+	country_base_energy_produces_add = @market_strength
+	country_base_minerals_produces_add = @market_strength
+	country_base_unity_produces_add = @market_strength
+}
+f93_aof_market_unity = {
+	country_base_unity_produces_add = @market_strength
+	country_base_alloys_produces_add = @market_strength
+}
+f93_aof_market_military = {
+	country_base_alloys_produces_add = @market_strength
+}
+f93_aof_planet_nation_economy = {
+	country_base_energy_produces_add = @market_strength
+	country_base_alloys_produces_add = @market_strength
+	country_base_trade_produces_add = @market_strength
+}
+f93_aof_market_strategic = {
+	country_base_volatile_motes_produces_add = @market_strength
+	country_base_exotic_gases_produces_add = @market_strength
+	country_base_rare_crystals_produces_add = @market_strength
+}
+f93_cohesion = {
+	cohesion_add = 1
+}
+aof_a_new_reform = {
+	empire_size_mult = -0.1
+}
+aof_some_blackmail = {
+	diplo_weight_mult = 0.15
+}
+aof_good_news = {
+	pop_happiness = 0.10
+}
+aof_energy = {
+	country_base_energy_produces_add = 1
+}
+aof_minerals = {
+	country_base_minerals_produces_add = 1
+}
+aof_alloys = {
+	country_base_alloys_produces_add = 1
+}
+aof_consumer_goods = {
+	country_base_consumer_goods_produces_add = 1
+}
+aof_food = {
+	country_base_food_produces_add = 1
+}
+aof_unity = {
+	country_base_unity_produces_add = 1
+}
+aof_exotic_gases = {
+	country_base_exotic_gases_produces_add = 1
+}
+aof_rare_crystals = {
+	country_base_rare_crystals_produces_add = 1
+}
+aof_volatile_motes = {
+	country_base_volatile_motes_produces_add = 1
+}
+aof_trade = {
+	country_base_trade_produces_add = 1
+	# to buff minor nations to have more representation
+	country_base_food_produces_add = 0.1
+	country_base_alloys_produces_add = 0.1
+	country_base_minerals_produces_add = 0.1
+	country_base_energy_produces_add = 0.1
+}
+aof_physics_research = {
+	country_base_physics_research_produces_add = 1
+}
+aof_society_research = {
+	country_base_society_research_produces_add = 1
+}
+aof_engineering_research = {
+	country_base_engineering_research_produces_add = 1
+}
+aof_world_state = {
+	icon = "gfx/interface/icons/modifiers/aof_world_state.dds"
+	cohesion_add = 0.25
+	cohesion_ethics_penalty_mult = -0.75
+}
+aof_exclusionism_mod = {
+	country_base_influence_produces_add = 0.75
+}
+aof_sanctified = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_consecrated_worlds.dds"
+	icon_frame = 2
+	planet_jobs_unity_produces_add = 2
+}
+aof_doctrines_mutualism = {
+	planet_crime_add = -50
+	pop_ethic_egalitarian_attraction_mult = 0.2
+}
+aof_principle_mediation = {
+	planet_stability_add = 10
+}
+aof_doctrines_institutionalism = {
+	country_edict_fund_add = 200
+	pop_ethic_pacifist_attraction_mult = 0.2
+}
+aof_doctrines_corporatism = {
+	empire_size_colonies_mult = -0.25
+	# pop_happiness = -0.2
+	pop_ethic_materialist_attraction_mult = 0.2
+}
+aof_principle_free_exchange = {
+	country_trade_produces_mult = 0.05
+	planet_stability_add = 5
+}
+aof_doctrines_universalism = {
+	country_trade_fee = -0.5
+	custom_tooltip = aof_bonus_market_volume_per_embassy
+	pop_ethic_xenophile_attraction_mult = 0.2
+}
+aof_doctrines_interventionism = {
+	army_damage_mult = 0.3
+	pop_ethic_egalitarian_attraction_mult = 0.2
+}
+aof_principle_iron_fortress = {
+	country_naval_cap_mult = 0.1
+	planet_stability_add = 5
+}
+aof_doctrines_exclusionism = {
+	pop_ethic_xenophobe_attraction_mult = 0.2
+}
+aof_doctrines_illuminism = {
+	custom_tooltip = aof_cannot_be_removed
+	pop_ethic_spiritualist_attraction_mult = 0.2
+}
+aof_principle_all_paths = {
+	all_technology_research_speed = 0.1
+	planet_stability_add = 5
+}
+aof_doctrines_rationalism = {
+	pop_ethic_materialist_attraction_mult = 0.2
+}
+aof_doctrines_imperialism= {
+	pop_ethic_authoritarian_attraction_mult = 0.2
+}
+aof_principle_stewardship = {
+	councilor_skill_add = 3
+	planet_stability_add = 5
+}
+aof_doctrines_guardianism = {
+	pop_ethic_xenophile_attraction_mult = 0.2
+}
+aof_doctrines_theocratism = {
+	pop_ethic_authoritarian_attraction_mult = 0.2
+}
+aof_principle_tradition = {
+	job_high_priest_add = 150
+	planet_stability_add = 6
+}
+aof_doctrines_puritanism = {
+	planet_soldiers_unity_produces_add = 1
+	pop_ethic_militarist_attraction_mult = 0.2
+}
+aof_local_gov_enforce = {
+	planet_jobs_upkeep_mult = -0.1
+	icon = "gfx/interface/icons/planet_modifiers/pm_resources.dds"
+	pop_ethic_authoritarian_attraction_mult = 0.1
+}
+aof_local_gov_enable = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_resources.dds"
+	empire_size_colonies_mult = -0.025
+	planet_jobs_produces_mult = -0.1
+	planet_jobs_upkeep_mult = -0.2
+	pop_government_ethic_attraction = 0.1
+}
+aof_local_gov_encurage = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_resources.dds"
+	pop_bonus_workforce_mult = 0.05
+	pop_ethic_xenophile_attraction_mult = 0.1
+}
+aof_security_homeguard = {
+	ship_home_territory_fire_rate_mult = 0.15
+}
+aof_service_mailing = {
+	planet_jobs_trade_produces_add = 15
+	pop_amenities_usage_mult = 0.15
+}
+aof_service_network = {
+	pop_government_ethic_attraction = 0.15
+	pop_amenities_usage_mult = 0.05
+}
+aof_service_atmos = {
+	pop_environment_tolerance = 0.1
+	pop_amenities_usage_mult = 0.15
+}
+aof_service_transit = {
+	planet_resettlement_unemployed_destination_mult = 0.15
+	pop_amenities_usage_mult = 0.15
+}
+aof_service_health = {
+	bonus_pop_growth_mult = 0.05
+	pop_amenities_usage_mult = 0.15
+}
+aof_service_education = {
+	pop_bonus_workforce_mult = 0.05
+	pop_amenities_usage_mult = 0.15
+}
+aof_union_assembly_new = {
+	council_agenda_progress_speed = 0.2
+	country_edict_fund_add = 200
+	empire_size_mult = -0.1
+}
+aof_union_assembly_future = {
+	council_agenda_progress_speed = 0.25
+	ships_upkeep_mult = -0.15
+	empire_size_mult = -0.05
+}
+aof_station_generic_01_def_buff = {
+	shipsize_station_generic_01_hull_add = 0.2
+	shipsize_station_generic_01_armor_add = 0.075
+	shipsize_station_generic_01_shield_add = 0.1
+}
+aof_station_generic_01_atk_buff = {
+	shipsize_station_generic_01_weapon_damage = 0.0005
+}
+aof_station_generic_01_upkeep = {
+	ships_alloys_upkeep_mult = 5
+}
+aof_current_open_seas = {
+	pop_government_ethic_attraction = 0.1
+	country_trade_produces_mult = 0.05
+}
+aof_current_hold_push = {
+	country_base_influence_produces_add = 1
+	pop_factions_produces_mult = 0.1
+	pop_ethic_authoritarian_attraction_mult = 0.33
+	pop_ethic_egalitarian_attraction_mult = 0.33
+}
+aof_current_matter_mind = {
+	all_technology_research_speed = 0.05
+	edicts_upkeep_mult = -0.15
+	pop_ethic_materialist_attraction_mult = 0.33
+	pop_ethic_spiritualist_attraction_mult = 0.33
+}
+aof_current_wall_bridge = {
+	bonus_pop_growth_mult = 0.05
+	planet_resettlement_unemployed_destination_mult = 0.05
+	pop_ethic_xenophobe_attraction_mult = 0.33
+	pop_ethic_xenophile_attraction_mult = 0.33
+}
+aof_current_hawks_droves = {
+	country_claim_influence_cost_mult = -0.1
+	empire_size_mult = -0.1
+	pop_ethic_militarist_attraction_mult = 0.33
+	pop_ethic_pacifist_attraction_mult = 0.33
+}
+aof_unification_build_speed_buff = {
+	planet_building_build_speed_mult = 1
+}

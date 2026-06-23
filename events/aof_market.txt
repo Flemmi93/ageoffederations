@@ -1,0 +1,180 @@
+namespace = f93_aof_market
+# Initializing market
+country_event = {
+	id = f93_aof_market.1
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = federation
+		OR = {
+			federation = { NOT = { has_federation_law = aof_market_none } }
+			federation = { NOT = { has_federation_flag = law_aof_political_current_set } }
+		}
+	}
+	immediate = {
+		federation = {
+			if  ={
+				limit = {
+					NOT = { has_federation_flag = law_aof_political_current_set }
+				}
+				set_federation_flag = law_aof_political_current_set
+				set_federation_law = aof_current_open_seas
+				add_cohesion = -200
+				add_cohesion = 100
+				remove_modifier = federation_law_aof_political_current_cooldown
+			}
+		}
+		set_variable = { which = aof_market_volume value = 0 }
+		federation = {
+			every_member = {
+				every_owned_colony = {
+					root = {
+						change_variable = { which = aof_market_volume value = prev.value:f93_planet_trade_income_compare }
+						if = {
+							limit = { is_hive_empire = no }
+							change_variable = { which = aof_market_volume value = prev.value:f93_planet_cg_income_compare }
+						}
+						if  = {
+							limit = {
+								prev = { has_building = building_aof_federal_holdings }
+							}
+							multiply_variable = { which = aof_market_volume value = 1.05 } #5% market volume boost
+						}
+					}
+				}
+			}
+		}
+		
+		if = {
+			limit = { federation = { has_federation_law = aof_doctrines_universalism } }
+			every_country = {
+				limit = { has_embassy = root }
+				root = { multiply_variable = { which = aof_market_volume value = 1.02 } }
+			}
+		}
+		if = {
+			limit = { federation = { has_federation_law = aof_doctrines_exclusionism } }
+			multiply_variable = { which = aof_market_volume value = 1.2 } 
+		}
+		round_variable = aof_market_volume
+
+		#update modifier
+		if = {
+			limit = { has_modifier = f93_aof_market_basic }
+			remove_market_modifier = yes
+			add_modifier = {
+				modifier = f93_aof_market_basic
+				mult = value:f93_market_policy_basic
+			}
+		}
+		else_if = {
+			limit = { has_modifier = f93_aof_market_unity }
+			remove_market_modifier = yes
+			add_modifier = {
+				modifier = f93_aof_market_unity
+				mult = value:f93_market_policy_unity
+			}
+		}
+		else_if = {
+			limit = { has_modifier = f93_aof_market_military }
+			remove_market_modifier = yes
+			add_modifier = {
+				modifier = f93_aof_market_military
+				mult = value:f93_market_policy_military
+			}
+		}
+		else_if = {
+			limit = { has_modifier = f93_aof_market_strategic }
+			remove_market_modifier = yes
+			add_modifier = {
+				modifier = f93_aof_market_strategic
+				mult = value:f93_market_policy_strategic
+			}
+		}
+	}
+}
+
+country_event = {
+	id = f93_aof_market.3
+	is_triggered_only = yes
+	title = f93_aof_market.3.name
+	desc = f93_aof_market.3.desc
+	picture = GFX_evt_payback
+	immediate = {
+		
+	}
+	option = {
+		name = f93_aof_market.3.a
+	}
+}
+
+country_event = {
+	id = f93_aof_market.4
+	is_triggered_only = yes
+	title = f93_aof_market.4.name
+	desc = f93_aof_market.4.desc
+	picture = GFX_evt_payback
+	immediate = {
+		federation = {
+			set_federation_flag = federation_one_enabled
+			if = {
+				limit = { federation_leader = { capital_scope = { carrier = { is_scope_type = planet } } } }
+				federation_leader = {
+					capital_scope = { carrier = { set_planet_flag = f93_has_federation_one } }
+					country_event = { id = f93_aof_market.5 }
+				}	
+			}
+			else = {
+				random_member = {
+					limit = { capital_scope = { carrier = { is_scope_type = planet } } }
+					capital_scope = { carrier = { set_planet_flag = f93_has_federation_one } }
+					country_event = { id = f93_aof_market.5 }
+				}
+			}
+		}
+	}
+	option = {
+		name = f93_aof_market.4.a
+	}
+}
+country_event = {
+	id = f93_aof_market.5
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { NOT = { has_global_flag = f93_federation_one_recently } } #avoid spam
+	immediate = {
+		set_timed_global_flag = { flag = f93_federation_one_recently days = 1 }
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = f93_federation_one_station }
+			destroy_ambient_object = this
+		}
+		every_galaxy_planet = {
+			limit = { has_planet_flag = f93_has_federation_one }
+			if = {
+				limit = { has_megacorp = yes }
+				create_ambient_object = { type = "f93_federation_one_station" location = this }
+			}
+			else = {
+				create_ambient_object = { type = "f93_federation_one_station_no_dlc" location = this }
+			}
+			last_created_ambient_object = {
+				set_ambient_object_flag = f93_federation_one_station
+				set_location = {
+					target = prev
+					distance = 0
+				}
+			}
+		}
+	}
+}
+
+# country_event = {
+# 	id = f93_aof_market.6
+# 	is_triggered_only = yes
+# 	title = f93_aof_market.6.name
+# 	desc = f93_aof_market.6.desc
+# 	picture = GFX_evt_payback
+# 	option = {
+# 		name = f93_aof_market.6.a
+# 	}
+# }

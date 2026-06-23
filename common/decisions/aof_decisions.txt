@@ -1,0 +1,83 @@
+aof_decision_protectorate = {
+	owned_planets_only = yes
+	enactment_time = 180
+	icon = d_quarantine_zone
+	resources = {
+		category = decisions
+		cost = {
+			influence = 400
+		}
+	}
+	effect = {
+		add_deposit = aof_protectorate
+	}
+	potential = {
+		NOT = { has_deposit = aof_protectorate }
+		exists = owner
+		owner = {
+			exists = federation
+			federation = {
+				OR = {
+					has_federation_law = aof_doctrines_interventionism
+					has_federation_law = aof_doctrines_guardianism
+				}
+			}
+		}
+	}
+	ai_weight = {
+		base = 5
+		modifier = {
+			factor = 3
+			owner = {
+				is_aof_militarist = yes
+			}
+		}
+		modifier = {
+			factor = 3
+			owner = {
+				is_aof_authoritarian = yes
+			}
+		}
+		modifier = {
+			factor = 3
+			owner = {
+				has_civic = civic_citizen_service
+			}
+		}
+		modifier = {
+			factor = 3
+			owner = {
+				has_civic = civic_sovereign_guardianship
+			}
+		}
+	}
+}
+aof_decision_dominion = {
+	owned_planets_only = yes
+	enactment_time = 180
+	icon = d_reactor
+	resources = {
+		category = decisions
+		cost = {
+			influence = 400
+		}
+	}
+	effect = {
+		add_deposit = aof_dominion
+	}
+	potential = {
+		NOT = { has_deposit = aof_dominion }
+		exists = owner
+		owner = {
+			exists = federation
+			federation = {
+				OR = {
+					has_federation_law = aof_doctrines_imperialism
+				}
+			}
+		}
+	}
+	ai_weight = {
+		base = 1000
+	}
+}

@@ -7,6 +7,7 @@ succession_type_rotation = {
 		OR = { # modded requirement
 			has_federation_law = centralization_low
 			NOT = { has_federation_law = succession_type_election }
+			has_federation_type = hegemony_federation
 		}
 	}
 	allow = {
@@ -147,6 +148,7 @@ succession_type_challenge = {
 		OR = { # modded requirement
 			has_federation_law = centralization_low
 			NOT = { has_federation_law = succession_type_election }
+			has_federation_type = hegemony_federation
 		}
 	}
 	allow = {
@@ -197,6 +199,7 @@ succession_type_challenge = {
 		}
 		# modded content / edit
 		add_cohesion = -25 # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 20 }
 		###
 		hidden_effect = {
 			set_federation_flag = challenge_type_no_cooldown
@@ -274,6 +277,7 @@ succession_type_random = {
 		OR = { # modded requirement
 			has_federation_law = centralization_low
 			NOT = { has_federation_law = succession_type_election }
+			has_federation_type = hegemony_federation
 		}
 	}
 	allow = {
@@ -321,6 +325,7 @@ succession_type_random = {
 		}
 		# modded content / edit
 		add_cohesion = -25 # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 21 }
 		###
 	}
 
@@ -435,6 +440,7 @@ succession_type_strongest = {
 		}
 		# modded content / edit
 		add_cohesion = -25 # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 22 }
 		###
 	}
 
@@ -474,6 +480,7 @@ succession_type_strongest_hegemony = {
 		OR = { # modded requirement
 			has_federation_law = centralization_low
 			NOT = { has_federation_law = succession_type_election }
+			has_federation_type = hegemony_federation
 		}
 	}
 	allow = {
@@ -506,6 +513,7 @@ succession_type_strongest_hegemony = {
 		set_federation_law = succession_power_diplomatic_weight
 		# modded content / edit
 		add_cohesion = -25 # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 23 }
 		###
 	}
 

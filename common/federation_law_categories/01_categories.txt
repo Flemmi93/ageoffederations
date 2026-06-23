@@ -1,4 +1,7 @@
 law_category_centralization = {
+	potential = {
+		is_aof_advanced_federation = no
+	}
 	centralization = yes
 	laws = {
 		centralization_minimal
@@ -9,8 +12,35 @@ law_category_centralization = {
 		centralization_imperial_loyalists # Event only
 	}
 }
-
+law_category_federal_framework = {
+	potential = {
+		is_aof_advanced_federation = yes
+	}
+	centralization = yes
+	laws = {
+		federal_framework_low # advanced federation only
+		federal_framework_medium # advanced federation only
+		federal_framework_high # advanced federation only
+	}
+}
+law_aof_unification = {
+	potential = {
+		is_aof_advanced_federation = no
+		# from = { is_crisis_faction = no }
+		# NOT = { has_federation_flag = aof_unified }
+	}
+	laws = {
+		# aof_planet_none
+		# aof_planet_republics
+		# aof_planet_states
+		aof_centralized_federation
+		aof_unified_federation
+	}
+}
 law_category_fleet_contribution = {
+	potential = {
+		is_aof_advanced_federation = no
+	}
 	laws = {
 		fleet_contribution_none
 		fleet_contribution_low
@@ -31,11 +61,14 @@ law_category_fleet_contribution = {
 }
 
 law_category_succession_type = {
+	potential = {
+		is_aof_advanced_federation = no
+	}
 	laws = {
-		succession_type_election
 		succession_type_rotation
 		succession_type_random
 		succession_type_challenge
+		succession_type_election
 		succession_type_strongest
 		succession_type_strongest_hegemony
 		succession_type_none # Event only
@@ -44,7 +77,7 @@ law_category_succession_type = {
 # Modded content
 law_category_assembly = {
 	potential = {
-		# has_federation_law = succession_type_election
+		is_aof_advanced_federation = no
 	}
 	laws = {
 		# assembly_none
@@ -70,6 +103,9 @@ law_category_succession_power = {
 }
 
 law_category_succession_term = {
+	potential = {
+		is_aof_advanced_federation = no
+	}
 	show_succession_date = yes
 	laws = {
 		succession_term_years_10
@@ -94,6 +130,7 @@ law_category_challenge = {
 
 law_category_build_fleets = {
 	potential = {
+		is_aof_advanced_federation = no
 		NOT = {
 			has_federation_law = fleet_contribution_none
 		}
@@ -105,7 +142,9 @@ law_category_build_fleets = {
 }
 # Modded content
 law_category_diplomatic_block = {
-	potential = {}
+	potential = {
+		is_aof_advanced_federation = no
+	}
 	laws = {
 		diplomatic_bloc_default
 		diplomatic_bloc_common_voice
@@ -116,6 +155,9 @@ law_category_diplomatic_block = {
 ###
 
 law_category_allow_subjects_to_join = {
+	potential = {
+		is_aof_advanced_federation = no
+	}
 	laws = {
 		allow_subjects_to_join_no
 		allow_subjects_to_join_yes
@@ -127,11 +169,15 @@ law_category_voting_weight = {
 	laws = {
 		vote_weight_equal
 		vote_weight_diplomatic
+		vote_weight_planet
 		vote_weight_diplomatic_imperial_loyalists # Event only
 	}
 }
 
 law_category_war_declaration_vote = {
+	potential = {
+		is_aof_advanced_federation = no
+	}
 	laws = {
 		declare_war_unanimous_vote
 		declare_war_majority_vote
@@ -142,6 +188,9 @@ law_category_war_declaration_vote = {
 }
 
 law_category_invite_members_vote = {
+	potential = {
+		is_aof_advanced_federation = no
+	}
 	laws = {
 		invite_members_unanimous_vote
 		invite_members_majority_vote
@@ -152,6 +201,9 @@ law_category_invite_members_vote = {
 }
 
 law_category_kick_members_vote = {
+	potential = {
+		is_aof_advanced_federation = no
+	}
 	laws = {
 		kick_members_majority_vote
 		kick_members_president_vote
@@ -161,6 +213,9 @@ law_category_kick_members_vote = {
 }
 
 law_category_free_migration = {
+	potential = {
+		is_aof_advanced_federation = no
+	}
 	laws = {
 		free_migration_no
 		free_migration_yes
@@ -168,27 +223,13 @@ law_category_free_migration = {
 }
 
 law_category_separate_treaties = {
+	potential = {
+		is_aof_advanced_federation = no
+	}
 	laws = {
 		treaties_separate_yes
 		treaties_separate_no
 		treaties_separate_ethical_partners # modded
 		treaties_separate_no_imperial_loyalists # Event only
-	}
-}
-# Modded content
-law_category_aof_accords = {
-	laws = {
-		fed_accords_none
-		fed_accords_coop
-		fed_accords_unyielding
-	}
-}
-law_category_aof_market = {
-	laws = {
-		fed_market_none
-		fed_market_basic
-		fed_market_unity
-		fed_market_military
-		fed_market_strategic
 	}
 }

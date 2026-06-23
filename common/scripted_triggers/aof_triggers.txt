@@ -1,0 +1,29 @@
+is_aof_world_state = {
+	or = {
+		has_country_flag = aof_planet_nation
+		is_country_type = aof_planet_nation
+	}
+}
+is_aof_advanced_federation = {
+	custom_tooltip = {
+		fail_text = failed_to_be_advanced_federation
+		success_text = is_an_advanced_federation
+		OR = {
+			has_federation_type = aof_advanced_default_federation
+			has_federation_type = aof_advanced_trade_federation
+			has_federation_type = aof_advanced_research_federation
+			has_federation_type = aof_advanced_military_federation
+			has_federation_type = aof_advanced_spiritualist_federation
+			has_federation_type = aof_advanced_hegemony_federation
+		}
+	}
+}
+# this is intended for nomadic nations
+is_planetless_nation = {
+	OR = {
+		# num_owned_planets = 0
+		has_country_flag = planetless_nation
+		has_country_flag = nomad_empire
+		is_nomadic = yes
+	}
+}

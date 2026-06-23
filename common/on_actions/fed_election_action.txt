@@ -1,0 +1,80 @@
+on_game_star = {
+	events = {
+		f93_aof_background.0
+	}
+}
+on_monthly_pulse_country = {
+	events = {
+		f93_aof_election.0
+		f93_aof_background.3
+		f93_aof_background.4
+		f93_aof_background.15
+		f93_aof_background.16
+		f93_aof_background.17
+		f93_aof_background.19
+		f93_aof_market.1
+	}
+}
+on_yearly_pulse_country = {
+	events = {
+		f93_aof_background.9
+		f93_aof_galcom.0
+	}
+}
+on_decade_pulse_country = {
+	events = {
+		f93_aof_background.18
+	}
+}
+#This = Federation leader
+#From = Leaving member
+on_leave_federation = {
+	events = {
+		f93_aof_background.6 # cleanup
+	}
+}
+
+# THIS = System: system being occupied
+# FROM = Country: Conqueror of the system
+# FROMFROM = Country: Original owner of the system
+on_system_occupied = {
+	events = {
+		f93_aof_background.13
+	}
+}
+
+
+# A galcom resolution is moved to the senate floor
+# this/root = proposer
+# from = target if valid
+on_resolution_put_to_vote = {
+	events = {
+		f93_aof_galcom.1
+	}
+}
+
+# A planet has been colonized.
+# Scope = Planet
+on_colonized = {
+	events = {
+		f93_aof_background.14
+	}
+}
+
+# Fires for each planet every month (counting up from colonisation date, includes home planet)
+on_colony_monthly_pulse = {
+	events = {
+		f93_aof_background.14
+	}
+}
+
+
+# Triggers when trying to open the diplomacy view for countries with custom diplomacy.
+# Country scope
+# This = target country (player)
+# From = source country
+on_custom_diplomacy = {
+	events = {
+		aof_planet_dip.1
+	}
+}

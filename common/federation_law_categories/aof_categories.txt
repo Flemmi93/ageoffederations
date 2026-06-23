@@ -1,0 +1,67 @@
+law_category_aof_accords = {
+	laws = {
+		aof_accords_none
+		aof_accords_coop
+		aof_accords_unyielding
+	}
+}
+law_category_aof_market = {
+	laws = {
+		aof_market_none
+		aof_market_basic
+		aof_market_unity
+		aof_market_strategic
+		aof_market_military
+	}
+}
+law_aof_political_current = {
+	laws = {
+		aof_current_open_seas
+		aof_current_hold_push
+		aof_current_matter_mind
+		aof_current_wall_bridge
+		aof_current_hawks_droves
+	}
+}
+law_aof_principle_doctrines = {
+	laws = {
+		aof_principle_mediation
+		aof_principle_free_exchange
+		aof_principle_iron_fortress
+		aof_principle_all_paths
+		aof_principle_stewardship
+		aof_principle_tradition
+		aof_doctrines_mutualism
+		aof_doctrines_institutionalism
+		aof_doctrines_corporatism
+		aof_doctrines_universalism
+		aof_doctrines_interventionism
+		aof_doctrines_exclusionism
+		aof_doctrines_illuminism
+		aof_doctrines_rationalism
+		aof_doctrines_imperialism
+		aof_doctrines_guardianism
+		aof_doctrines_theocratism
+		aof_doctrines_puritanism
+	}
+}
+law_aof_common_outlook = {
+	potential = {
+		is_aof_advanced_federation = no
+	}
+	laws = {
+		aof_outlook_none
+		aof_outlook_authoritarian
+		aof_outlook_egalitarian
+	}
+}
+law_aof_union_assembly = {
+	potential = {
+		is_aof_advanced_federation = yes
+	}
+	laws = {
+		aof_union_assembly_old
+		aof_union_assembly_new
+		aof_union_assembly_future
+	}
+}

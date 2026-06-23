@@ -1,0 +1,75 @@
+refugees = {
+	potential = {
+		has_encountered_other_species = yes
+		is_country_type = default
+		OR = {
+			NOT = { has_ethic = "ethic_gestalt_consciousness" }
+			has_valid_civic = civic_machine_servitor
+		}
+	}
+
+	option = {
+		name = "refugees_not_allowed"
+
+		valid = {
+			NOR = {
+				has_ethic = "ethic_xenophile"
+				has_ethic = "ethic_fanatic_xenophile"
+				has_country_flag = aof_agreed_to_treaties_separate_ethical_partners
+			}
+		}
+
+		policy_flags = {
+			refugees_not_allowed
+		}
+	}
+
+	option = {
+		name = "refugees_only_citizens"
+
+		potential = {
+			NOT = { has_ethic = "ethic_gestalt_consciousness" }
+		}
+
+		policy_flags = {
+			refugees_only_citizens
+		}
+
+		valid = {
+			NOT = {
+				is_hive_empire = yes
+			}
+		}
+
+		AI_weight = {
+			factor = 5
+		}
+	}
+
+	option = {
+		name = "refugees_allowed"
+
+		policy_flags = {
+			refugees_allowed
+		}
+
+		valid = {
+			is_xenophobe = no
+		}
+
+		AI_weight = {
+			factor = 10
+			modifier = {
+				factor = 0
+				NOR = {
+					is_xenophile = yes
+					has_valid_civic = civic_machine_servitor
+					AND = {
+						has_valid_ai_personality = yes
+						NOT = { has_ai_personality_behaviour = multispecies }
+					}
+				}
+			}
+		}
+	}
+}

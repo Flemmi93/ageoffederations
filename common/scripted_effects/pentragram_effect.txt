@@ -1,0 +1,175 @@
+f93_upright_pentagram_from_center_star = {
+	set_spawn_system_batch = begin
+	random_system = {
+		limit = {
+			is_rim_system = yes
+		}
+		spawn_system = {
+			min_distance >= 35
+			max_distance <= 50
+			direction = rimwards
+			hyperlane = no
+			initializer = special_init_01 # center
+		}
+		last_created_system = {
+			set_star_flag = upright_pentagram_origin_star
+			save_event_target_as = 0
+		}
+	}
+	event_target:0 = {
+		spawn_system = {
+			min_distance >= 20
+			max_distance <= 20
+			min_orientation_angle = 15
+			max_orientation_angle = 15
+			hyperlane = no
+			initializer = random # 12_oclock
+		}
+		last_created_system = {
+			save_event_target_as = 1
+		}
+		spawn_system = {
+			min_distance >= 20
+			max_distance <= 20
+			min_orientation_angle = 87
+			max_orientation_angle = 87
+			hyperlane = no
+			initializer = random # 3_oclock
+		}
+		last_created_system = {
+			save_event_target_as = 2
+		}
+		spawn_system = {
+			min_distance >= 20
+			max_distance <= 20
+			min_orientation_angle = 159
+			max_orientation_angle = 159
+			hyperlane = no
+			initializer = random # 5_oclock
+		}
+		last_created_system = {
+			save_event_target_as = 3
+		}
+		spawn_system = {
+			min_distance >= 20
+			max_distance <= 20
+			min_orientation_angle = 231
+			max_orientation_angle = 231
+			hyperlane = no
+			initializer = random # 7_oclock
+		}
+		last_created_system = {
+			save_event_target_as = 4
+		}
+		spawn_system = {
+			min_distance >= 20
+			max_distance <= 20
+			min_orientation_angle = 303
+			max_orientation_angle = 303
+			hyperlane = no
+			initializer = random # 9_oclock
+		}
+		last_created_system = {
+			save_event_target_as = 5
+		}
+	}
+	set_spawn_system_batch = end
+	add_hyperlane = { from = event_target:1 to = event_target:3 }
+	add_hyperlane = { from = event_target:3 to = event_target:5 }
+	add_hyperlane = { from = event_target:5 to = event_target:2 }
+	add_hyperlane = { from = event_target:2 to = event_target:4 }
+	add_hyperlane = { from = event_target:4 to = event_target:1 }
+	add_hyperlane = { from = event_target:1 to = event_target:0 }
+	add_hyperlane = { from = event_target:2 to = event_target:0 }
+	add_hyperlane = { from = event_target:3 to = event_target:0 }
+	add_hyperlane = { from = event_target:4 to = event_target:0 }
+	add_hyperlane = { from = event_target:5 to = event_target:0 }
+}
+
+f93_upsidedown_pentagram_from_bottom_star = {
+	set_spawn_system_batch = begin
+	random_system = {
+		limit = {
+			is_rim_system = yes
+		}
+		spawn_system = {
+			min_distance >= 35
+			max_distance <= 50
+			direction = rimwards
+			hyperlane = no
+			initializer = special_init_01 # center
+		}
+		last_created_system = {
+			set_star_flag = upsidedown_pentagram_origin_star
+			save_event_target_as = 0
+		}
+	}
+	event_target:0 = {
+		spawn_system = {
+			min_distance >= 20
+			max_distance <= 20
+			min_orientation_angle = 195
+			max_orientation_angle = 195
+			hyperlane = no
+			initializer = random # 6_oclock
+		}
+		last_created_system = {
+			save_event_target_as = 1
+		}
+		spawn_system = {
+			min_distance >= 20
+			max_distance <= 20
+			min_orientation_angle = 267
+			max_orientation_angle = 267
+			hyperlane = no
+			initializer = random # 8_oclock
+		}
+		last_created_system = {
+			save_event_target_as = 2
+		}
+		spawn_system = {
+			min_distance >= 20
+			max_distance <= 20
+			min_orientation_angle = 339
+			max_orientation_angle = 339
+			hyperlane = no
+			initializer = random #  10_oclock
+		}
+		last_created_system = {
+			save_event_target_as = 3
+		}
+		spawn_system = {
+			min_distance >= 20
+			max_distance <= 20
+			min_orientation_angle = 51
+			max_orientation_angle = 51
+			hyperlane = no
+			initializer = random #  2_oclock
+		}
+		last_created_system = {
+			save_event_target_as = 4
+		}
+		spawn_system = {
+			min_distance >= 20
+			max_distance <= 20
+			min_orientation_angle = 123
+			max_orientation_angle = 123
+			hyperlane = no
+			initializer = random #  4_oclock
+		}
+		last_created_system = {
+			save_event_target_as = 5
+		}
+	set_spawn_system_batch = end
+	add_hyperlane = { from = event_target:1 to = event_target:3 }
+	add_hyperlane = { from = event_target:3 to = event_target:5 }
+	add_hyperlane = { from = event_target:5 to = event_target:2 }
+	add_hyperlane = { from = event_target:2 to = event_target:4 }
+	add_hyperlane = { from = event_target:4 to = event_target:1 }
+	add_hyperlane = { from = event_target:1 to = event_target:0 }
+	add_hyperlane = { from = event_target:2 to = event_target:0 }
+	add_hyperlane = { from = event_target:3 to = event_target:0 }
+	add_hyperlane = { from = event_target:4 to = event_target:0 }
+	add_hyperlane = { from = event_target:5 to = event_target:0 }
+	}
+}

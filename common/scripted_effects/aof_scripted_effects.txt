@@ -1,0 +1,641 @@
+remove_aoe_content_by_removing_from_federation = {
+	remove_market_modifier = yes
+	remove_accord_modifier = yes
+	remove_country_flag = aof_agreed_to_treaties_separate_ethical_partners
+	remove_country_flag = aof_agreed_to_aof_accords_unyielding
+	remove_country_flag = federation_elections_situation_1
+	remove_country_flag = election_ui_open
+	remove_country_flag = f93_aof_nominated
+	remove_country_flag = f93_aof_nomination_boosted_1
+	remove_country_flag = f93_aof_nomination_boosted_2
+}
+remove_market_modifier = {
+	remove_modifier = f93_aof_market_basic
+	remove_modifier = f93_aof_market_unity
+	remove_modifier = f93_aof_market_military
+	remove_modifier = f93_aof_market_strategic
+}
+remove_accord_modifier = {
+	remove_modifier = f93_aof_accord_coop
+	remove_modifier = f93_aof_accord_unyielding
+}
+add_aof_fed_permit = {
+	if = {
+		limit = { is_variable_set = aof_fed_permit }
+		change_variable = { which = aof_fed_permit value = $ADD$ }
+	}
+	else = {
+		set_variable = { which = aof_fed_permit value = $ADD$ }
+	}
+}
+set_federation_id = {
+	if = {
+		limit = { federation = { NOT = { is_variable_set = aof_federation_id } } }
+		event_target:current_federation = {  set_variable = { which = aof_federation_id value = 0 } }
+	}
+	$SCOPE1$ = { set_variable = { which = aof_federation_id value = event_target:current_federation.aof_federation_id } }
+	$SCOPE2$ = { set_variable = { which = aof_federation_id value = event_target:current_federation.aof_federation_id } }
+	event_target:current_federation = { change_variable = { which = aof_federation_id value = 1 } }
+}
+aof_add_RESOURCE_modifier = {
+	add_modifier = {
+		modifier = aof_$RESOURCE$
+		mult = event_target:current_planet.value:f93_planet_$RESOURCE$_income_compare
+	}
+}
+#unused, for testing
+aof_unifaction = {
+	federation = {
+		set_federation_flag = aof_unified
+		save_event_target_as = current_federation
+		set_variable = { which = aof_federation_id value = 1 }
+		every_member = {
+			limit = { is_ai = no }
+			save_event_target_as = old_country
+			federation = {
+				federation_leader = {
+					save_event_target_as = aof_unifying_country
+					set_player = event_target:old_country
+				}
+			}
+		}
+		while = {
+			limit = {
+				any_member = { any_owned_colony = { NOT = { is_variable_set = aof_federation_id } } }
+			}
+			random_member = {
+				limit = { any_owned_colony = { NOT = { is_variable_set = aof_federation_id } } }
+				save_event_target_as = current_country
+				random_owned_colony = {
+					limit = { NOT = { is_variable_set = aof_federation_id } }
+					save_event_target_as = current_planet
+				}
+			}
+			create_country = {
+				name = event_target:current_planet
+				type = aof_planet_nation
+				species = event_target:current_country
+				room = aof_planet_state_room
+				auto_delete = no
+			}
+			last_created_country = {
+				set_custom_capital_location = event_target:current_planet
+				set_country_flag = aof_planet_nation
+				set_origin = origin_default
+				join_alliance = { who = event_target:current_federation override_requirements = yes }
+				federation = { add_cohesion = 100 }
+				# copy_ethos_and_authority = event_target:current_country
+				# copy_traditions_from = { target = event_target:current_country exceptions = {} }
+				# copy_techs_from = { target = event_target:current_country } 
+			}
+			set_federation_id = { SCOPE1 = event_target:current_planet SCOPE2 = last_created_country }
+		}
+		aof_remove_exploration_from_world_States = yes
+		every_member = {
+			limit = { NOR = { is_aof_world_state = yes is_same_value = event_target:aof_unifying_country } }
+			integrate_country_effect = { OWNER = event_target:aof_unifying_country }
+			remove_communications = event_target:aof_unifying_country
+		}
+	}
+	aof_update_planet_nation_income = yes
+}
+aof_unify_federation = {
+	# merge all players into one country, who knows if this works
+	every_member = {
+		limit = { is_ai = no }
+		save_event_target_as = old_country
+		federation = {
+			federation_leader = {
+				save_event_target_as = aof_unifying_country
+				if = {
+					limit = { NOT = { event_target:old_country = { is_same_value = event_target:aof_unifying_country } } }
+					set_player = event_target:old_country
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			federation_leader = { is_hive_empire = no }
+		}
+		every_member = {
+			limit = { is_hive_empire = yes }
+			aof_make_hive_mind_pop_to_regular_with_trait = yes
+		}
+	}
+	every_member = {
+		limit = { is_subject = no is_planetless_nation = no is_aof_world_state = no NOT = { is_same_value = event_target:aof_unifying_country } }
+		integrate_country_effect = { OWNER = event_target:aof_unifying_country }
+		remove_communications = event_target:aof_unifying_country
+	}
+	federation_leader = {
+		country_event = { id = aof_flag_selection.0 days = 30 }
+	}
+}
+aof_create_planet_nation = {
+	# Country Scope
+	if = {
+		# Only worlds with more than 500 people have a representative in the Federation.
+		limit = { any_owned_colony = { NOT = { is_variable_set = aof_federation_id } count_owned_pop_amount = { count > 500 limit = { is_sapient = yes } } } }
+		while = {
+			limit = { any_owned_colony = { NOT = { is_variable_set = aof_federation_id } count_owned_pop_amount = { count > 500 limit = { is_sapient = yes } } } }
+			federation = { save_event_target_as = current_federation }
+			random_owned_colony = {
+				limit = { NOT = { is_variable_set = aof_federation_id } count_owned_pop_amount = { count > 500 limit = { is_sapient = yes } } }
+				save_event_target_as = current_planet
+				ordered_owned_species = {
+					limit = { is_sapient = yes }
+					position = 0
+					order_by = trigger:pop_amount
+					save_event_target_as = current_species
+				}
+			}
+			create_country = {
+				name = event_target:current_planet
+				type = aof_planet_nation
+				species = event_target:current_species
+				auto_delete = no
+			}
+			last_created_country = {
+				# set_country_type = aof_planet_nation
+				random_list = {
+					1 = { change_country_flag = { icon = { category = aof_planet_state file = aof_planet_state_flag_y.dds } background = { category = backgrounds file = diagonal_stripe.dds } colors = { "yellow" "ochre_brown" "null" "null" } } }
+					1 = { change_country_flag = { icon = { category = aof_planet_state file = aof_planet_state_flag.dds } background = { category = backgrounds file = diagonal_stripe.dds } colors = { "blue" "light_blue" "null" "null" } } }
+					1 = { change_country_flag = { icon = { category = aof_planet_state file = aof_planet_state_flag.dds } background = { category = backgrounds file = diagonal_stripe.dds } colors = { "dark_red" "red" "null" "null" } } }
+				}
+				# copy_ethos_and_authority = event_target:current_country
+				add_modifier = { modifier = aof_world_state }
+				set_country_flag = aof_planet_nation
+				set_origin = origin_default
+				join_alliance = { who = event_target:current_federation override_requirements = yes }
+				federation = { add_cohesion = 100 }
+				# copy_traditions_from = { target = event_target:current_country exceptions = {} }
+				# copy_techs_from = { target = event_target:current_country } 
+				# undiscovery everything
+				every_galaxy_planet = {
+					set_surveyed = { surveyed = no surveyor = prev }
+				}
+			}
+			set_federation_id = { SCOPE1 = event_target:current_planet SCOPE2 = last_created_country }
+		}
+		aof_remove_exploration_from_world_States = yes
+
+
+	}
+}
+
+aof_diplo_weight_per_pop = {
+	# Country Scope
+	federation = {
+		set_variable = { which = diplo_weight_per_pop value = 1 }
+		set_variable = { which = federation_pop_amount value = 1 }
+		every_member = {
+			limit = { is_aof_world_state = no }
+			prev = {
+				change_variable = {
+					which = diplo_weight_per_pop
+					value = prev.trigger:diplomacy_weight
+				}
+				change_variable = {
+					which = federation_pop_amount
+					value = prev.trigger:count_owned_pop_amount # <- but he could and he did.
+				}
+			}
+		}
+		divide_variable = { which = diplo_weight_per_pop value = federation_pop_amount }
+		every_galaxy_planet = {
+			limit = {
+				exists = owner
+				owner = { exists = federation is_in_federation_with = root }
+				is_variable_set = aof_federation_id
+			}
+			owner = {
+				federation = {
+					random_member = {
+						limit = { is_variable_set = aof_federation_id check_variable = { which = aof_federation_id value = PREVPREVPREV.aof_federation_id } }
+						set_variable = { which = diplo_weight value = prev.diplo_weight_per_pop }
+						multiply_variable = { which = diplo_weight value = PREVPREVPREV.trigger:count_owned_pop_amount }
+						add_modifier = {
+							modifier = aof_energy
+							mult = diplo_weight
+						}
+
+					}
+				}
+			}
+		}
+	}
+}
+aof_update_planet_nation_income = {
+	# Country Scope
+	every_galaxy_planet = {
+		# This and the Limit for random_member make sure only a single nation and single planet with matching IDs are selected
+		limit = { exists = owner is_variable_set = aof_federation_id owner = { exists = federation is_in_federation_with = root } }
+		save_event_target_as = current_planet
+		owner = {
+			federation = {
+				random_member = {
+					limit = { is_variable_set = aof_federation_id check_variable = { which = aof_federation_id value = PREVPREVPREV.aof_federation_id } }
+					aof_add_RESOURCE_modifier = { RESOURCE = trade }
+					aof_add_RESOURCE_modifier = { RESOURCE = energy }
+					aof_add_RESOURCE_modifier = { RESOURCE = minerals }
+					aof_add_RESOURCE_modifier = { RESOURCE = alloys }
+					aof_add_RESOURCE_modifier = { RESOURCE = food }
+					aof_add_RESOURCE_modifier = { RESOURCE = consumer_goods }
+					aof_add_RESOURCE_modifier = { RESOURCE = exotic_gases }
+					aof_add_RESOURCE_modifier = { RESOURCE = volatile_motes }
+					aof_add_RESOURCE_modifier = { RESOURCE = rare_crystals }
+					aof_add_RESOURCE_modifier = { RESOURCE = engineering_research }
+					aof_add_RESOURCE_modifier = { RESOURCE = physics_research }
+					aof_add_RESOURCE_modifier = { RESOURCE = society_research }
+					aof_add_RESOURCE_modifier = { RESOURCE = unity }
+				}
+			}
+		}
+	}
+}
+
+aof_remove_RESOURCE_modifier = {
+	remove_modifier = aof_$RESOURCE$
+}
+aof_remove_all_eco_modifications = {
+	aof_remove_RESOURCE_modifier = { RESOURCE = trade }
+	aof_remove_RESOURCE_modifier = { RESOURCE = energy }
+	aof_remove_RESOURCE_modifier = { RESOURCE = minerals }
+	aof_remove_RESOURCE_modifier = { RESOURCE = alloys }
+	aof_remove_RESOURCE_modifier = { RESOURCE = food }
+	aof_remove_RESOURCE_modifier = { RESOURCE = consumer_goods }
+	aof_remove_RESOURCE_modifier = { RESOURCE = exotic_gases }
+	aof_remove_RESOURCE_modifier = { RESOURCE = volatile_motes }
+	aof_remove_RESOURCE_modifier = { RESOURCE = rare_crystals }
+	aof_remove_RESOURCE_modifier = { RESOURCE = engineering_research }
+	aof_remove_RESOURCE_modifier = { RESOURCE = physics_research }
+	aof_remove_RESOURCE_modifier = { RESOURCE = society_research }
+	aof_remove_RESOURCE_modifier = { RESOURCE = unity }
+}
+aof_integrate_members = {
+	# Country Scope
+	if = {
+		limit = { federation = { any_member = { is_federation_leader = no is_aof_world_state = no } } }
+		federation = {
+			federation_leader = {
+				save_event_target_as = aof_unifying_country
+			}
+			every_member = {
+				limit = { is_subject = no is_aof_world_state = no NOT = { is_same_value = event_target:aof_unifying_country } }
+				if = {
+					limit = { is_hive_empire = yes }
+					aof_make_hive_mind_pop_to_regular_with_trait = yes
+				}
+				integrate_country_effect = { OWNER = event_target:aof_unifying_country }
+				remove_communications = event_target:aof_unifying_country
+			}
+		}
+	}
+}
+# only use this if the ID system is messed up
+aof_reset_id_system = {
+	# Country Scope!
+	federation = {
+		save_event_target_as = current_federation
+		every_member = {
+			limit = { has_country_flag = aof_planet_nation }
+			clear_variable = aof_federation_id
+		}
+		federation_leader = {
+			every_owned_colony = {
+				clear_variable = aof_federation_id
+			}
+		}
+
+		set_variable = { which = aof_federation_id value = 1 }
+		while = {
+			limit = { federation_leader = { any_owned_colony = { NOT = { is_variable_set = aof_federation_id } } } }
+			federation_leader = {
+				random_owned_colony = {
+					limit = { NOT = { is_variable_set = aof_federation_id } }
+					save_event_target_as = current_planet
+				}
+			}
+			if = {
+				limit = {
+					any_member = {
+						is_aof_world_state = yes
+						NOT = { is_variable_set = aof_federation_id }
+					}
+				}
+				random_member = {
+					limit = { is_aof_world_state = yes }
+					set_federation_id = { SCOPE1 = event_target:current_planet SCOPE2 = this }
+					set_name = event_target:current_planet
+				}
+			}
+			else = {
+				event_target:current_planet = {
+					ordered_owned_species = {
+						limit = { is_sapient = yes }
+						position = 0
+						order_by = trigger:pop_amount
+						save_event_target_as = current_species
+					}
+					create_country = {
+						name = event_target:current_planet
+						type = aof_planet_nation
+						species = event_target:current_species
+						auto_delete = no
+					}
+				}
+				last_created_country = {
+					set_country_flag = aof_planet_nation
+					set_origin = origin_default
+					join_alliance = { who = event_target:current_federation override_requirements = yes }
+					federation = { add_cohesion = 100 }
+					# copy_ethos_and_authority = event_target:current_country
+					# copy_traditions_from = { target = event_target:current_country exceptions = {} }
+					# copy_techs_from = { target = event_target:current_country } 
+				}
+				set_federation_id = { SCOPE1 = event_target:current_planet SCOPE2 = last_created_country }
+			}
+			change_variable = { which = aof_federation_id value = 1 }
+		}
+		aof_remove_exploration_from_world_States = yes
+	}
+}
+#destryos any planet nation without a matching planet
+aof_remove_non_member_planet_nations = {
+	federation = {
+		random_member = {
+			limit = { is_aof_world_state = yes }
+			if = {
+				limit = {
+					federation = {
+						any_member = {
+							any_owned_colony = {
+								is_variable_set = aof_federation_id
+								check_variable = {
+									which = aof_federation_id
+									value = root.aof_federation_id
+								}
+							}
+						}
+					}
+				}
+			}
+			else = {
+				destroy_country = yes
+			}
+		}		
+	}
+}
+
+aof_planet_nation_happiness = {
+	federation = {
+		every_galaxy_planet = {
+			limit = {
+				exists = owner
+				owner = { exists = federation is_in_federation_with = root }
+				is_variable_set = aof_federation_id
+			}
+			owner = {
+				federation = {
+					random_member = {
+						limit = { is_variable_set = aof_federation_id check_variable = { which = aof_federation_id value = PREVPREVPREV.aof_federation_id } }
+						if = {
+							limit = { PREVPREVPREV = { happiness_planet < 0.5 } }
+							set_country_flag = happiness_below_5
+						}
+						if = {
+							limit = { PREVPREVPREV = { happiness_planet >= 0.5 } }
+							set_country_flag = happiness_above_5
+						}
+						if = {
+							limit = { PREVPREVPREV = { happiness_planet > 0.8 } }
+							set_country_flag = happiness_above_80
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+aof_advanced_federation_on_ecact = {
+	# declare war
+	set_diplomacy_action_setting = {
+		action = action_declare_war
+		settings = {
+			vote_type = leader
+		}
+	}
+	set_diplomacy_action_setting = {
+		action = action_offer_peace
+		settings = {
+			vote_type = leader
+		}
+	}
+	#invide new members
+	set_diplomacy_action_setting = {
+		action = action_invite_to_federation
+		settings = {
+			vote_type = leader
+		}
+	}
+	set_diplomacy_action_setting = {
+		action = action_kick_from_federation
+		settings = {
+			vote_type = leader
+		}
+	}
+	# Allow Subjects
+	set_allow_subjects_to_join = yes
+	set_federation_law = aof_union_assembly_old
+}
+aof_remove_doctrine_modifier = {
+	remove_modifier = aof_doctrines_mutualism
+	remove_modifier = aof_principle_mediation
+	remove_modifier = aof_doctrines_institutionalism
+	remove_modifier = aof_doctrines_corporatism
+	remove_modifier = aof_principle_free_exchange
+	remove_modifier = aof_doctrines_universalism
+	remove_modifier = aof_doctrines_interventionism
+	remove_modifier = aof_principle_iron_fortress
+	remove_modifier = aof_doctrines_exclusionism
+	remove_modifier = aof_doctrines_illuminism
+	remove_modifier = aof_principle_all_paths
+	remove_modifier = aof_doctrines_rationalism
+	remove_modifier = aof_doctrines_imperialism
+	remove_modifier = aof_principle_stewardship
+	remove_modifier = aof_doctrines_guardianism
+	remove_modifier = aof_doctrines_theocratism
+	remove_modifier = aof_principle_tradition
+	remove_modifier = aof_doctrines_puritanism
+}
+
+aof_make_advanced_federation = {
+	if = {
+		limit = { has_federation_type = default_federation }
+		set_federation_type = aof_advanced_default_federation
+	}
+	if = {
+		limit = { has_federation_type = research_federation }
+		set_federation_type = aof_advanced_research_federation
+	}
+	if = {
+		limit = { has_federation_type = military_federation }
+		set_federation_type = aof_advanced_military_federation
+	}
+	if = {
+		limit = { has_federation_type = trade_federation }
+		set_federation_type = aof_advanced_trade_federation
+	}
+	if = {
+		limit = { has_federation_type = spiritualist_federation }
+		set_federation_type = aof_advanced_spiritualist_federation
+	}
+	if = {
+		limit = { has_federation_type = hegemony_federation }
+		set_federation_type = aof_advanced_hegemony_federation
+	}
+}
+aof_make_hive_mind_pop_to_regular_with_trait = {
+	every_owned_pop_group = {
+		limit = { has_trait = trait_hive_mind }
+		species = {
+			change_species_characteristics = {
+				remove_trait = trait_hive_mind
+				add_trait = aof_trait_hive_mind
+				add_traits_at_start_of_list = yes
+			}
+
+		}
+	}
+}
+
+#Saves current_planet scope and the current_country scope based on aof_federation_id match
+aof_recall_matching_ID_nation = {
+	owner = {
+		federation = {
+			random_member = {
+				limit = { is_variable_set = aof_federation_id check_variable = { which = aof_federation_id value = event_target:current_planet.aof_federation_id }  }
+				save_event_target_as = current_country
+			}
+		}
+	}
+}
+# match planet and world state by ID, look for large random pop group and push ethic in that direction
+aof_align_world_state_to_pop_random = {
+	random_owned_colony = {
+		limit = { is_variable_set = aof_federation_id }
+		save_event_target_as = current_planet
+		aof_recall_matching_ID_nation = yes # as current_country
+		weighted_random_owned_pop_group = {
+			random_list = {
+				1 = { modifier = { factor = 0 NOT = { is_ethics_aligned = { ARG1 = authoritarian } } } event_target:current_country = { aof_shift_ethic_authoritarian = yes } }
+				1 = { modifier = { factor = 0 NOT = { is_ethics_aligned = { ARG1 = egalitarian } } } event_target:current_country = { aof_shift_ethic_egalitarian = yes } }
+				1 = { modifier = { factor = 0 NOT = { is_ethics_aligned = { ARG1 = militarist } } } event_target:current_country = { aof_shift_ethic_militarist = yes } }
+				1 = { modifier = { factor = 0 NOT = { is_ethics_aligned = { ARG1 = pacifist } } } event_target:current_country = { aof_shift_ethic_pacifist = yes } }
+				1 = { modifier = { factor = 0 NOT = { is_ethics_aligned = { ARG1 = materialist } } } event_target:current_country = { aof_shift_ethic_materialist = yes } }
+				1 = { modifier = { factor = 0 NOT = { is_ethics_aligned = { ARG1 = spiritualist } } } event_target:current_country = { aof_shift_ethic_spiritualist = yes } }
+				1 = { modifier = { factor = 0 NOT = { is_ethics_aligned = { ARG1 = xenophobe } } } event_target:current_country = { aof_shift_ethic_xenophobe = yes } }
+				1 = { modifier = { factor = 0 NOT = { is_ethics_aligned = { ARG1 = xenophile } } } event_target:current_country = { aof_shift_ethic_xenophile = yes } }
+			}
+		}
+	}
+}
+# shifts the ethics of a world state by playing around with country flags
+aof_shift_ethic_authoritarian = {
+	remove_country_flag = is_egalitarian
+	set_country_flag = is_authoritarian
+}
+aof_shift_ethic_egalitarian = {
+	remove_country_flag = is_authoritarian
+	set_country_flag = is_egalitarian
+}
+aof_shift_ethic_militarist = {
+	remove_country_flag = is_pacifist
+	set_country_flag = is_militarist
+}
+aof_shift_ethic_pacifist = {
+	remove_country_flag = is_militarist
+	set_country_flag = is_pacifist
+}
+aof_shift_ethic_materialist = {
+	remove_country_flag = is_spiritualist
+	set_country_flag = is_materialist
+}
+aof_shift_ethic_spiritualist = {
+	remove_country_flag = is_materialist
+	set_country_flag = is_spiritualist
+}
+aof_shift_ethic_xenophobe = {
+	remove_country_flag = is_xenophile
+	set_country_flag = is_xenophobe
+}
+aof_shift_ethic_xenophile = {
+	remove_country_flag = is_xenophobe
+	set_country_flag = is_xenophile
+}
+
+aof_spawn_starbase_for_each_world_state = {
+	every_owned_colony = {
+		limit = { is_variable_set = aof_federation_id }
+		save_event_target_as = current_planet
+		aof_recall_matching_ID_nation = yes
+		create_starbase = {
+			size = starbase_starport
+			owner = event_target:current_country
+			module = "shipyard"
+			module = "hangar_bay"
+			effect = {}
+		}
+	}
+}
+
+aof_join_planet_state_into_war = {
+	every_member = {
+		limit = { is_planetless_nation = yes }
+		join_war = federation.federation_leader
+	}
+}
+
+aof_keep_world_states_out_of_War = {
+	every_member = {
+		limit = { is_aof_world_state = yes is_at_war = yes }
+		federation = {
+			federation_leader = {
+				every_war = {
+					remove_war_participant = PREVPREVPREV
+				}
+			}
+		}
+	}
+}
+
+aof_world_states_are_liked = {
+	federation = {
+		every_member = {
+			limit = { is_aof_world_state = yes }
+			every_country = {
+				limit = { has_communications = prev is_ai = yes NOT = { is_same_value = prev } }
+				add_opinion_modifier = { modifier = opinion_we_liberated who = prev }
+			}
+		}
+	}
+}
+aof_remove_exploration_from_world_States = {
+	federation = {
+		every_member = {
+			limit = { is_aof_world_state = yes }
+			every_system = {
+				set_surveyed = { surveyed = no surveyor = prev }
+			}
+		}
+	}
+}
+remove_current_modifier = {
+	remove_modifier = aof_current_open_seas
+	remove_modifier = aof_current_hold_push
+	remove_modifier = aof_current_matter_mind
+	remove_modifier = aof_current_wall_bridge
+	remove_modifier = aof_current_hawks_droves
+}

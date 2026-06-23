@@ -1,0 +1,2 @@
+@has_f93_aof_mod = 1
+@aof_servicec_cooldown = 1800 # 5 years

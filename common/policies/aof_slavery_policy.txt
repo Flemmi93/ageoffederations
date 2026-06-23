@@ -1,0 +1,103 @@
+slavery = {
+	potential = {
+		NOT = { has_ethic = "ethic_gestalt_consciousness" }
+	}
+
+	option = {
+		name = "slavery_not_allowed"
+
+		valid = {
+			NOR = {
+				has_valid_civic = civic_slaver_guilds
+				has_valid_civic = civic_indentured_assets
+			}
+		}
+
+		policy_flags = {
+			slavery_not_allowed
+		}
+
+		on_enabled = {
+			hidden_effect = { every_owned_colony = { remove_modifier = slave_colony } }
+		}
+
+		modifier = {
+			slave_market_cost_mult = 1
+		}
+	}
+
+	option = {
+		name = "slavery_allowed"
+
+		valid = {
+			custom_tooltip = {
+				success_text = is_not_a_signatory_vassal_success
+				fail_text = is_not_a_signatory_vassal_fail
+				NOT = { any_agreement = { agreement_preset = preset_signatory } }
+			}
+			custom_tooltip = {
+				fail_text = is_broken_shackles_origin
+				NOT = { has_origin = origin_broken_shackles }
+			}
+			OR = {
+				is_authoritarian = yes
+				is_xenophobe = yes
+			}
+			custom_tooltip = {
+				fail_text = aof_agreed_to_treaties_separate_ethical_partners
+				NOT = { has_country_flag = aof_agreed_to_treaties_separate_ethical_partners }
+			}
+		}
+
+		modifier = {
+			refugee_attraction = -0.40
+		}
+
+		policy_flags = {
+			slavery_allowed
+		}
+		modifier = {}
+
+		AI_weight = {
+			factor = 10
+			modifier = {
+				factor = 0
+				has_valid_ai_personality = yes
+				NOT = { has_ai_personality_behaviour = slaver }
+			}
+			modifier = {
+				factor = 0
+				has_valid_ai_personality = no
+				NOR = {
+					is_authoritarian = yes
+					is_xenophobe = yes
+				}
+			}
+			# special case for harmonious collectives
+			modifier = {
+				factor = 0
+				has_valid_ai_personality = no
+				is_ai = yes
+				NOR = {
+					is_xenophobe = yes
+					is_militarist = yes
+				}
+				OR = {
+					has_ethic = "ethic_pacifist"
+					has_ethic = "ethic_fanatic_pacifist"
+					has_ethic = "ethic_xenophile"
+					has_ethic = "ethic_fanatic_xenophile"
+				}
+				OR = {
+					has_ethic = "ethic_authoritarian"
+					has_ethic = "ethic_fanatic_authoritarian"
+				}
+				NOR = {
+					has_valid_civic = "civic_slaver_guilds"
+					has_trait = "trait_decadent"
+					has_trait = "trait_robot_decadent"
+				}
+			}
+		}
+	}
+}

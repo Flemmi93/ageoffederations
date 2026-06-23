@@ -1,0 +1,33 @@
+federation_law_category_assembly_cooldown = {
+	icon = "gfx/interface/icons/modifiers/mod_relic_cooldown.dds"
+}
+federation_law_category_diplomatic_block_cooldown = {
+	icon = "gfx/interface/icons/modifiers/mod_relic_cooldown.dds"
+}
+federation_law_category_aof_accords_cooldown = {
+	icon = "gfx/interface/icons/modifiers/mod_relic_cooldown.dds"
+}
+federation_law_category_aof_market_cooldown = {
+	icon = "gfx/interface/icons/modifiers/mod_relic_cooldown.dds"
+}
+federation_law_category_aof_unification_cooldown = {
+	icon = "gfx/interface/icons/modifiers/mod_relic_cooldown.dds"
+}
+federation_law_category_federal_framework_cooldown = {
+	icon = "gfx/interface/icons/modifiers/mod_relic_cooldown.dds"
+}
+federation_law_aof_common_outlook_cooldown = {
+	icon = "gfx/interface/icons/modifiers/mod_relic_cooldown.dds"
+}
+federation_law_aof_political_current_cooldown = {
+	icon = "gfx/interface/icons/modifiers/mod_relic_cooldown.dds"
+}
+federation_law_category_aof_doctrines_cooldown = {
+	icon = "gfx/interface/icons/modifiers/mod_relic_cooldown.dds"
+}
+federation_law_category_union_assembly_cooldown = {
+	icon = "gfx/interface/icons/modifiers/mod_relic_cooldown.dds"
+}
+aof_current_planet_federal_services_cooldown = {
+	icon = "gfx/interface/icons/modifiers/mod_relic_cooldown.dds"
+}

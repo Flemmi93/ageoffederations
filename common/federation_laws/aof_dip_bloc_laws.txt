@@ -1,0 +1,418 @@
+@cooldown = 3600
+@cohesion_loss = -20
+
+diplomatic_bloc_default = {
+	potential = {}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = diplomatic_bloc_default }
+					has_modifier = federation_law_category_diplomatic_block_cooldown
+					has_any_federation_law_in_category = law_category_diplomatic_block
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = requires_law_vote_weight_equal
+			OR = {
+				has_federation_law = vote_weight_planet
+				has_federation_law = vote_weight_equal
+			}
+		}
+	}
+	modifier = {
+		federation_leader_diplo_weight_contribution_add = 0.1
+	}
+	on_enact = {
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_category_diplomatic_block_cooldown
+				days = @cooldown
+			}
+		}
+	}
+	ai_weight = { 
+		base = 0
+		
+		#Default support
+		modifier = {
+			desc = federation_acceptance_generally_positive
+			add = 41
+		}
+		
+		modifier = {
+			desc = federation_acceptance_xenophile
+			add = -5
+			is_aof_xenophile = yes
+		}
+		modifier = {
+			desc = federation_acceptance_xenophobe
+			add = 5
+			is_aof_xenophobe = yes
+		}
+		modifier = {
+			desc = federation_acceptance_authoritarian
+			add = 5
+			is_aof_authoritarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_egalitarian
+			add = -5
+			is_aof_egalitarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_spiritualist
+			add = 5
+			is_aof_spiritualist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_materialist
+			add = -5
+			is_aof_materialist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_militarist
+			add = -5
+			is_aof_militarist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_pacifist
+			add = 5
+			is_aof_pacifist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_poor_cohesion
+			add = 50
+			federation = {
+				federation_cohesion <= -25
+				OR = {
+					has_federation_law = diplomatic_bloc_common_voice
+					has_federation_law = diplomatic_bloc_united
+				}
+			}
+		}
+	}
+}
+diplomatic_bloc_common_voice = {
+	potential = {}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = diplomatic_bloc_common_voice }
+					has_modifier = federation_law_category_diplomatic_block_cooldown
+					has_any_federation_law_in_category = law_category_diplomatic_block
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = requires_law_vote_weight_equal
+			OR = {
+				has_federation_law = vote_weight_planet
+				has_federation_law = vote_weight_equal
+			}
+		}
+		has_federation_law = assembly_grand
+		is_galactic_community_formed = yes
+	}
+	modifier = {
+		federation_leader_diplo_weight_contribution_add = 0.2
+	}
+	required_centralization = {
+		base = 3
+	}
+	cohesion_growth = -1
+	on_enact = {
+		add_cohesion = @cohesion_loss
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 61 }
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_category_diplomatic_block_cooldown
+				days = @cooldown
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_federation_flag = passed_a_diplo_bloc_law_already }
+			}
+			set_timed_federation_flag = { flag = just_passed_background_11 days = 1 }
+			set_federation_flag = passed_a_diplo_bloc_law_already
+			every_country = { country_event = { id = f93_aof_background.11 } }
+		}
+	}
+	ai_weight = { 
+		base = 0
+		
+		#Default support
+		modifier = {
+			desc = federation_acceptance_generally_positive
+			add = 31
+		}
+		modifier = {
+			desc = federation_acceptance_president
+			add = 20
+			is_federation_leader = yes
+		}
+		modifier = {
+			desc = federation_acceptance_xenophile
+			add = 5
+			is_aof_xenophile = yes
+		}
+		modifier = {
+			desc = federation_acceptance_xenophobe
+			add = -5
+			is_aof_xenophobe = yes
+		}
+		modifier = {
+			desc = federation_acceptance_authoritarian
+			add = -5
+			is_aof_authoritarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_egalitarian
+			add = 5
+			is_aof_egalitarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_spiritualist
+			add = 5
+			is_aof_spiritualist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_materialist
+			add = -5
+			is_aof_materialist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_militarist
+			add = -5
+			is_aof_militarist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_pacifist
+			add = 5
+			is_aof_pacifist = yes
+		}
+	}
+}
+diplomatic_bloc_clear_voice = {
+	potential = {}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = diplomatic_bloc_clear_voice }
+					has_modifier = federation_law_category_diplomatic_block_cooldown
+					has_any_federation_law_in_category = law_category_diplomatic_block
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = requires_law_vote_weight_equal
+			OR = {
+				has_federation_law = vote_weight_planet
+				has_federation_law = vote_weight_equal
+			}
+		}
+		has_federation_law = assembly_grand
+		is_galactic_community_formed = yes
+	}
+	required_centralization = {
+		base = 4
+	}
+	modifier = {
+		federation_experience_add = 1
+		federation_leader_diplo_weight_contribution_add = 0.3
+	}
+	on_enact = {
+		add_cohesion = @cohesion_loss
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 62 }
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_category_diplomatic_block_cooldown
+				days = @cooldown
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_federation_flag = passed_a_diplo_bloc_law_already }
+			}
+			set_timed_federation_flag = { flag = just_passed_background_11 days = 1 }
+			set_federation_flag = passed_a_diplo_bloc_law_already
+			every_country = { country_event = { id = f93_aof_background.11 } }
+		}
+	}
+	ai_weight = { 
+		base = 0
+		
+		#Default support
+		modifier = {
+			desc = federation_acceptance_generally_positive
+			add = 21
+		}
+		modifier = {
+			desc = federation_acceptance_president
+			add = 30
+			is_federation_leader = yes
+		}
+		modifier = {
+			desc = federation_acceptance_xenophile
+			add = 10
+			is_aof_xenophile = yes
+		}
+		modifier = {
+			desc = federation_acceptance_xenophobe
+			add = -5
+			is_aof_xenophobe = yes
+		}
+		modifier = {
+			desc = federation_acceptance_authoritarian
+			add = -5
+			is_aof_authoritarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_egalitarian
+			add = 5
+			is_aof_egalitarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_spiritualist
+			add = 5
+			is_aof_spiritualist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_materialist
+			add = -5
+			is_aof_materialist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_militarist
+			add = 5
+			is_aof_militarist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_pacifist
+			add = 10
+			is_aof_pacifist = yes
+		}
+	}
+}
+diplomatic_bloc_united = {
+	potential = {}
+	allow = {
+		custom_tooltip = {
+			NOT = {
+				AND = {
+					NOT = { has_federation_law = diplomatic_bloc_united }
+					has_modifier = federation_law_category_diplomatic_block_cooldown
+					has_any_federation_law_in_category = law_category_diplomatic_block
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = requires_law_vote_weight_equal
+			OR = {
+				has_federation_law = vote_weight_planet
+				has_federation_law = vote_weight_equal
+			}
+		}
+		has_federation_law = assembly_grand
+		is_galactic_community_formed = yes
+	}
+	required_centralization = {
+		base = 5
+	}
+	modifier = {
+		federation_leader_diplo_weight_contribution_add = 0.5
+	}
+	cohesion_growth = -2 # balacne adjusmtent from -3
+	on_enact = {
+		add_cohesion = @cohesion_loss
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 63 }
+		if = {
+			limit = { has_federation_flag = enable_federation_cooldowns }
+			add_modifier = {
+				modifier = federation_law_category_diplomatic_block_cooldown
+				days = @cooldown
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_federation_flag = passed_a_diplo_bloc_law_already }
+			}
+			set_timed_federation_flag = { flag = just_passed_background_11 days = 1 }
+			set_federation_flag = passed_a_diplo_bloc_law_already
+			every_country = { country_event = { id = f93_aof_background.11 } }
+		}
+		if = {
+			limit = {
+				NOT = { has_federation_flag = passed_united_front_before }
+			}
+			set_federation_flag = passed_united_front_before
+			every_member = { country_event = { id = f93_aof_background.12 } }
+		}
+	}
+	ai_weight = { 
+		base = 0
+		
+		#Default support
+		modifier = {
+			desc = federation_acceptance_generally_positive
+			add = 21
+		}
+		modifier = {
+			desc = federation_acceptance_president
+			add = 50
+			is_federation_leader = yes
+		}
+		modifier = {
+			desc = federation_acceptance_xenophile
+			add = 5
+			is_aof_xenophile = yes
+		}
+		modifier = {
+			desc = federation_acceptance_xenophobe
+			add = -5
+			is_aof_xenophobe = yes
+		}
+		modifier = {
+			desc = federation_acceptance_authoritarian
+			add = 5
+			is_aof_authoritarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_egalitarian
+			add = 10
+			is_aof_egalitarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_spiritualist
+			add = 5
+			is_aof_spiritualist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_materialist
+			add = 5
+			is_aof_materialist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_militarist
+			add = 5
+			is_aof_militarist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_pacifist
+			add = 10
+			is_aof_pacifist = yes
+		}
+		modifier = {
+			desc = f93_aof_civic_shared_burden
+			add = 100
+			has_civic = civic_shared_burden
+		}
+	}
+}

@@ -1,0 +1,178 @@
+@cooldown = 3600
+@cohesion_loss = -20
+### Framework Laws ###
+aof_centralized_federation = {
+	potential = { NOT = { has_federation_flag = aof_unified } }
+	allow = {}
+	on_enact = {}
+	ai_weight = {
+		base = 0
+	}
+}
+aof_unified_federation = {
+	potential = { NOT = { has_federation_flag = aof_unified } }
+	allow = {
+		has_federation_law = vote_weight_planet
+		OR = {
+			any_member = { has_tradition = tr_diplomacy_finish } 
+			any_member = { OR = { has_origin = origin_hegemon has_origin = origin_common_ground } }
+			hidden_trigger = { any_member = { OR = { has_origin = origin_hegemon_npc has_origin = origin_common_ground_npc } } }
+		}
+	}
+	required_centralization = {
+		base = 5
+	}
+	on_enact = {
+		if = {
+			limit = { any_member= { is_galactic_custodian = yes } }
+			every_member = {
+				limit = { is_galactic_custodian = yes }
+				set_galactic_custodian = no
+			}
+		}
+		aof_make_advanced_federation = yes
+		aof_unify_federation = yes
+		federation_leader = {
+			country_event = { id = f93_aof_background.21 days = 1 scopes = { From = this } }
+			every_country = {
+				limit = { NOT = { is_same_value = prev } }
+				country_event = { id = f93_aof_background.22 scopes = { From = prev } }
+			}
+		}
+	}
+	ai_weight = {
+		base = 0
+		modifier = {
+			desc = federation_acceptance_planet_state
+			add = 26
+			is_aof_world_state = yes
+		}
+		modifier = {
+			desc = federation_acceptance_president
+			add = 100
+			is_federation_leader = yes
+			is_aof_world_state = no
+		}
+		modifier = {
+			desc = federation_acceptance_weaker
+			add = 25
+			relative_power = { who = from value >= superior }
+			is_aof_world_state = no
+		}
+		modifier = {
+			desc = federation_acceptance_weaker
+			add = 25
+			relative_power = { who = from value >= overwhelming }
+			is_aof_world_state = no
+		}
+		modifier = {
+			desc = federation_acceptance_stronger
+			add = -25
+			relative_power = { who = from value <= equivalent }
+			is_aof_world_state = no
+		}
+		modifier = {
+			desc = federation_acceptance_stronger
+			add = -25
+			relative_power = { who = from value <= inferior }
+			is_aof_world_state = no
+		}
+		modifier = {
+			desc = federation_acceptance_has_subjects
+			add = -20
+			subjects > 0
+			is_aof_world_state = no
+		}
+		modifier = {
+			desc = federation_acceptance_gestalt
+			add = -10
+			is_gestalt = yes
+			is_aof_world_state = no
+		}
+		modifier = {
+			desc = federation_acceptance_xenophobic_isolationists
+			add = -15
+			has_ai_personality = xenophobic_isolationists
+			is_aof_world_state = no
+		}
+		modifier = {
+			desc = federation_acceptance_crisis
+			add = 15
+			federation = { has_federation_law = fleet_contribution_none }
+			has_crisis_stage_2 = yes
+		}
+		modifier = {
+			desc = federation_acceptance_crisis
+			add = 25
+			federation = { has_federation_law = fleet_contribution_none }
+			has_crisis_stage_3 = yes
+		}
+		modifier = {
+			desc = federation_acceptance_crisis
+			add = 100
+			federation = { has_federation_law = fleet_contribution_none }
+			has_crisis_stage_4 = yes
+		}
+		modifier = {
+			desc = federation_acceptance_subject
+			add = 10
+			is_subject = yes
+			is_aof_world_state = no
+		}
+		modifier = {
+			desc = federation_acceptance_federation_builders
+			add = 50
+			has_ai_personality = federation_builders
+			is_aof_world_state = no
+		}
+		modifier = {
+			add = 8
+			desc = federation_acceptance_high_cohesion
+			federation = {
+				federation_cohesion >= 99
+			}
+		}
+		modifier = {
+			desc = federation_acceptance_xenophile
+			add = 5
+			is_aof_xenophile = yes
+		}
+		modifier = {
+			desc = federation_acceptance_xenophobe
+			add = -5
+			is_aof_xenophobe = yes
+		}
+		modifier = {
+			desc = federation_acceptance_authoritarian
+			add = -5
+			is_aof_authoritarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_egalitarian
+			add = 5
+			is_aof_egalitarian = yes
+		}
+		modifier = {
+			desc = federation_acceptance_spiritualist
+			add = 5
+			is_aof_spiritualist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_materialist
+			add = 5
+			is_aof_materialist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_militarist
+			add = 5
+			is_aof_militarist = yes
+		}
+		modifier = {
+			desc = federation_acceptance_pacifist
+			add = 5
+			is_aof_pacifist = yes
+		}
+	}
+}
+
+# Voters: Empire, Planet, Sapients, Leader

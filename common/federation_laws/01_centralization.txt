@@ -5,6 +5,7 @@ centralization_minimal = {
 	unlocks_centralization = 1
 	potential = {
 		NOT = { has_federation_flag = special_federation }
+		is_aof_advanced_federation = no
 	}
 	allow = {
 		custom_tooltip = {
@@ -28,7 +29,8 @@ centralization_minimal = {
 			}
 		}
 		# modded content / edit
-		add_cohesion = -25 # original value -10
+		add_cohesion = 10 # reducing centralisation will now not decrease cohesion
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 1 }
 		###
 	}
 
@@ -110,6 +112,7 @@ centralization_low = {
 	display_level = 2
 	potential = {
 		NOT = { has_federation_flag = special_federation }
+		is_aof_advanced_federation = no
 	}
 	allow = {
 		custom_tooltip = {
@@ -138,8 +141,17 @@ centralization_low = {
 			}
 		}
 		# modded content / edit
-		add_cohesion = -25 # original value -10
-		set_federation_law = fed_market_basic
+		if = {
+			limit = {
+				has_federation_law = centralization_minimal
+			}
+			add_cohesion = -25 # original value -10
+		}
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 2 }
+		if = {
+			limit = { NOT = { has_any_federation_law_in_category = law_category_aof_market } }
+			set_federation_law = aof_market_basic
+		}
 		###
 		
 		fire_random_centralisation_flavour_event_effect = yes #potentially fire a flavour event
@@ -197,7 +209,7 @@ centralization_low = {
 		modifier = {
 			desc = federation_acceptance_authoritarian
 			add = 10
-			is_authoritarian = yes
+			is_aof_authoritarian = yes
 		}
 		modifier = {
 			desc = federation_acceptance_weaker
@@ -318,6 +330,7 @@ centralization_medium = {
 	unlocks_centralization = 3
 	potential = {
 		NOT = { has_federation_flag = special_federation }
+		is_aof_advanced_federation = no
 	}
 	allow = {
 		custom_tooltip = {
@@ -336,7 +349,10 @@ centralization_medium = {
 		# modded content 
 		custom_tooltip = {
 			fail_text = f93_allow_subjects_to_join_yes
-			NOT = { has_federation_law = allow_subjects_to_join_yes }
+			OR = {
+				NOT = { has_federation_law = allow_subjects_to_join_yes }
+				has_federation_type = hegemony_federation
+			}
 		}
 		###
 	}
@@ -360,7 +376,16 @@ centralization_medium = {
 			every_member = { country_event = { id = f93_aof_market.4 days = 2520 } } # enabling capitol one 
 			# set_federation_flag = federation_one_enabled
 		}
-		add_cohesion = -25 # original value -10
+		if = {
+			limit = {
+					OR = {
+						has_federation_law = centralization_minimal
+						has_federation_law = centralization_low
+					}
+			}
+			add_cohesion = -25 # original value -10
+		}
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 3 }
 		if = {
 			limit = { NOT = { has_federation_law = succession_type_election } }
 			set_federation_law = succession_type_election
@@ -418,7 +443,7 @@ centralization_medium = {
 		modifier = {
 			desc = federation_acceptance_authoritarian
 			add = 10
-			is_authoritarian = yes
+			is_aof_authoritarian = yes
 		}
 		modifier = {
 			desc = federation_acceptance_weaker
@@ -548,6 +573,7 @@ centralization_high = {
 	unlocks_centralization = 4
 	potential = {
 		NOT = { has_federation_flag = special_federation }
+		is_aof_advanced_federation = no
 	}
 	allow = {
 		custom_tooltip = {
@@ -566,11 +592,17 @@ centralization_high = {
 		# Modded content
 		custom_tooltip = {
 			fail_text = requires_law_vote_weight_equal
-			has_federation_law = vote_weight_equal
+			OR = {
+				has_federation_law = vote_weight_planet
+				has_federation_law = vote_weight_equal
+			}
 		}
 		custom_tooltip = {
 			fail_text = f93_allow_subjects_to_join_yes
-			NOT = { has_federation_law = allow_subjects_to_join_yes }
+			OR = {
+				NOT = { has_federation_law = allow_subjects_to_join_yes }
+				has_federation_type = hegemony_federation
+			}
 		}
 		###
 	}
@@ -592,7 +624,21 @@ centralization_high = {
 			}
 		}
 		# modded content / edit
-		add_cohesion = -25 # original value -10
+		if = {
+			limit = {
+				OR = {
+					has_federation_law = centralization_minimal
+					has_federation_law = centralization_low
+					has_federation_law = centralization_medium
+				}
+			}
+			add_cohesion = -25 # original value -10
+		}
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 4 }
+		if = {
+			limit = { NOT = { has_federation_law = succession_type_election } }
+			set_federation_law = succession_type_election
+		}
 		###
 
 		fire_random_centralisation_flavour_event_effect = yes #potentially fire a flavour event
@@ -646,7 +692,7 @@ centralization_high = {
 		modifier = {
 			desc = federation_acceptance_authoritarian
 			add = 10
-			is_authoritarian = yes
+			is_aof_authoritarian = yes
 		}
 		modifier = {
 			desc = federation_acceptance_weaker
@@ -776,6 +822,7 @@ centralization_very_high = {
 	unlocks_centralization = 5
 	potential = {
 		NOT = { has_federation_flag = special_federation }
+		is_aof_advanced_federation = no
 	}
 	allow = {
 		custom_tooltip = {
@@ -794,11 +841,17 @@ centralization_very_high = {
 		# Modded content
 		custom_tooltip = {
 			fail_text = requires_law_vote_weight_equal
-			has_federation_law = vote_weight_equal
+			OR = {
+				has_federation_law = vote_weight_planet
+				has_federation_law = vote_weight_equal
+			}
 		}
 		custom_tooltip = {
 			fail_text = f93_allow_subjects_to_join_yes
-			NOT = { has_federation_law = allow_subjects_to_join_yes }
+			OR = {
+				NOT = { has_federation_law = allow_subjects_to_join_yes }
+				has_federation_type = hegemony_federation
+			}
 		}
 		###
 	}
@@ -819,6 +872,11 @@ centralization_very_high = {
 		}
 		# modded content / edit
 		add_cohesion = -25 # original value -10
+		set_variable = { which = LAST_ENACTED_LAW_NUMBER value = 5 }
+		if = {
+			limit = { NOT = { has_federation_law = succession_type_election } }
+			set_federation_law = succession_type_election
+		}
 		###
 
 		fire_random_centralisation_flavour_event_effect = yes #potentially fire a flavour event
@@ -861,7 +919,7 @@ centralization_very_high = {
 		modifier = {
 			desc = federation_acceptance_authoritarian
 			add = 10
-			is_authoritarian = yes
+			is_aof_authoritarian = yes
 		}
 		modifier = {
 			desc = federation_acceptance_weaker
